@@ -106,6 +106,27 @@ def update_user_field(file_path, user_id, field, value):
     # print(f"用户 {user_id} 的 {field} 已更新为 {value}")
 
 
+# 遍历所有用户目录并获取账号列表
+def get_all_user_accounts(base_directory):
+    accounts = []
+    if os.path.exists(base_directory):
+        # 遍历目录中的每个文件夹
+        for user_folder in os.listdir(base_directory):
+            user_directory = os.path.join(base_directory, user_folder)
+            if os.path.isdir(user_directory):
+                user_file = os.path.join(user_directory, 'user_data.yaml')
+                user_data = read_yaml(user_file)
+                #print("user_data:", user_data)
+                if user_data and 'users' in user_data:
+                    #print("user_data:", user_data)
+                    # 提取每个用户的账号信息
+                    for user_id, user_info in user_data['users'].items():
+                        if 'account_number' in user_info:
+                            accounts.append(user_info['account_number'])
+    return accounts
+
+
+
 # 示例：读取和修改用户数据
 def manage_user_data(base_directory, user_id, room=None, location=None, account=None):
     file_name = 'user_data.yaml'  # 定义每个用户的YAML文件名
@@ -191,7 +212,7 @@ def inquiry(directory, filename):
         building = js["building"]  # 获取建筑信息
         room = js["room"]  # 获取房间号
 
-    print(f"查询 {building} {room}")
+    #print(f"查询 {building} {room}")
 
     session = requests.session()  # 创建一个会话对象
     # 设置请求头，Content-Type是必要的
@@ -271,72 +292,14 @@ def schedule_tasks():
         schedule.run_pending()
         time.sleep(1)
 
+def elect_check_schedule():
+    print("定时任务，开始执行")
 
-
-
-def move_file_to_directory(source_file, destination_directory):
-    # 确保目标目录存在，如果不存在则创建
-    os.makedirs(destination_directory, exist_ok=True)
-
-    # 获取源文件的文件名
-    file_name = os.path.basename(source_file)
-
-    # 构建目标文件的完整路径
-    destination_file = os.path.join(destination_directory, file_name)
-
-    # 移动文件
-    shutil.move(source_file, destination_file)
-
-    print(f"文件已成功移动到: {destination_file}")
-
-
-
-
-
-def send_file_via_sftp(local_file, remote_file, remote_folder, hostname, username, password, port=22):
-    # 创建一个SSH客户端
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())  # 自动添加远程主机的密钥
-    ssh.connect(hostname, port=port, username=username, password=password)
-
-    # 创建SFTP客户端
-    sftp = ssh.open_sftp()
-
-    # 确保远程目录存在
-    try:
-        sftp.chdir(remote_folder)
-    except IOError:
-        sftp.mkdir(remote_folder)
-        sftp.chdir(remote_folder)
-
-    # 上传文件
-    sftp.put(local_file, f"{remote_folder}/{remote_file}")
-    
-    # 关闭SFTP和SSH连接
-    sftp.close()
-    ssh.close()
-
-
-
-
+_task = None
 
 def main(bot, logger):
     @bot.on(GroupMessage)
     async def elect_check(event: GroupMessage):
-        
-        
-        
-
-            
-            
-            
-            
-            
-            
-            
-        
-        
-        
         # 获取master信息
         with open('config.json', 'r', encoding='utf-8') as f:
             data = yaml.load(f.read(), Loader=yaml.FullLoader)
@@ -350,9 +313,10 @@ def main(bot, logger):
         # 示例：读取和修改用户数据
         base_directory = directory
         # 初始化文件
-        user_data = manage_user_data(base_directory, 'elect_check', room='b666', location="abc", account="alice123")
+
         stateid = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), 'manshuo', 'stateid')
         if stateid == None:
+            manage_user_data(base_directory, 'elect_check', room='b666', location="abc", account="alice123")
             update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), 'manshuo', 'room', 'b413')
             update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), 'manshuo', 'building',
                               '凤凰居 S1')
@@ -376,14 +340,43 @@ def main(bot, logger):
         if ('查询' in str(event.message_chain) and '电费' in str(event.message_chain)) and event.group.id == 674822469:
             logger.info("电费查询")
             name_id = int(str(event.sender.id))
+            context = str(event.message_chain)
+            name_id_number = re.search(r'\d+', context)
+            if name_id_number:
+                name_id_number = int(name_id_number.group())
+                name_id = name_id_number
+                #print(f"name_id: {name_id}")
 
             room = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'room')
+
             if room == None:
-                #await bot.send(event, '您还未注册，请在bot群内发送"电费注册"以开始')
-                pass
+                await bot.send(event, '您还未注册，请在群内或私聊发送"电费注册"以开始')
             else:
+                times = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
+                                      'times')
+                if times == None:
+                    update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'times','1')
+                elif times:
+                    times = int(times)
+                    times+=1
+                    update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),'times',str(times))
+                account_number = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
+                                      'account_number')
+
+                if account_number == None:
+                    update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'account_number',str(name_id))
+
+                stateid_check = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'),str(name_id),'stateid_check')
+                if stateid_check == None:
+                    update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
+                                      'stateid_check', '0')
+
+
 
                 #await bot.send(event, "当前功能限时上线," + str(botName) + "正在为您查询喵~")
+                #print(f"name_id: {name_id}")
+                length = len(str(name_id))
+                #print(len(str(name_id)))
 
                 json_check(directory, data_json)
                 json_rewrite(directory, data_json, name_id)
@@ -475,6 +468,14 @@ def main(bot, logger):
                         buildingid = 1574231830
                     elif 'T3' in str(event.message_chain) or 't2' in str(event.message_chain):
                         buildingid = 1574231835
+                    elif 'B10' in str(event.message_chain) or 'b10' in str(event.message_chain):
+                        buildingid = 1693031710
+                    elif 'B2' in str(event.message_chain) or 'b2' in str(event.message_chain):
+                        buildingid = 1661835256
+                    elif 'B9' in str(event.message_chain) or 'b9' in str(event.message_chain):
+                        buildingid = 1693031698
+                    elif 'B1' in str(event.message_chain) or 'b1' in str(event.message_chain):
+                        buildingid = 1661835249
                     else:
                         await bot.send(event, f'未能成功获取，请重试或联系master')
                     update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), 'manshuo',
@@ -486,7 +487,7 @@ def main(bot, logger):
                     update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(user_id),
                                       'buildingid', str(buildingid))
 
-                    await bot.send(event, f'位置已收到，该建筑代码为：{buildingid}，注册成功，谢谢！')
+                    await bot.send(event, f'您注册成功，谢谢！\n若开启bot提醒，请发送“开启电费提醒”')
 
                     # await bot.send_friend_message(master, '完成注册，state_id：'+str(state_id)+" stateid："+str(stateid))
 
