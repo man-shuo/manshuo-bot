@@ -1,1 +1,16 @@
-a: b
+'2024-09-25':
+  塔罗:
+    123:
+      path: ',,,'
+      text: hahaha
+    1270858640:
+      img: data/pictures/tarot/sideAbstractImages/The Hermit.jpg
+      text: '隐士 (The Hermit)
+
+        逆位
+
+        一视同仁; 不够通融; 不专心易生错误; 过分警戒，无法顺利进行; 秘密泄漏; 过于固执不听别人的意见; 孤独; 动机不单纯; 因怨言及偏见招人嫌;
+        轻浮的爱情; 怀疑爱情'
+  运势:
+    123: ''
+    456: ''

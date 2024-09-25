@@ -4,129 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28b4e848-1629-4b74-b686-06e455847ccc" name="更改" comment="欸，这是什么？推送一下&#10;欸，这又是什么？更新一下">
-      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/国服未来视.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/国服活动.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/国际服总力.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/国际服未来视.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/国际服活动.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/国际服火力演习.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/日服大决战.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/日服总力.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/日服活动.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/blueArchive/arona/日服火力演习.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/pictures/benzi/430743.pdf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/pictures/tarot/sideAbstractImages/Death.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/pictures/tarot/sideAbstractImages/Temperance.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/pictures/tarot/sideAbstractImages/The Emperor.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/data/pictures/tarot/sideAbstractImages/The Hermit.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/Rereadlist.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/attack_elements.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/attack_sb_list.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/data.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/elect_check/user_data.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/atri.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/avatar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/burn.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/ciallo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/daka.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/eihei.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/guaiqiao.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/hongwen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/qiqinanniang.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/qiqizayu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/retouch_2024090822231088.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/shengqi.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/shengqi2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/tafei.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/weini.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/woaini.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/woleige.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/womeiyijian.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/wordcloud.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/xiongdi.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/yiyi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/yuzusoft1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/yuzusoft2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/zayu2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/zhebeizi.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/fonts/zhebeizi.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/0005847151_B.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/280px-Img_prize22 (1).webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/280px-Sprb_main_img.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/280px-千戀＊萬花遊戲封面 (1).webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/280px-寄宿之恋.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/300px-Koibana.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/300px-恋爱成双.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-天色天歌天籁音.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-春色春恋春熙风.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-雪色雪花雪余痕.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/9nine.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/ChaosChild (2).png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/ChaosChild.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/Hirahira-Hihiru.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/NOeSIS.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/OIP.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/R-C.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/Rewrite.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/a7ff884ce764b92fcee3d8d30c756874.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/brladrsky.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/clanned.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/daiwoqudixiacheng.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/eden.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/erewhom.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/ever17.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/guse.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/haishishenlou.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/jiaoxiangyue.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/junbi.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/kezhishaonv.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/kudwafter.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/lansi.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/loppers.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/love-is-pure-white.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/shaonvlingyu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/shengming.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/suqingri.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/xiangyaochuandadeailian.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/xiawa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/xingkongliehce.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/yuanzhikong.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgame/恋爱，我借走了main.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/3.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/5.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/6.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/7.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/8.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/galgamelist.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run/Reread_yaml.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run/aite_yaml.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run/attack_sb_yaml.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run/autoreply.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run/elect_check.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/run/galgame.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp/chatGLMData_back.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/temp/userData_back.yaml" afterDir="false" />
+    <list default="true" id="28b4e848-1629-4b74-b686-06e455847ccc" name="更改" comment="config更新">
       <change beforePath="$PROJECT_DIR$/.idea/Manyana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Manyana.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/api.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/api.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/controller.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/controller.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/jmcomic.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/jmcomic.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/noResponse.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/noResponse.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/settings.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/welcome.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/welcome.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/aronaSub.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/aronaSub.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/chatGLMData.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/chatGLMData.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/lockLuck.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/lockLuck.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/signs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/signs.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/text/draftBottleData.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/text/draftBottleData.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/userData.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/userData.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plugins/jmcomicDownload.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jmcomicDownload.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/aiReply.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/aiReply.py" afterDir="false" />
@@ -186,7 +70,7 @@
       <option name="presentableId" value="Default" />
       <updated>1727260755244</updated>
       <workItem from="1727260757556" duration="4631000" />
-      <workItem from="1727265566230" duration="373000" />
+      <workItem from="1727265566230" duration="781000" />
     </task>
     <task id="LOCAL-00001" summary="update 抽象塔罗">
       <option name="closed" value="true" />
@@ -212,7 +96,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727265784759</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="config更新">
+      <option name="closed" value="true" />
+      <created>1727266332321</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727266332321</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -245,7 +137,8 @@
     <MESSAGE value="update 抽象塔罗" />
     <MESSAGE value="update 添加正则判定" />
     <MESSAGE value="欸，这是什么？推送一下&#10;欸，这又是什么？更新一下" />
-    <option name="LAST_COMMIT_MESSAGE" value="欸，这是什么？推送一下&#10;欸，这又是什么？更新一下" />
+    <MESSAGE value="config更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="config更新" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1727264358542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
