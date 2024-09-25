@@ -1,0 +1,393 @@
+32023/8/4:
+  - 增加方舟查询等待时间，请自行删除data/arknights文件夹下所有内容
+2023/8/5:
+  - 新指令:取消直播订阅#房间号
+  - 修复了可以重复添加直播订阅的问题
+  - 可以在settings.yaml中修改可以邀请bot加群的签到天数限制
+  - config.json增加mainGroup，填写为你自己的群
+  - 用户自行在mainGroup中授权以及解黑指令如下
+  - 授权#QQ号
+  - /blgroup remove 群号
+  - 你需要重新填写settings.yaml以及config.json
+2023/8/10:
+  - 更新支持rwkv模型，安装：https://www.bilibili.com/video/BV1hM4y1v76R/?vd_source=b41b8c06d400241b8d0badbe1f821ec9
+  - 端口默认8000，不用改就行
+  - 指令：/rwkv你好
+2023/8/11:
+  - 可自定义的新人入群欢迎。config/welcome.yaml
+2023/8/13:
+  - 做了分群的词库
+  - 词库位置data/autoReply/lexicon
+  - 新的匹配规则，可以设置 你/吃饭 为关键词，只要消息中包含 你 和 吃饭 即可触发。优先选择群内词库，如果无匹配则使用
+  - 更新指令 授权群#群号    开启settings.yaml中的GroupSensor后，将自动拒绝无授权的加群邀请
+2023/8/14:
+  - data/autoReply/lexicon新增一个init.xlsx，其中的内容将写入各群初始化词库
+  - 增加指令 *开始添加 可以添加回复到所有群共享词库中
+  - 增加指令 del#关键词  可以完全删除关键词以及所有回复
+2023/8/15:
+  - config/settings中新增配置项MaxAllowableLength，详情请查看文件注释
+2023/8/18:
+  - config/settings中新增配置项AutoCreatLexicon，详情请查看文件注释
+  - 增加指令 *del#关键词 与 *开始添加 相对应
+2023/8/29:
+  - 支持通过pandora接入chatGPT3.5
+  - config/token.txt中填写你的token，获取方式见https://ai-20230626.fakeopen.com/auth
+  - 如需使用请在settings.yaml中打开pandora
+2023/8/31:
+  - 搜图全面升级
+2023/9/2:
+  - 记录每次调用有道翻译的结果，避免同一文本重复调用翻译带来的大量(一般几块钱)api限额损耗。
+2023/9/11:
+  - 更新指令：王者荣耀查询
+2023/9/13:
+  - setUp.py支持导出群列表，制作一个chatLearning可用的配置文件(https://mirai.mamoe.net/topic/1018/chatlearning-%E8%AE%A9bot%E5%AD%A6%E4%BC%9A%E4%BD%A0%E7%9A%84%E7%BE%A4%E8%81%8A/8)
+  - 后室wiki
+2023/9/14:
+  - 指令：彩色小人
+  - setting.yaml，可设置彩色小人回复几率
+2023/9/25:
+  - 更新chatGLM，请配置api.yaml与settings.yaml
+  - setting.yaml新增配置项，手动切换上下文模式与问答模式
+2023/9/26:
+  - 支持多角色预设
+2023/9/27:
+  - 支持自定义prompt上限
+  - 清理对话存储指令 /clearGLM
+  - 讯飞星火 /xh你好
+  - 文心一言 /wx你好
+2023/9/29:
+  - 使用多线程解决chatGLM卡顿问题
+2023/10/2:
+  - 增加一个ChatGlmWeb.exe，web版本的chatGLM，双击即可执行
+2023/10/23:
+  - 支持bert_vits2
+2023/11/15:
+  - 遥遥领先
+2023/12/5:
+  - 前段时间的指令 /arona
+  - 具体你还是@bot 帮助 吧
+  - 增加一个新指令 ba十连
+2023/12/6:
+  - 新增指令 /赌 数字
+  - 如使用了ManyanaLauncher整合包请手动删除miraiBot/plugins/AutoGroup.jar 其功能已经基本在本次更新中实现和完善
+  - 请查看config/welcome.yaml
+  - 请查看config/GroupGameSettings.yaml
+2023/12/6.5:
+  - 新指令 点歌 歌曲名
+  - 由于未进行silk转码(音质下降)，除了android_phone之外的用户无法听到点歌语音
+2023/12/12:
+  - 可以将图片设置为关键词
+2023/12/13:
+  - 新增一批指令
+  - 你可以在data/scheduledTasks.yaml 设置任务推送的时间以及对应文本。用下面的指令在群内开关任务
+  - /推送 摸鱼人日历
+  - /推送 每日天文
+  - /推送 每日新闻
+  - /推送 喜加一
+  - /推送 每日星座
+  - '=========='
+  - /取消 摸鱼人日历
+  - /取消 每日天文
+  - /取消 每日新闻
+  - /取消 喜加一
+  - /取消 每日星座
+2023/12/17:
+  - bert_vits_sever colab部署，不占用本地gpu，实现更好的中文语音合成
+  - https://colab.research.google.com/drive/1n8lI6pOiDtli2zC5fL9PZ9TZqbOafqma?usp=sharing
+  - 此功能需要代理
+  - 请填写config/api.yaml中的bert_colab
+  - 请配置config/settings.yaml中chatglm功能语音合成相关配置项
+2023/12/17.1:
+  - 解决了一些过去的遗留问题
+2024/1/9:
+  - 新年快乐
+  - 新增master指令
+  - /quit<10   指退出所有10人以下无授权群，你可以自由更改数字
+2024/1/10:
+  - 增加对so-vits的支持
+  - https://github.com/avilliai/Moe-SVC-api
+  - sovits和bert_vits在settings.chatglm中，设置是通用的，需要在settings.yaml选择语音合成模式
+2024/1/11:
+  - 增加edgetts语音合成，推荐使用
+  - 所有可用的speaker在config/edgetts.txt
+  - 已实现chatglm与当前四种语音合成方案的对接
+  - /edgetts你好，这是语音测试
+2024/1/13:
+  - 哥们考完试了
+  - 更新两个配置项，用于处理bot被强行加入群聊的情况
+  - 增加配置项chatglm.autoclear 启动时自动清理所有prompt
+  - 增加master专用指令 /allclear 用以清理所有人的聊天记录
+2024/1/27:
+  - 更新master指令 .system
+  - 需要完整执行一次更新流程(不跳过依赖安装)
+2024/2/1:
+  - 针对大家都是小服务器内存可能不够用的情况，调整语音合成服务，转为调用外部api，详情请查看settings.yaml
+2024/2/3:
+  - 增加定时任务指令
+  - /推送 单向历
+  - /取消 单向历
+  - 增加指令： 单向历
+2024/2/4:
+  - 更新支持谷歌的gemini，目前是免费调用，但对节点要求较高
+  - 在https://ai.google.dev/tutorials/setup?hl=zh-cn获取，需要配置代理，否则无法使用
+  - 对话模型可选择 gemini
+2024/2/7:
+  - 昨晚flask莫名其妙response[400]，遂修改语音合成导入方式，倒算得上是一种优化
+  - 新增配置项
+2024/2/14:
+  - 用ai回复戳一戳消息
+  - 新增配置项chatGLM.nudgeReply
+  - 支持通过cozi白嫖gpt4,部署：https://github.com/deanxv/coze-discord-proxy#%E9%83%A8%E7%BD%B2%E5%88%B0%E7%AC%AC%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0
+2024/2/19:
+  - 录了个视频教程，用cozi白嫖gpt4的，release的cozi+discord.mp4就是
+2024/2/25:
+  - 修改配置文件注释，便于理解，无新增配置项
+2024/2/27:
+  - 新版启动器
+  - 自动合并冲突配置项(目前仅限config文件夹以及py文件)
+2024/2/28:
+  - 启动器显示优化
+  - 支持镜像源进行代码更新
+2024/3/8:
+  - ai绘画，以图生图，卡片签名，感谢桑帛云API提供的支持，以下功能无需额外配置。
+  - master和bot聊天多了之后，有时候获取不到图片的url或者bot接收不到master的消息，很奇怪，不知道是不是只有我遇到了这种情况
+  - 画 正在吃饭的少女      #指令： 画 prompt
+  - 以图生图 正在吃饭的少女  #指令： 以图生图 prompt   随后发送图片即可
+  - 转卡片          #指令: 转卡片
+2024/3/10:
+  - 语音合成新增模式 modelscopeTTS 无需在本地搭建，直接爆了modelscope
+  - 该模式下，以下speaker任选其一填入即可["塔菲","阿梓","otto","丁真","星瞳","东雪莲","嘉然","孙笑川","亚托克斯","文静","鹿鸣"]
+2024/3/13:
+  - 更新免费gpt3.5，settings.yaml，将chatGLM.model设置为lolimigpt即可
+  - 不稳定哈，之后再找找其他的方案
+2024/3/15:
+  - 用一种很丑陋的方式暂时解决了模型切换问题，那一堆东西之后要大重写。
+2024/3/16:
+  - 新增一个模型 glm-4 ，免费，填写即可用
+  - glm-4/lolimigpt/gpt3.5 分别支持了单独的角色设置
+  - 增加对话本地存储
+  - 扩充modelscopeTTS可用的speaker,新增"奶绿","七海","恬豆","科比"
+2024/3/18:
+  - 调整对接lolimigpt，更好的上下文对话表现
+2024/3/19:
+  - modelscopeTTS自动识别输入语言类型(部分模型不支持)
+  - ai回复语音部分增加语言类型选项
+2024/3/23:
+  - 新版launcher，下载 https://github.com/avilliai/Manyana/releases/tag/Manyana
+  - 修复 无法关闭问题： 连续点击三次窗口即可彻底关闭launcher及子进程
+  - 修复 自动重启无效问题，配置自动登录即可
+2024/3/25:
+  - 更新modelscopeTTS 新增speaker：BT
+2024/3/29:
+  - Gemini模型支持自定义预设角色
+  - Gemini支持多apiKey，相应的，数据类型也发生了变化，参照openaiKey的填写方式填写你的key
+2024/3/30:
+  - 更新ai回复对应的授权系统，当你同时关闭glmReply和trustGlmReply时，只有你授权过的群才能回复
+  - ai回复满足如下三个条件之一即可触发,glmReply=True(对所有人开放)/trustGlmReply=True并且用户是信任用户(对信任用户开放)/群是已经授权了的群
+  - master的两个指令
+  - 授权#qq号
+  - 授权群#群号
+2024/3/31:
+  - 解决Gemini频繁出现报错问题，重新设置了审核策略
+2024/4/1:
+  - 修复 签到 图片过大导致bot可能卡死的问题
+2024/4/7:
+  - 用overflow替换原来的MiraiBot吧，协议库快没法用了https://github.com/avilliai/Manyana/issues/5，教程视频很简单
+  - 增加master指令(私聊) 群列表
+2024/4/13:
+  - 增加新指令
+  - 发病 对象
+2024/4/16:
+  - 如使用launcher1.1.4时遇到问题，请拉取更新。在UI编辑【基本设置】时，如为旧版Manyana将导致无法正常启动，使用【更新脚本.bat】更新至新版Manyana即可
+2024/4/19:
+  - 增加免费、稳定、无需代理的gpt3.5来源，取消原本从指定店铺购买apikey的方式
+  - 免费从https://github.com/chatanywhere/GPT_API_free?tab=readme-ov-file申请apikey
+  - 填写apikey，并打开api.yaml(ui中为 外部api设置)中的gpt3.5-dev
+  - 新的免费gpt3.5存在上下文长度限制，为确保稳定使用，请将settings.yaml中的maxPrompt设置为8或10
+2024/4/21:
+  - ai绘画功能调整，降低了调用失败的几率
+2024/4/23:
+  - modelscope反爬策略导致语音合成失效
+  - 应对-api.yaml新增配置项modelscopeCookie，留空默认先用我的，如我的cookie失效，请参照https://github.com/avilliai/Manyana/issues/7自行获取
+2024/4/24:
+  - 新增指令：手写 xxxxxx
+2024/4/28:
+  - 增加五个免费、无需代理、无需额外配置的对话模型 kimi、清言、lingyi、step、通义千问、gptX
+  - 增加一个绘画备选api
+2024/4/29:
+  - 新增指令：小尾巴 喵
+2024/5/1:
+  - 增加ModelscopeTTS speaker 胡桃
+  - ai绘画改为出4图
+  - 本地音乐库，data/music/audio 把你自己的曲子放进去，可以自动匹配
+  - 新指令 开溜            #从data/music/audio随机选取一首发送
+  - 新指令 溜 曲子名        #匹配data/music/audio中相似度最高的音频发送
+2024/5/4:
+  - 对话模型新增 random
+  - 自动选择可用的免费模型
+  - 增加一个免费ai绘画接口
+2024/5/5:
+  - 昨天更新的random模式存在严重问题，已修复
+2024/5/8:
+  - 跟bing爆了，白嫖bing的dall-e-3
+  - 参考https://github.com/avilliai/Manyana/issues/8
+  - 此功能需要配置代理，并且获取对应cookie
+2024/5/12:
+  - 新指令
+  - 支付宝到账 数字
+2024/5/13:
+  - ai绘画接口，增加
+2024/5/14:
+  - ai回复屏蔽词，屏蔽方案调整。详情查看config/noResponse.yaml
+  - 以实现Manyana和其他来源的插件的兼容，避免重复触发。
+2024/5/15:
+  - 由@lux-QAQ 引入了新的sd接口
+  - 增加ai绘画部分的单独功能开关
+2024/5/19:
+  - 加一个接口
+  - 调整settings.yaml格式，ui里面显示应该会好一些
+2024/5/23:
+  - 增加可选对话模型 anotherGPT3.5
+  - 免费，填写即可用，支持上下文
+2024/5/29:
+  - 修复无法处理加群邀请的bug
+2024/6/1:
+  - 当你使用 random 模型时，可在 settings.yaml 中的 random&PriorityModel 设置模型的优先级，避免不同风格模型调用造成对话前后割裂
+2024/6/3:
+  - 更新，新的语音合成模式firefly，支持超多speaker，请查看config/edgetts.txt或访问https://fs.firefly.matce.cn/，这里能用的bot全部能用。
+  - 对于没有语言类型标识的speaker(如黑崎小雪)，请在 chatGLM的voiceLangType 设置对应的语言类型，以便于能和对话模型正常对接
+2024/6/4:
+  - 新增功能 emoji合成
+  - 先拉取一次更新(更新脚本自身更新)，然后再次更新(安装新内容)，第二次更新不要跳过更新依赖库
+2024/6/10:
+  - 更换了新的翻译接口
+2024/6/12:
+  - b站直播订阅功能修复
+  - 指令 添加直播
+  - 指令 取消直播订阅#(直播房间号，留井号不要带括号)
+2024/6/13:
+  - 星铁查询功能
+  - 更新一次，然后运行更新脚本，按5，进入素材下载
+  - 指令：/星铁查询 花火
+2024/6/14:
+  - Gemini更新升级(不需要你改动任何内容)
+2024/6/18:
+  - 点歌功能修复，更换解析方式
+2024/6/21:
+  - 增加了aiReplyCore选项，为部分固定回复的功能增加ai支持，可以尝试打开，当前为测试功能，对 今日塔罗、查询城市天气等生效,同时，增加了对信任用户的定时天气推送，请查看settings.yaml
+2024/6/22:
+  - 更新源增加了gitlink
+2024/6/23:
+  - 启动器大更新
+  - config/controller.yaml增加配置项，点歌可附带音频下载链接
+  - 增加一个免费模型，请自行在random&PriorityModel添加一个 - 讯飞星火
+2024/7/6:
+  - firefly语音合成模式全部失效，新增FishTTS模式
+  - 看https://github.com/avilliai/Manyana/issues/19
+  - 应该需要代理(填proxy)
+2024/7/7:
+  - 恢复了如下指令
+  - 方舟查询xxx
+  - 战双查询xxx
+  - 后室查询xxx
+  - 截图#网址
+2024/7/11:
+  - fishTTS优化，https://github.com/avilliai/Manyana/issues/19
+  - 支持通过 xx说 方式调用，但目前无法显示所有可用speaker
+2024/7/14:
+  - 新增两个指令
+  - /sbg add 群号
+  - /sbg remove 群号
+  - 用来彻底避免被拉到不想进入的群
+2024/7/19:
+  - 允许自行设置chatgpt中转。
+2024/7/20:
+  - @reiyutsuki pr了bangumi查询，详情查看菜单
+2024/7/24:
+  - 增加语音合成自定义前缀，减少误触发
+  - 增加random模式可用模型，注意，新增的两个模型可能无法使用bot_info设定
+  - 增加两个指令 开始对话/退出 可以在没有艾特的情况下展开对话，同时，gemini支持了图像识别
+2024/7/25:
+  - 支持对接讯飞星火api，免费无需代理
+  - 支持对接文心api，免费无需代理
+  - 模型配置详见https://github.com/avilliai/Manyana/wiki/%E8%AE%BE%E7%BD%AEai%E5%AF%B9%E8%AF%9D%E6%A8%A1%E5%9E%8B
+  - outVits语音合成模式恢复
+2024/7/26:
+  - 支持接入QQ智能体 https://github.com/avilliai/Manyana/issues/31
+2024/7/27:
+  - 新指令：/推送 bangumi日榜
+  - 定时任务整体优化到controller
+  - 增加四条master指令
+  - /bl add QQ号   #拉黑指定用户，不再依赖mirai插件
+  - /bl remove QQ号 #取消对指定用户的屏蔽
+  - /bot off 群号  #在指定群关闭，默认在所有已经加入的群开启bot
+  - /bot on 群号   #在指定群开启
+2024/7/28:
+  - 词库更新，显然，要完成对旧版的兼容，还需要一段时间
+  - 菜单2同步更新，词库支持更多关键词和回复的数据类型
+  - 新增指令
+  - 开始添加/*开始添加
+  - 查回复/*查回复
+2024/7/29:
+  - 新指令：JM搜xxx
+  - 新指令：验车【车牌号】 #如 验车604142
+  - 新指令：JM下载 #如JM下载604142
+  - 需要在更新脚本更新过程中，不跳过安装依赖(23点的更新同样需要)
+  - JM下载 功能需要配置proxy
+  - 测试功能，暂不建议使用
+2024/7/30:
+  - 增加工具函数文件转直链，为JM下载指令提供支持，需要配置api.yaml【蓝奏云】相关配置，详情查看api.yaml对应注释。如果你有代理，不要使用全局代理。
+2024/7/31:
+  - 应用户要求，增加碧蓝档案三服订阅推送开关。实际上，该功能的占用甚至比ai回复占用还低。如果你觉得logger显示检查ba订阅更新很碍眼，可以在controller关闭该开关。
+  - modelscopeTTS语音合成，通过抓包模拟请求的方式，拓展了更多的可用角色，查看config/语音合成可用角色.txt，即填即用无需额外配置。
+2024/8/5:
+  - 为词库回复增加了 in 模式，即通过关键词加权匹配。在settings.yaml调整相关设置
+2024/8/6:
+  - in模式bug修复，目前基本满足需要。
+  - newLogger函数调整，开发者现在可以在任何需要logger的地方调用它。
+2024/8/7:
+  - 由@Ninethnine pr
+  - steam查询xxx      #如steam查询outer wilds
+  - jm 相关功能修复
+  - 喜加一 指令修复
+  - 由@reiyutsuki pr了youtube相关功能，相关功能仍在开发中，暂不提供指令，请等待后续更新。
+2024/8/9:
+  - 更新漂流瓶功能
+  - 扔瓶子
+  - 捡瓶子
+  - 查瓶子{瓶子id}
+  - 删瓶子{瓶子id}
+  - 捡瓶子后的二级指令 评论 举报瓶子
+2024/8/11:
+  - mc服务器查在线指令
+  - 查在线{ip}   #如查在线123.112.333.123
+  - 文档更新 豆包 接入教程，gemini支持自定义模型，你可以使用gemini-1.5-pro取代现在的gemini-1.5-flash
+2024/8/15:
+  - 修复 点歌 功能异常
+2024/8/16:
+  - 修复 点歌 功能异常。一直在反馈的点歌“bug”实际上只是先前的解析接口拿不到30s试听，为了30s试听增加两个解析源，确实挺不错的。
+2024/8/17:
+  - 新指令
+  - 语法分析{英文句子} #如语法分析this and other similar cases raise the question of whether there is still a line between the court and politics.
+2024/8/28:
+  - jm相关功能修复，更新即可，如更新后仍不可用，请在【更新后使用】 更新脚本-更新bot代码-补全依赖
+2024/8/29:
+  - 语音合成米游相关修复，由@Creeper666 完成并提交
+  - 新增ai绘画接口，模型为Hyper-FLUX-8Steps-LoRA效果较好，默认启用。使用 画 xxx指令  即可
+2024/9/1:
+  - 语音合成outVits模式修复，查看Manyana/config/语音合成可用角色.txt
+2024/9/7:
+  - 漂流瓶吞图问题修复，但已经吞了的就是没了
+  - 新功能
+  - 黑神话查询xxx #如黑神话查询灵虚子 目前wiki没有的，比如杨戬，bot也查不到，等wiki后续完善
+2024/9/8:
+  - 复读功能 #默认60s cd
+  - 词云功能，示例如下
+  - 今日词云
+  - 历史词云
+  - 本群今日词云
+  - 本群历史词云
+2024/9/24:
+  - 新的语音合成模式 gptSovits
+  - 支持情感向量自动判断，更生动的语音合成(前提是speaker支持)，查看https://github.com/avilliai/Manyana/wiki/%E8%AF%AD%E9%9F%B3%E5%90%88%E6%88%90%E8%AE%BE%E7%BD%AE%E9%97%AE%E9%A2%98 以进行配置
+  - 抽象的塔罗牌，由@LittlebearHat 完成并提交，请在controller开启此功能

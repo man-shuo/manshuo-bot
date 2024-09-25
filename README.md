@@ -1,28 +1,30 @@
 <div align="center">
-  <img src="https://socialify.git.ci/avilliai/Manyana/image?description=1&descriptionEditable=based%20on%20mirai&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2Favilliai%2FimgBed%2Fmaster%2Fimages%2FwWFSwF6A.png&name=1&owner=1&pattern=Circuit%20Board&stargazers=1&theme=Light" alt="Manyana" /></br>
+  <img src="https://socialify.git.ci/avilliai/Manyana/image?description=1&descriptionEditable=based%20on%20mirai&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2Favilliai%2FimgBed%2Fmaster%2Fimages%2F24202439348A04800FE5D98F76125113.png&name=1&owner=1&pattern=Circuit%20Board&stargazers=1&theme=Light" alt="Manyana" /></br>
 </div>
 
 ----
 # 🎆鸣谢
 
-- [Mirai框架](https://github.com/mamoe/mirai)
+- [Mirai](https://github.com/mamoe/mirai)
 - [petpet](https://github.com/Dituon/petpet) 
-- [CjangCjengh-MoeGoe](https://github.com/CjangCjengh/MoeGoe) vits语音合成功能来源
-- [coze-discord-proxy](https://github.com/deanxv/coze-discord-proxy) 通过discord白嫖gpt4(用户多不建议用这个。)
-- [overflow](https://mirai.mamoe.net/topic/2565/overflow-%E5%B0%86-mirai-%E5%AE%9E%E7%8E%B0%E6%8D%A2%E6%88%90-onebot-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E5%8F%88%E4%B8%80%E4%B8%AA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88?_=1712421277845)     你懂的
-- [arona api](https://doc.arona.diyigemt.com/)  提供blueArchive数据支持
-- [star-rail-atlas](https://gitee.com/Nwflower/star-rail-atlas)  数据支持
-- [Yiri-mirai](https://github.com/YiriMiraiProject/YiriMirai)  很好的python sdk
-- [install_llob](https://github.com/super1207/install_llob) llob安装器，帮大忙了
+- [CjangCjengh-MoeGoe](https://github.com/CjangCjengh/MoeGoe)
+- [overflow](https://mirai.mamoe.net/topic/2565/overflow-%E5%B0%86-mirai-%E5%AE%9E%E7%8E%B0%E6%8D%A2%E6%88%90-onebot-%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E5%8F%88%E4%B8%80%E4%B8%AA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88?_=1712421277845) 
+- [arona api](https://doc.arona.diyigemt.com/) 
+- [star-rail-atlas](https://gitee.com/Nwflower/star-rail-atlas) 
+- [Yiri-mirai](https://github.com/YiriMiraiProject/YiriMirai)
+- [install_llob](https://github.com/super1207/install_llob)
 - 如果遇到使用问题，请在QQ群623265372反馈
 
-
 <div align="center">
-   <img width="70%" height="70%" src="https://moe-counter.glitch.me/get/@:manyana" alt="logo"></br>
+   <p>声明：本项目根据AGPL V3协议开源，任何组织和个人在引用本项目的源码时，不得歪曲、隐藏项目的开源事实，并需依照协议公开项目的源代码。任何由二次分发行为产生的责任均由行为者自行承担，本项目不承担任何连带责任。</p>
 </div>
 
 ---
 
+[阅读文档](https://doc.luxmix.top/)
+
+> 因本人学业繁忙，未来几个月本仓库将以维护为主要工作。如果您有意愿参与开发和维护，欢迎pr。
+> 未来恢复更新后，开发的重心将转向[Eridanus](https://github.com/avilliai/Eridanus)
 # 🚀linux部署
 [linux部署脚本](https://github.com/lux-QAQ/Manyana_deploy)
 
@@ -35,7 +37,7 @@
 **如果你觉得自己从零开始搭建bot比较困难，请使用此方案**<br>
 对于windows用户，存在两款启动器，分别是[Manyana1.x](https://github.com/avilliai/Manyana/releases) 和[Manyana_deploy](https://github.com/lux-QAQ/Manyana_deploy/releases) 你可以根据自己的喜好选择<br>
 [Manyana1.x](https://github.com/avilliai/Manyana/releases)使用方式如下。
-- 从[release](https://github.com/avilliai/Manyana/releases)下载LAUNCHER-all-requirements.rar并解压
+- 从[release](https://github.com/avilliai/Manyana/releases)下载最大的rar文件并解压
   - 如果下载过慢，你也可以从Q群623265372获得这个压缩包
 - 运行launcher.exe<br>
 - 点击主界面 克隆仓库(没有自己的onebot实现的，需要额外安装onebot文件夹下的两个文件，先qq后llob_install)
@@ -118,6 +120,9 @@ Manyana/config.json的填写示例如下。
 
 </details>
 
+# 开源协议
+由于 mirai 及 yirimirai 均采用了 AGPL-3.0 开源协议，本项目同样采用 AGPL-3.0 协议。<br>
+请注意，AGPL-3.0 是传染性协议。如果你的项目引用了 Manyana，请在发布时公开源代码，并同样采用 AGPL-3.0 协议。不得歪曲、隐藏项目开源事实。<br>
 
 # 🎄最后
 如果觉得项目还不错的话给个star喵，给个star谢谢喵
@@ -129,5 +134,8 @@ Manyana/config.json的填写示例如下。
 - [Amaranth](https://github.com/avilliai/Amaranth) 欢迎关注我们的新版启动器
 - [Eridanus](https://github.com/avilliai/Eridanus) Manyana直接对接onebot实现的版本，欢迎参与开发
 
-感谢JetBrains提供的开源项目license<br>
+感谢JetBrains为开源项目提供的license<br>
 <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/PyCharm_icon.png" alt="PyCharm logo." width="50">
+<div align="center">
+   <img width="70%" height="70%" src="https://moe-counter.glitch.me/get/@:manyana" alt="logo"></br>
+</div>
