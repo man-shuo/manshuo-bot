@@ -239,29 +239,4 @@ def main(bot,logger):
             global userdict
             with open('data/userData.yaml', 'r', encoding='utf-8') as file:
                 userdict = yaml.load(file, Loader=yaml.FullLoader)
-    #用以实现复读
-    @bot.on(GroupMessage)
-    async def repeatFunc(event: GroupMessage):
-        global repeatData,repeatLock
-        if event.group.id in repeatData:
-            if str(event.message_chain)==repeatData[event.group.id]["simplemes"]: #最新的消息链同记录的最后一个消息链相同
-                score=await compare2messagechain(event.message_chain.json(),repeatData[event.group.id]["mes"])
-                if score>90:
-                    if repeatData[event.group.id]["times"]==2: #3次，进入复读
-                        d=await mesChainConstructer(repeatData[event.group.id]["sefmeschain"])
-                        await bot.send(event,MessageChain(d)) #复读一次
-                        logger.info(f"复读一次{str(event.message_chain)}")
-                        repeatData.pop(event.group.id)  # 终止此次复读任务
-                        repeatLock[event.group.id]=datetime.datetime.now() #进入cd时间
-                        logger.info(f"{event.group.id} 进入cd冷却60s")
-                    else:
-                        repeatData[event.group.id]["times"]=repeatData[event.group.id]["times"]+1 #加一次
-                else:
-                    repeatData.pop(event.group.id)  # 终止此次复读任务
-            else:
-                repeatData.pop(event.group.id) #终止此次复读任务
-        else:
-            if event.group.id in repeatLock and datetime.datetime.now()-repeatLock[event.group.id]<datetime.timedelta(60): #时间锁
-                return
-            repeatData[event.group.id]={"times":1,"mes":event.message_chain.json(),"simplemes":str(event.message_chain),"sefmeschain":await EventMessageConvert(event.message_chain)}
 
