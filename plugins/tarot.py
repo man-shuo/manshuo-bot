@@ -1,4 +1,4 @@
-# -*- coding: gbk -*-
+
 import os.path
 import random
 import yaml
