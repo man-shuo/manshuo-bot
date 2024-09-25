@@ -1,0 +1,203 @@
+users:
+  '1109593543':
+    account: '817117'
+    account_number: '1109593543'
+    building: b2
+    buildingid: '1661835256'
+    room: '424'
+    stateid_check: '1'
+    times: '3'
+  '1270858640':
+    account: '817532'
+    account_number: '1270858640'
+    building: s1
+    buildingid: '1503975832'
+    room: b413
+    stateid_check: '1'
+    times: '64'
+  '1362568751':
+    account: '817532'
+    building: S1
+    buildingid: '1503975832'
+    room: B617
+  '1507372175':
+    account: '820809'
+    account_number: '1507372175'
+    building: s2
+    buildingid: '1503975890'
+    room: b516
+    stateid_check: '1'
+    times: '4'
+  '1667962668':
+    account: '814277'
+    account_number: '1667962668'
+    building: S1
+    buildingid: '1503975832'
+    room: B429
+    stateid_check: '1'
+    times: '12'
+  '1783223123':
+    account: '814452'
+    building: S1
+    buildingid: '1503975832'
+    room: B628
+    stateid_check: '1'
+    times: '2'
+  '1792183970':
+    account: '818002'
+    account_number: '1792183970'
+    building: S11-13
+    buildingid: '1599193777'
+    room: '203'
+    stateid_check: '1'
+    times: '11'
+  '1820579247':
+    account: '817331'
+    building: s1
+    buildingid: '1503975832'
+    room: b101
+    stateid_check: '1'
+    times: '1'
+  '1877753349':
+    account: '817920'
+    account_number: '1877753349'
+    building: S2
+    buildingid: '1503975890'
+    room: A459
+    stateid_check: '0'
+    times: '7'
+  '2063015859':
+    account: '823812'
+    account_number: '2063015859'
+    building: s2
+    buildingid: '1503975890'
+    room: B216
+    stateid_check: '0'
+    times: '5'
+  '2185382258':
+    account: '?'
+    account_number: '2185382258'
+    building: ''
+    room: '?'
+    stateid_check: '0'
+    times: '2'
+  '2281600915':
+    account: 忘了
+    building: ？
+    room: ？
+  '2319804644':
+    account: '824334'
+    account_number: '2319804644'
+    building: s1
+    buildingid: '1503975832'
+    room: b249
+    stateid_check: '1'
+    times: '9'
+  '2659065889':
+    account: '824334'
+    account_number: '2659065889'
+    building: 凤凰居S11
+    buildingid: '1599193777'
+    room: '426'
+    stateid_check: '0'
+    times: '2'
+  '2861126078':
+    account: '818371'
+    account_number: '2861126078'
+    building: b2
+    buildingid: '1661835256'
+    room: '109'
+    stateid_check: '1'
+    times: '3'
+  '2876833071':
+    account: '823892'
+    account_number: '2876833071'
+    building: s2
+    buildingid: '1503975890'
+    room: b320
+    stateid_check: '1'
+    times: '20'
+  '2927455642':
+    account: '824192'
+    building: 凤凰居s11-13
+    buildingid: '1599193777'
+    room: '418'
+    times: '1'
+  '2931442674':
+    account: '818204'
+    account_number: '2931442674'
+    building: s1
+    buildingid: '1503975832'
+    room: B622
+    stateid_check: '1'
+    times: '13'
+  '2995013364':
+    account: '817881'
+    account_number: '2995013364'
+    building: s2
+    buildingid: '1503975890'
+    room: A522
+    stateid_check: '0'
+    times: '1'
+  '3194771270':
+    account: '114514'
+    building: b2
+    room: '408'
+  '3235993568':
+    account: '814470'
+    account_number: '3235993568'
+    building: s1
+    buildingid: '1503975832'
+    room: b527
+    stateid_check: '0'
+    times: '11'
+  '3396152409':
+    account: '817365'
+    account_number: '3396152409'
+    building: s1
+    buildingid: '1503975832'
+    room: A637
+    stateid_check: '1'
+    times: '5'
+  '3419325587':
+    account: '817604'
+    account_number: '3419325587'
+    building: s2
+    buildingid: '1503975890'
+    room: A507
+    stateid_check: '1'
+    times: '2'
+  '3489066520':
+    account: '126373'
+    building: s1
+    buildingid: '1503975832'
+    room: b413
+    times: '2'
+  '457756962':
+    account: '329875'
+    building: '12'
+    room: '130'
+  '563149435':
+    account: '339193'
+    building: 中心校区 16号楼
+    room: '205'
+  '907622166':
+    account: '814272'
+    account_number: '907622166'
+    building: s11
+    buildingid: '1599193777'
+    room: 242
+    stateid_check: '0'
+    times: '1'
+  elect_check:
+    account: alice123
+    location: abc
+    room: b666
+  manshuo:
+    account: '814272'
+    building: 凤凰居 S1
+    buildingid: '1503975832'
+    member_id: '2634855532'
+    room: b413
+    sender_id: '0'
+    stateid: '0'

@@ -1,0 +1,11 @@
+{
+    "account": "814470",
+    "building": {
+        "buildingid": "1503975832",
+        "building": "s1"
+    },
+    "room": "b527",
+    "sender": "example@foxmail.com",
+    "password": "aaaaaaaaaaaaaaaa",
+    "receiver": "example@163.com"
+}

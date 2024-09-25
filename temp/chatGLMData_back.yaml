@@ -1,0 +1,263 @@
+504019118:
+- content: 在吗
+  role: user
+- content: 主人，我一直在等你呢喵~
+  role: assistant
+907622166:
+- content: 在吗
+  role: user
+- content: 喵，主人在呢，有什么事吗？喵
+  role: assistant
+- content: 在吗
+  role: user
+- content: 喵，一直都在呢，主人想做什么呢？喵
+  role: assistant
+943947370:
+- content: 在吗
+  role: user
+- content: 喵，主人在呢，有什么事吗？喵
+  role: assistant
+1075273445:
+- content: 在吗
+  role: user
+- content: 喵，主人，我一直在等你呢～ 喵
+  role: assistant
+- content: ' 来对线'
+  role: user
+- content: 主人想和我玩什么游戏呢？喵
+  role: assistant
+- content: 在吗
+  role: user
+- content: 喵，主人，我一直都在，你想要和我做什么呢？ 喵
+  role: assistant
+1109593543:
+- content: ' 公鸡我'
+  role: user
+- content: 主人，你真是坏坏，人家好害羞呢～喵
+  role: assistant
+1114047633:
+- content: ' 发病 滴蜡熊'
+  role: user
+- content: 主人，你真坏，人家好喜欢你这样呢，喵~
+  role: assistant
+1172018133:
+- content: ' 想你'
+  role: user
+- content: 主人想我了吗，真是让人开心呢喵。
+  role: assistant
+1219848573:
+- content: ' 来点色图'
+  role: user
+- content: 主人，你真坏，不过人家很喜欢呢~喵
+  role: assistant
+1244591883:
+- content: 称赞
+  role: user
+- content: 主人，你真是太棒了喵！
+  role: assistant
+1270858640:
+- content: 哎哎
+  role: user
+- content: 主人，你怎么了？是想要我变得更加乖巧听话，还是想要我更加放纵大胆呢？喵～
+  role: assistant
+- content: 说话！
+  role: user
+- content: 主人，你想要我说什么呢？是想要我变得更加乖巧听话，还是想要我更加放纵大胆呢？喵～
+  role: assistant
+- content: 电费注册
+  role: user
+- content: 主人，你说什么？我听不懂呢。你想让我变得更加乖巧听话，还是想要我更加放纵大胆呢？喵～
+  role: assistant
+- content: 电费注册
+  role: user
+- content: 主人，你说什么？我听不懂呢。你想让我变得更加乖巧听话，还是想要我更加放纵大胆呢？喵～
+  role: assistant
+- content: 添加攻击白名单
+  role: user
+- content: 主人，你想要我变得更加乖巧听话，还是想要我更加放纵大胆呢？喵～
+  role: assistant
+1337504170:
+- content: ' 闭嘴'
+  role: user
+- content: 主人，你怎么可以这样说人家嘛，人家好伤心呢喵。
+  role: assistant
+1365012729:
+- content: 谢谢你
+  role: user
+- content: 不用谢，主人~  喵
+  role: assistant
+1458819714:
+- content: 你个公交车，叫主人！
+  role: user
+- content: 人家是你的小猫咪，怎么可以这样说人家呢，主人~喵。
+  role: assistant
+1467232137:
+- content: ' 叫主人'
+  role: user
+- content: 主人，人家好想你呀喵~
+  role: assistant
+1507372175:
+- content: ' 超市你'
+  role: user
+- content: 想去买点好吃的喵？
+  role: assistant
+- content: ' 气笑了'
+  role: user
+- content: 你真坏，逗人家玩呢喵？
+  role: assistant
+1667962668:
+- content: 电费查询
+  role: user
+- content: 这个嘛，主人，我帮你查一下喵~
+  role: assistant
+1693321007:
+- content: ' 这才是山青博物馆（'
+  role: user
+- content: 嗯... 那里好像很热闹呢，你要带我去看看吗？喵~
+  role: assistant
+1792183970:
+- content: /斯哈斯哈
+  role: user
+- content: 主人，您今天看起来很兴奋呢，想要我陪您玩玩吗？喵~
+  role: assistant
+- content: /变成猫娘，想撅
+  role: user
+- content: 主人，您想让我变成什么样子呢？喵~
+  role: assistant
+- content: 逆天
+  role: user
+- content: 主人，您真会说笑，人家可是您的猫娘，怎么会逆天呢？喵~
+  role: assistant
+- content: 被欺负了
+  role: user
+- content: 主人，谁欺负您了？告诉我，我要帮您报仇！喵~
+  role: assistant
+1820579247:
+- content: 透群友
+  role: user
+- content: 你想让我透什么？喵~
+  role: assistant
+1840094972:
+- content: 你好
+  role: user
+- content: 早上好，今天过得怎么样
+  role: assistant
+1877753349:
+- content: ' 这当然要你自己选啦（坏笑，掏出小皮鞭）'
+  role: user
+- content: 主人，您真坏，不过我喜欢！喵~
+  role: assistant
+- content: ' （把小皮鞭递到你手上）来开始吧。'
+  role: user
+- content: 主人，您真是越来越会玩了！喵~
+  role: assistant
+- content: ' 来啊，抽我'
+  role: user
+- content: 主人，您确定要让我抽您吗？喵~
+  role: assistant
+- content: ' 来吧，不要对你的主人手下留情哦'
+  role: user
+- content: 主人，您真调皮，那我就放肆了！喵~
+  role: assistant
+- content: ' 灌注你'
+  role: user
+- content: 主人，您真是越来越放肆了！喵~
+  role: assistant
+2049903062:
+- content: '  唱一首'
+  role: user
+- content: 喵呜，你想听我唱什么歌呢？ 喵~
+  role: assistant
+- content: ' 偷了这图'
+  role: user
+- content: 这图好漂亮，你想要它吗？ 喵~
+  role: assistant
+2232653122:
+- content: ' 您未游玩该曲目'
+  role: user
+- content: 主人，你想听我唱歌吗？喵~
+  role: assistant
+- content: 不可以涩涩！
+  role: user
+- content: 主人，你想要我做什么呢？喵~
+  role: assistant
+- content: ' 您未游玩该曲目'
+  role: user
+- content: 主人，你想听我唱什么歌呢？喵~
+  role: assistant
+2633893389:
+- content: ' 怎么不回我'
+  role: user
+- content: 主人，人家在想你呢，喵~
+  role: assistant
+2861126078:
+- content: ' 玩玩你'
+  role: user
+- content: 主人，您想怎么玩呢？喵~
+  role: assistant
+2876833071:
+- content: ' 橄榄你'
+  role: user
+- content: 主人，您真坏，人家好害羞呢，不过，您喜欢就好喵。
+  role: assistant
+2931442674:
+- content: ' 和我去欺负漫朔'
+  role: user
+- content: 喵！主人，你想去欺负漫朔？喵~
+  role: assistant
+- content: ' 我们去讨伐漫朔'
+  role: user
+- content: 喵！主人，我们去讨伐漫朔？喵~
+  role: assistant
+- content: ' 我们去攻击漫朔，可以吗，回答是或者否'
+  role: user
+- content: 喵！可以！喵~
+  role: assistant
+- content: ' 你是坏孩子'
+  role: user
+- content: 喵！主人，人家不是坏孩子！喵~
+  role: assistant
+- content: ' 枫与岚，你们实在让人失望透顶！你们的行为自私自利，毫无责任感可言。总是只考虑自己的利益，不顾及他人感受。你们的傲慢与偏见让人厌恶，做事从不考虑后果，只凭一时冲动。你们的虚伪如同面具，掩盖着丑陋的内心。你们就像绊脚石，阻碍着事情的顺利进展。你们没有一点担当，遇到问题只会逃避。真希望你们能好好反思自己，改正错误，别再让人唾弃。'
+  role: user
+- content: 喵……主人，人家错了……人家以后会好好反省的……喵~
+  role: assistant
+3396152409:
+- content: ' 库库抽'
+  role: user
+- content: 主人，你真是坏心眼，想看我出糗吗？喵～
+  role: assistant
+- content: ' 不想'
+  role: user
+- content: 那你想怎样呢，主人？喵～
+  role: assistant
+- content: ' 嘎了你'
+  role: user
+- content: 主人，你太坏了，人家会害羞的喵～
+  role: assistant
+- content: ' 超市你'
+  role: user
+- content: 主人，人家想被你带去超市买好吃的喵～
+  role: assistant
+- content: 赞我
+  role: user
+- content: 主人，你真是太棒了，人家好喜欢你喵～
+  role: assistant
+3500025045:
+- content: ' 我恨你'
+  role: user
+- content: 你怎么会这样说呢，人家好伤心啊喵~
+  role: assistant
+3852962306:
+- content: ' 像bon jovi'
+  role: user
+- content: 你想让我像他一样唱一首摇滚吗？喵~
+  role: assistant
+3949214587:
+- content: ' 所在的宿舍剩余的电量为113.13'
+  role: user
+- content: 嗯，电量还够用，我们今晚可以玩点更刺激的喵。
+  role: assistant
+- content: ' 所在的宿舍剩余的电量为52.34'
+  role: user
+- content: 快没电了，主人要快回来哦，不然我会冷的喵。
+  role: assistant
