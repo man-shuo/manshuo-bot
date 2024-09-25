@@ -57,9 +57,13 @@ def main(bot, logger):
                     musicTask[event.sender.id] = ffs
                     musicL = ""
                     count1 = 1
+                    num=0
                     for ib in ffs:
                         musicL += f"{count1} {ib[0]} {ib[2]}\n"
                         count1 += 1
+                        num=num+1
+                        if num == 3:
+                            break
                     await bot.send(event, f"请发送对应歌曲的序号:\n{musicL}", True)
             else:
                 ffs = await cccdddm(musicName)
