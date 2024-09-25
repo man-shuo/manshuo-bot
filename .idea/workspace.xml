@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28b4e848-1629-4b74-b686-06e455847ccc" name="更改" comment="config更新">
-      <change beforePath="$PROJECT_DIR$/.idea/Manyana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Manyana.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/jmcomic.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/jmcomic.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/lockLuck.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/lockLuck.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/text/draftBottleData.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/text/draftBottleData.yaml" afterDir="false" />
+    <list default="true" id="28b4e848-1629-4b74-b686-06e455847ccc" name="更改" comment="电费查询功能更新！！！！！">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/jmcomicDownload.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/jmcomicDownload.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/aiReply.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/aiReply.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/extraParts.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/extraParts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/getcomic.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/getcomic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/musicpick.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/musicpick.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/elect_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/elect_check.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +17,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="working" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -40,19 +31,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;work&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -70,7 +61,10 @@
       <option name="presentableId" value="Default" />
       <updated>1727260755244</updated>
       <workItem from="1727260757556" duration="4631000" />
-      <workItem from="1727265566230" duration="781000" />
+      <workItem from="1727265566230" duration="1785000" />
+      <workItem from="1727270845470" duration="4000" />
+      <workItem from="1727271515461" duration="13000" />
+      <workItem from="1727271538553" duration="20000" />
     </task>
     <task id="LOCAL-00001" summary="update 抽象塔罗">
       <option name="closed" value="true" />
@@ -104,7 +98,71 @@
       <option name="project" value="LOCAL" />
       <updated>1727266332321</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="兼容新的语音合成模式 gptSovits">
+      <option name="closed" value="true" />
+      <created>1727266435946</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727266435946</updated>
+    </task>
+    <task id="LOCAL-00006" summary="JM功能修复，你就下去吧，一下一个不吱声">
+      <option name="closed" value="true" />
+      <created>1727266480016</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727266480016</updated>
+    </task>
+    <task id="LOCAL-00007" summary="我也不知道更新了个啥">
+      <option name="closed" value="true" />
+      <created>1727266508178</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727266508178</updated>
+    </task>
+    <task id="LOCAL-00008" summary="新功能新功能新功能新功能新功能新功能新功能~">
+      <option name="closed" value="true" />
+      <created>1727266530236</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727266530236</updated>
+    </task>
+    <task id="LOCAL-00009" summary="添加正则判定">
+      <option name="closed" value="true" />
+      <created>1727266558089</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727266558089</updated>
+    </task>
+    <task id="LOCAL-00010" summary="新增解析源，优化逻辑">
+      <option name="closed" value="true" />
+      <created>1727266590596</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1727266590596</updated>
+    </task>
+    <task id="LOCAL-00011" summary="我不知道">
+      <option name="closed" value="true" />
+      <created>1727266709848</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1727266709848</updated>
+    </task>
+    <task id="LOCAL-00012" summary="电费查询功能更新！！！！！">
+      <option name="closed" value="true" />
+      <created>1727267341169</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1727267341169</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,7 +196,15 @@
     <MESSAGE value="update 添加正则判定" />
     <MESSAGE value="欸，这是什么？推送一下&#10;欸，这又是什么？更新一下" />
     <MESSAGE value="config更新" />
-    <option name="LAST_COMMIT_MESSAGE" value="config更新" />
+    <MESSAGE value="兼容新的语音合成模式 gptSovits" />
+    <MESSAGE value="JM功能修复，你就下去吧，一下一个不吱声" />
+    <MESSAGE value="我也不知道更新了个啥" />
+    <MESSAGE value="新功能新功能新功能新功能新功能新功能新功能~" />
+    <MESSAGE value="添加正则判定" />
+    <MESSAGE value="新增解析源，优化逻辑" />
+    <MESSAGE value="我不知道" />
+    <MESSAGE value="电费查询功能更新！！！！！" />
+    <option name="LAST_COMMIT_MESSAGE" value="电费查询功能更新！！！！！" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1727264358542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
