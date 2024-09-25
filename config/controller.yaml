@@ -28,11 +28,11 @@ ai绘画:
   r18Pic: True              #对所有人开放涩图r18模式
   grayPic: True             #图片转灰度图，降低被吞几率
   withPic: True            #是否展示图片预览，不建议开，容易被吞
-  InternetMeme: False       #是否启用网络Meme（英文meme）
+  InternetMeme: True       #是否启用网络Meme（英文meme）
   watchPrefix: "/"          #“看看”指令的前缀
 运势&塔罗:
   lockLuck: false           #是否锁定运势等功能的结果
-  isAbstract: false          #是否启用抽象卡组
+  isAbstract: True          #是否启用抽象卡组
 JMComic:            #禁漫相关功能设置
   enable: True     #全局开关
   onlyTrustUser: False #打开后，仅master授权用户可用

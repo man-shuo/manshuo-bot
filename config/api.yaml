@@ -1,13 +1,14 @@
 # 配置文件，在这里填写api
 
-weatherXinZhi: Sxxxxxxx          #心知天气api   从https://www.seniverse.com/注册获取
+weatherXinZhi: SjeZs5S5SxdYThW5F          #心知天气api   从https://www.seniverse.com/注册获取
 sauceno-api: bxxxxxx             #sauceno搜图api，你可以从https://saucenao.com/user.php注册并获取
 moderate: 1xxxxxx                #色图审核api，不能用了，等以后更新
-nasa_api: HSxxxxxxx              #nasa相关天文api 从https://api.nasa.gov/index.html#main-content申请
+nasa_api: DUUSTrMTWsPsDzXu137eedhNINFcMpKQ76CDXXca              #nasa相关天文api 从https://api.nasa.gov/index.html#main-content申请
 
 chatGLM: 69xxxxxxx               #chatGLM的apiKey，从https://open.bigmodel.cn/获取
 gemini:                          #谷歌的gemini api，支持多key，在https://ai.google.dev/tutorials/setup?hl=zh-cn获取，需要配置proxy或GeminiRevProxy，否则无法使用
-  - AIxxxxxxxxxx
+  - AIzaSyAQXXZCMyJFb2L7U8uJdOSw4EkqCQMd2-4
+  - AIzaSyCgIpf0NmG6s2Zt_3cn8I4UMW6Kq76o7nA
 geminimodel: "gemini-1.5-flash"  #gemini默认的模型，不知道是啥就别动。可切换为gemini-1.5-pro，每日可请求次数会少一些但效果会更好。
 openaiSettings:                  #openai官方的apikey
   openai-keys:
@@ -29,10 +30,9 @@ bing-image-creator:              #bing的ai绘画，参考https://github.com/avi
   _U: ""
   KievRPSSecAuth: ""
 
-proxy: ''                        #代理 http://127.0.0.1:端口 如http://127.0.0.1:10809 自己设置对应的端口，没有就不填，v2ray一般是10809，clash一般7890，ssr一般1080
+proxy: 'http://127.0.0.1:7890'                        #代理 http://127.0.0.1:端口 如http://127.0.0.1:10809 自己设置对应的端口，没有就不填，v2ray一般是10809，clash一般7890，ssr一般1080
 sock5-proxy: ""                  #sock5代理，如使用bing-imagecreator必须配置，取决于你自己代理的端口。
 GeminiRevProxy: ""               #基于netlify反向代理，搭建后本地环境无需开启代理即可访问Gemini，参考https://github.com/avilliai/Manyana/issues/17
-
 GptSovitsToken: ""     #GptSovits的token,带有情感向量的语音合成，从https://getkey.acgnai.top/获取
 FishTTSAuthorization: ""         #FishTTS语音合成必要参数，看https://github.com/avilliai/Manyana/issues/19
 sdUrl: ""                        #你自己搭建的sd，地址，示例http://127.0.0.1:17858（示例≠你能直接填示例用），部署https://www.bilibili.com/video/BV1iM4y1y7oA/
