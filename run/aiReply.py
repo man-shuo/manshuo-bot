@@ -135,14 +135,14 @@ def main(bot, master, logger):
             global chattingUser
             user = str(event.sender.id)
             chattingUser[user] = datetime.datetime.now()
-            await bot.send(event, "发送 退出 可退出当前对话",True)
+            await bot.send(event, "发送 退出 可退出当前对话")
     @bot.on(GroupMessage)
     async def removeChatWithoutAt(event: GroupMessage):
         global chattingUser
         if str(event.message_chain)=="退出" and str(event.sender.id) in chattingUser:
             user = str(event.sender.id)
             chattingUser.pop(user)
-            await bot.send(event, "已结束当前对话",True)
+            await bot.send(event, "已结束当前对话")
 
     @bot.on(NudgeEvent)
     async def NudgeReply(event: NudgeEvent):
@@ -227,7 +227,7 @@ def main(bot, master, logger):
             except:
                 logger.error("语音合成调用失败")
         if not withText:
-            await bot.send(event, r, True)
+            await bot.send(event, r,)
 
 
     # 私聊中chatGLM清除本地缓存
@@ -236,10 +236,10 @@ def main(bot, master, logger):
         global chatGLMData, coziData
         if str(event.message_chain) == "/clear":
             reff = await clearsinglePrompt(event.sender.id)
-            await bot.send(event, reff, True)
+            await bot.send(event, reff,)
         elif str(event.message_chain) == "/allclear" and event.sender.id == master:
             reff = await clearAllPrompts()
-            await bot.send(event, reff, True)
+            await bot.send(event, reff,)
 
     # 私聊设置bot角色
     # print(trustUser)
@@ -373,7 +373,7 @@ def main(bot, master, logger):
         else:
             r, firstRep = await modelReply(event.sender.member_name, event.sender.id, text, replyModel, trustUser, imgurl,True)
         if firstRep:
-            await bot.send(event, "如对话异常请发送 /clear", True)
+            await bot.send(event, "如对话异常请发送 /clear")
         #刷新时间
         user = str(event.sender.id)
         if user in chattingUser:
@@ -393,7 +393,7 @@ def main(bot, master, logger):
                 logger.error(e)
                 logger.error("语音合成失败")
         if not withText:
-            await bot.send(event, r, True)
+            await bot.send(event, r)
 
     # 用于chatGLM清除本地缓存
     @bot.on(GroupMessage)
@@ -401,7 +401,7 @@ def main(bot, master, logger):
         global chatGLMData, coziData
         if str(event.message_chain) == "/clear":
             reff = await clearsinglePrompt(event.sender.id)
-            await bot.send(event, reff, True)
+            await bot.send(event, reff)
         elif str(event.message_chain) == "/allclear" and event.sender.id == master:
             reff = await clearAllPrompts()
-            await bot.send(event, reff, True)
+            await bot.send(event, reff)
