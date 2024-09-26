@@ -5,7 +5,6 @@ import subprocess
 import sys
 
 import colorlog
-
 import shutil
 current_dir = os.getcwd()
 
