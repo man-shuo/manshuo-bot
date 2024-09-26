@@ -197,7 +197,14 @@ def main(bot, logger):
         if str(event.message_chain) == "gal查询":
             flag=1
             await sleep(0.1)
-            
+        if str(event.message_chain) == "开启galgame推荐云获取":
+            manage_gal_status('galgame_cloud_check', True)
+            await bot.send(event, '已开启galgame推荐云获取，开启本功能后即有可能导致获取时间过长')
+        if str(event.message_chain) == "关闭galgame推荐云获取":
+            manage_gal_status('galgame_cloud_check', False)
+            await bot.send(event, '已关闭galgame推荐云获取')
+
+
         global galgame
         galgame = 1
         if str(event.message_chain) == "开启galgame推荐":
@@ -213,23 +220,24 @@ def main(bot, logger):
         if str(event.message_chain) == "galgame推荐" or str(event.message_chain) == "Galgame推荐" or(
                 At(bot.qq) in event.message_chain and "gal" in str(event.message_chain)) or flag == 1:
             logger.info("Galgame推荐")
+            description=None
+            img_name=None
 
-
-
-            filepath = 'manshuo_data/galgame_image'
-            for i in range(5):
-                number_url = random.randint(1, 4000)
-                # number_url=2302
-                url = 'https://www.hikarinagi.com/p/' + str(number_url)
-                #print('第'+str(i)+ '次尝试')
-                logger.info('第'+str(i)+ '次尝试')
-                logger.info(url)
-                #print(url)
-                description = get_game_description(url)
-                if description:
-                    break
-            img_name = get_game_image(url, filepath, number_url)
-
+            if manage_gal_status('galgame_cloud_check'):
+                filepath = 'manshuo_data/galgame_image'
+                for i in range(5):
+                    number_url = random.randint(1, 4000)
+                    # number_url=2302
+                    url = 'https://www.hikarinagi.com/p/' + str(number_url)
+                    #print('第'+str(i)+ '次尝试')
+                    logger.info('第'+str(i)+ '次尝试')
+                    logger.info(url)
+                    #print(url)
+                    description = get_game_description(url)
+                    if description:
+                        break
+                img_name = get_game_image(url, filepath, number_url)
+                logger.info("获取完成")
 
 
 
