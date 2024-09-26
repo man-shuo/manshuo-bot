@@ -5,9 +5,74 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="28b4e848-1629-4b74-b686-06e455847ccc" name="更改" comment="电费查询功能更新！！！！！">
+      <change beforePath="$PROJECT_DIR$/.idea/Manyana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Manyana.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/elect_check.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/elect_check.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/controller.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/controller.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/aronaSub.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/aronaSub.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/国服未来视.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/国服未来视.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/国际服总力.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/国际服总力.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/国际服未来视.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/国际服未来视.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/日服总力.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/日服总力.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/日服活动.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/日服活动.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/chatGLMData.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/chatGLMData.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/signs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/signs.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/Rereadlist.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manshuo_data/Rereadlist.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/attack_sb_list.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manshuo_data/attack_sb_list.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/0005847151_B.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/280px-Img_prize22 (1).webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/280px-Sprb_main_img.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/280px-千戀＊萬花遊戲封面 (1).webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/280px-寄宿之恋.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/300px-Koibana.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/300px-恋爱成双.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-天色天歌天籁音.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-春色春恋春熙风.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-雪色雪花雪余痕.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/9nine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/ChaosChild (2).png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/ChaosChild.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/Hirahira-Hihiru.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/NOeSIS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/OIP.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/R-C.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/Rewrite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/a7ff884ce764b92fcee3d8d30c756874.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/brladrsky.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/clanned.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/daiwoqudixiacheng.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/eden.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/erewhom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/ever17.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/guse.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/haishishenlou.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/jiaoxiangyue.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/junbi.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/kezhishaonv.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/kudwafter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/lansi.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/loppers.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/love-is-pure-white.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/shaonvlingyu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/shengming.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/suqingri.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/xiangyaochuandadeailian.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/xiawa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/xingkongliehce.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/yuanzhikong.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/恋爱，我借走了main.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/galgamelist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/galgamelist.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/attack_sb_yaml.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/attack_sb_yaml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/galgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/galgame.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/chatGLMData_back.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/temp/chatGLMData_back.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +100,7 @@
   &quot;keyToString&quot;: {
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;work&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -65,6 +130,10 @@
       <workItem from="1727270845470" duration="4000" />
       <workItem from="1727271515461" duration="13000" />
       <workItem from="1727271538553" duration="20000" />
+      <workItem from="1727327948994" duration="1548000" />
+      <workItem from="1727329802091" duration="55000" />
+      <workItem from="1727339670134" duration="2957000" />
+      <workItem from="1727342662314" duration="2192000" />
     </task>
     <task id="LOCAL-00001" summary="update 抽象塔罗">
       <option name="closed" value="true" />
@@ -207,6 +276,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="电费查询功能更新！！！！！" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1727264358542" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/galgame_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1727342587497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1727344777394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

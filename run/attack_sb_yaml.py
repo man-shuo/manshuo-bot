@@ -309,7 +309,7 @@ def main(bot, logger):
                                 await bot.send(event, "攻击次数太多啦，"+str(botName)+"要做个好孩子喵~")
                                 manager.modify_variable('attack_state_'+str(group_id), "0")
                         else:
-                            file_path = 'config/attack_elements.yaml'
+                            file_path = 'manshuo_data/attack_elements.yaml'
                             attack_context = random_yaml_get(file_path)
                             await bot.send_group_message(event.sender.group.id, [At(attack_name_id), " "+str(attack_context)])
                             times=times+1

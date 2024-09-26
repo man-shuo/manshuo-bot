@@ -31,7 +31,7 @@ ai绘画:
   InternetMeme: True       #是否启用网络Meme（英文meme）
   watchPrefix: "/"          #“看看”指令的前缀
 运势&塔罗:
-  lockLuck: True           #是否锁定运势等功能的结果
+  lockLuck: False           #是否锁定运势等功能的结果
 JMComic:            #禁漫相关功能设置
   enable: True     #全局开关
   onlyTrustUser: False #打开后，仅master授权用户可用

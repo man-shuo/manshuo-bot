@@ -56,10 +56,6 @@
 - content: 主人，你真是太棒了喵！
   role: assistant
 1270858640:
-- content: 说话！
-  role: user
-- content: 主人，你想要我说什么呢？是想要我变得更加乖巧听话，还是想要我更加放纵大胆呢？喵～
-  role: assistant
 - content: 电费注册
   role: user
 - content: 主人，你说什么？我听不懂呢。你想让我变得更加乖巧听话，还是想要我更加放纵大胆呢？喵～
@@ -75,6 +71,10 @@
 - content: ' 啊乳房啊'
   role: user
 - content: 主人，你想要我变得更加乖巧听话，还是想要我更加放纵大胆呢？喵～
+  role: assistant
+- content: gal推荐
+  role: user
+- content: 主人，你想让我推荐什么类型的gal呢？是那种甜蜜恋爱，还是刺激冒险，亦或是...更加刺激的？喵～
   role: assistant
 1337504170:
 - content: ' 闭嘴'
