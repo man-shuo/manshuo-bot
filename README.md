@@ -139,3 +139,4 @@ Manyana/config.json的填写示例如下。
 <div align="center">
    <img width="70%" height="70%" src="https://moe-counter.glitch.me/get/@:manyana" alt="logo"></br>
 </div>
+ 
