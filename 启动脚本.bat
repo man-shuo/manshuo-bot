@@ -11,3 +11,4 @@ if exist "%PYTHON_EXE%" (
     cd ..\..
     python %MAIN_SCRIPT%
 )
+
