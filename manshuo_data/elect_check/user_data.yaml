@@ -14,7 +14,7 @@ users:
     buildingid: '1503975832'
     room: b413
     stateid_check: '1'
-    times: '64'
+    times: '72'
   '1362568751':
     account: '817532'
     building: S1
@@ -50,7 +50,7 @@ users:
     buildingid: '1599193777'
     room: '203'
     stateid_check: '1'
-    times: '11'
+    times: '16'
   '1820579247':
     account: '817331'
     building: s1
@@ -73,7 +73,7 @@ users:
     buildingid: '1503975890'
     room: B216
     stateid_check: '0'
-    times: '5'
+    times: '7'
   '2185382258':
     account: '?'
     account_number: '2185382258'
@@ -108,7 +108,7 @@ users:
     buildingid: '1661835256'
     room: '109'
     stateid_check: '1'
-    times: '3'
+    times: '4'
   '2876833071':
     account: '823892'
     account_number: '2876833071'
@@ -116,7 +116,7 @@ users:
     buildingid: '1503975890'
     room: b320
     stateid_check: '1'
-    times: '20'
+    times: '22'
   '2927455642':
     account: '824192'
     building: 凤凰居s11-13
@@ -130,7 +130,7 @@ users:
     buildingid: '1503975832'
     room: B622
     stateid_check: '1'
-    times: '13'
+    times: '14'
   '2995013364':
     account: '817881'
     account_number: '2995013364'
@@ -150,7 +150,7 @@ users:
     buildingid: '1503975832'
     room: b527
     stateid_check: '0'
-    times: '11'
+    times: '12'
   '3396152409':
     account: '817365'
     account_number: '3396152409'
@@ -197,6 +197,7 @@ users:
     account: '814272'
     building: 凤凰居 S1
     buildingid: '1503975832'
+    elect_check_state: '0'
     member_id: '2634855532'
     room: b413
     sender_id: '0'
