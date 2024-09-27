@@ -20,6 +20,14 @@ import yaml
 import random
 #from PIL import Image
 from mirai import Mirai, WebSocketAdapter, GroupMessage, Image, At, Startup, FriendMessage, Shutdown,MessageChain
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from bs4 import BeautifulSoup
+import time
+
+
 
 def manage_gal_status(user_id, status=None, file_path="manshuo_data/galgame_judge.yaml"):
     if not os.path.exists(file_path):
@@ -105,6 +113,7 @@ def get_game_image(url,filepath,number_url):
                     #print('这是获取图片名称',img_name)
                     if  'main' in img_name:
 
+
                         # 下载图片并保存
                         if 'jpg' in img_name:
                             img_name_test=str(number_url)+'.jpg'
@@ -112,9 +121,48 @@ def get_game_image(url,filepath,number_url):
                             img_name_test = str(number_url) + '.png'
                         if 'webp' in img_name:
                             img_name_test = str(number_url) + '.webp'
-                        print(img_name_test)
+                        #print(img_name_test)
                         img_name=img_name_test
                         img_response = requests.get(img_url)
+
+                        chrome_options = Options()
+                        chrome_options.add_argument("--headless")  # 设置为无头模式
+                        chrome_options.add_argument('--incognito')
+                        # 步骤 2: 启动浏览器并访问网站
+                        driver = webdriver.Chrome( options=chrome_options)
+                        driver.get(url)
+                        driver.get(str(img_url))
+                        image_element = driver.find_element(By.TAG_NAME, "img")
+                        #print(image_element)
+                        # 获取图片的 src 属性
+                        img_src = image_element.get_attribute("src")
+                        #print(img_src)
+                        img_path = os.path.join(filepath, img_name)
+                        # 如果图片是 base64 编码的，解码保存图片
+                        if img_src.startswith("data:image"):
+                            # 提取 base64 数据
+                            base64_data = img_src.split(',')[1]
+                            # 解码并保存图片
+                            with open(img_path, "wb") as file:
+                                file.write(base64.b64decode(base64_data))
+                        else:
+                            # 如果不是 base64 数据，可以直接下载（也可以继续使用Selenium处理）
+                            driver.get(img_src)
+
+                            with open(img_path, "wb") as file:
+                                file.write(driver.find_element(By.TAG_NAME, "img").screenshot_as_png)
+
+                            manage_gal_status(number_url,True)
+                            if 'jpg' in img_name:
+                                manage_gal_status(str(number_url) + '.jpg', True)
+                            if 'png' in img_name:
+                                manage_gal_status(str(number_url) + '.png', True)
+                            if 'webp' in img_name:
+                                manage_gal_status(str(number_url) + '.webp', True)
+
+                            return img_name
+
+
                         if img_response.status_code == 200:
                             img_path = os.path.join(filepath, img_name)
                             with open(img_path, 'wb') as f:
@@ -130,6 +178,8 @@ def get_game_image(url,filepath,number_url):
                             print(f"图片下载完成: {img_name}")
 
                             return img_name
+                        else:
+                            print(f"无法下载图片: {img_url}")
 
                     elif 'default' in img_name :
                         global state_gal
@@ -198,9 +248,11 @@ def main(bot, logger):
             flag=1
             await sleep(0.1)
         if str(event.message_chain) == "开启galgame推荐云获取":
+            logger.info("开启galgame推荐云获取")
             manage_gal_status('galgame_cloud_check', True)
-            await bot.send(event, '已开启galgame推荐云获取，开启本功能后即有可能导致获取时间过长')
+            await bot.send(event, '已开启galgame推荐云获取，请确保master正确配置chromedriver')
         if str(event.message_chain) == "关闭galgame推荐云获取":
+            logger.info("关闭galgame推荐云获取")
             manage_gal_status('galgame_cloud_check', False)
             await bot.send(event, '已关闭galgame推荐云获取')
 
