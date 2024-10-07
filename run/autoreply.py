@@ -80,7 +80,12 @@ def main(bot, logger):
     @bot.on(GroupMessage)
     async def help(event: GroupMessage):
 
-
+        with open('config.json', 'r', encoding='utf-8') as f:
+            data = yaml.load(f.read(), Loader=yaml.FullLoader)
+        config = data
+        botName = str(config.get('botName'))
+        master = int(config.get('master'))
+        mainGroup = int(config.get("mainGroup"))
 
 
 
@@ -106,12 +111,49 @@ def main(bot, logger):
         if '你好' in str(event.message_chain) and At(bot.qq) in event.message_chain :
             logger.info("你好")
             await bot.send(event, '你好哟~~~')
+        if ('漫朔' in str(event.message_chain))and('查询' in str(event.message_chain) or '今日' in str(event.message_chain)):
+            type = random.randint(1, 7)
+            name_nickname = str(event.sender.member_name)
+            if type == 1:
+                # name_nickname = str(event.sender.member_name)
+                logger.info('漫朔自定义回复，type1')
+                await bot.send(event, '不给' + str(name_nickname) + '今天的漫朔哦，这可是秘密~')
+            elif type == 2:
+                logger.info('漫朔自定义回复，type2')
+                await bot.send(event, '这是今天的漫朔哦~~')
+                s = [Image(path='manshuo_data/fonts/guaiqiao.png')]
+                await bot.send(event, s)
+            elif type == 3:
+                logger.info('漫朔自定义回复，type3')
+                await bot.send(event, '你怎么天天想着人家？' + str(name_nickname) + '好怪哦')
+            elif type == 4:
+                logger.info('漫朔自定义回复，type4')
+                await bot.send(event, str(botName) + '才不允许你看我家哥哥呢')
+            elif type == 5:
+                logger.info('漫朔自定义回复，type5')
+                await bot.send(event, str(name_nickname) + '又要指挥' + str(botName) + '干坏事情了，' + str(
+                    botName) + '才不要呢.')
+            elif type == 6:
+                logger.info('漫朔自定义回复，type6')
+                s = [Image(path='manshuo_data/fonts/momobendan.png')]
+                await bot.send(event, s)
+            else:
+                await bot.send(event,'您想要什么样的漫朔呢（歪头')
         if '打卡' in str(event.message_chain) in event.message_chain:
             s=[Image(path='manshuo_data/fonts/daka.png')]
             #for i in s:
             await bot.send(event, s)
             #logger.info("制图菜单")
             #await bot.send(event, '发送 pet 以查看制图功能列表')
+
+        if '亲' in str(event.message_chain) and '漫朔' in str(event.message_chain):
+            logger.info("漫朔自定义回复")
+            rnum0 = random.randint(1, 5)
+            if rnum0 == 1:
+                logger.info("漫朔自定义回复成功触发，type1")
+
+                await bot.send(event, '不准你亲QAQ')
+                #await bot.send(event, s)
         if '柚子处' in str(event.message_chain) or '柚子除' in str(event.message_chain) or '柚子厨' in str(event.message_chain) or 'yuzusoft' in str(event.message_chain) :
             logger.info("yuzu自定义回复")
             rnum0=random.randint(1,6)
@@ -154,7 +196,9 @@ def main(bot, logger):
                 await bot.send(event, '我八胃大，无需多盐！！')
         if '不理' in str(event.message_chain) :
             logger.info("自定义回复")
-            await bot.send(event, '不理笨蛋（哼！',True)
+            rnum0 = random.randint(1, 4)
+            if rnum0 == 1:
+                await bot.send(event, '不理笨蛋（哼！',True)
             
             
         if '几卡' in str(event.message_chain) and At(bot.qq) in event.message_chain:
@@ -266,7 +310,7 @@ def main(bot, logger):
             rnum0=random.randint(1,rnum00)
             if rnum0 == 1:
                 s=[Image(path='manshuo_data/fonts/hongwen.png')]
-            await bot.send(event, s)
+                await bot.send(event, s)
         if ('生气' in str(event.message_chain)):
             s=[Image(path='manshuo_data/fonts/shengqi2.gif')]
             await bot.send(event, s)
