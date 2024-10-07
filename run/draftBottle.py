@@ -82,7 +82,9 @@ def main(bot,logger):
         if event.sender.id in operateProcess and operateProcess[event.sender.id]["status"] == "comment":
             logger.info(f"{operateProcess[event.sender.id]['bottleid']} 增加 comment")
             bottle = sea[operateProcess[event.sender.id]["bottleid"]]
-            newMes = await EventMessageConvert(event.message_chain)
+            newMes = await EventMessageConvert('昵称：'+str(event.sender.member_name)+' 发送的评论\n'+event.message_chain)
+
+            print(newMes)
             if "comments" not in bottle:
                 bottle["comments"]={event.sender.id:newMes}
             else:
