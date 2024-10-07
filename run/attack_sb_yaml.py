@@ -323,53 +323,89 @@ def main(bot, logger):
         
         
         if str(event.message_chain).startswith("攻击") :
-            msg = "".join(map(str, event.message_chain[Plain]))
-        # 匹配指令
-            #m = re.match(r'^攻击\s*(\w+)\s*$', msg.strip())
-            m=0
-        #m = re.match(r'^攻击@\s*(\w+)\s*$', msg.strip())
-            if m:
-            # 取出指令中的地名
-                #await bot.send(event, '成功匹配')
-                name_user = m.group(1)
-                if str(name_user) != "无效化":
-                    file_path = 'manshuo_data/attack_elements.yaml'
-                    attack_context = random_yaml_get(file_path)
-                
-                    name_id = int(str(event.sender.id))
-                    name_nickname = str(event.sender.member_name)
-                    await bot.send(event,  "@"+str(name_user)+" "+str(attack_context))
-            context=str(event.message_chain)
-            name_id_number=re.search(r'\d+', context)
-            
-            if name_id_number:
-                number = int(name_id_number.group())
-                white_list_state=int(manager.get_variable("white_list_"+str(number)))
-                
-                if number == master :
-                    await bot.send(event, "不可以攻击master哦~~")
-                                    
-                elif white_list_state == 1 :
-                    manager.modify_variable('attack_state_'+str(group_id), "0")
-                    await bot.send(event, str(botName)+'不会攻击好孩子的喵~')
-                else:
-                    
-                    file_path = 'manshuo_data/attack_elements.yaml'
-                    attack_context = random_yaml_get(file_path)
-                    await bot.send_group_message(event.sender.group.id, [At(number), " "+str(attack_context)])
-                #await bot.send(event, '测试开始，开始输出结果：')
-                #name_id = int(str(event.sender.id))
-                #await bot.send(event, "测试者QQID："+str(number))
-                #group_id = event.sender.group.id
-                #await bot.send(event, "测试者所在群："+str(group_id))
-                #await bot.send(event, "发送内容："+str(message_chain))
-                #await bot.send_group_message(event.sender.group.id, [At(number),"\n提问前请翻阅：。"])
-                #await bot.send_group_message(event.sender.group.id, [At(number), " "+str(attack_context)])
-                #await bot.send(event, "@"+str(name_user)+" "+str(random_paragraph))
-                #name_id = int(str(event.sender.id))
-                #await bot.send(event, "测试者QQID："+str(name_id))
-                #name_nickname = str(event.sender.member_name)
-                #await bot.send(event, "测试者QQ昵称："+str(name_nickname))
+            logger.info('攻击触发！，bot开始攻击啦')
+            check = random.randint(1, 100)
+            logger.info(str(check))
+            if check>75:
+                type = random.randint(1, 6)
+                name_nickname = str(event.sender.member_name)
+                if type == 1:
+                    #name_nickname = str(event.sender.member_name)
+                    logger.info('攻击切换自定义回复，type1')
+                    await bot.send(event, '攻击什么攻击'+str(name_nickname) + '个笨蛋（哼！')
+                elif type == 2:
+                    logger.info('攻击切换自定义回复，type2')
+                    s = [Image(path='manshuo_data/fonts/shengqibaozha.gif')]
+                    await bot.send(event, s)
+                elif type == 3:
+                    logger.info('攻击切换自定义回复，type3')
+                    await bot.send(event, '天天就知道攻击人家，' + str(name_nickname) + '太坏了！')
+                elif type == 4:
+                    logger.info('攻击切换自定义回复，type4')
+                    await bot.send(event, str(botName) + '不干啦，撒泼打滚又上吊~~~~（嘎了')
+                elif type == 5:
+                    logger.info('攻击切换自定义回复，type5')
+                    await bot.send(event, str(name_nickname) +'又要指挥'+str(botName) + '干坏事情了，'+str(botName)+'才不要呢.')
+                elif type == 6:
+                    logger.info('攻击切换自定义回复，type6')
+                    s = [Image(path='manshuo_data/fonts/zayuzayu.gif')]
+                    await bot.send(event, s)
+            else:
+
+
+                msg = "".join(map(str, event.message_chain[Plain]))
+            # 匹配指令
+                #m = re.match(r'^攻击\s*(\w+)\s*$', msg.strip())
+                m=0
+            #m = re.match(r'^攻击@\s*(\w+)\s*$', msg.strip())
+                if m:
+                # 取出指令中的地名
+                    #await bot.send(event, '成功匹配')
+                    name_user = m.group(1)
+                    if str(name_user) != "无效化":
+                        file_path = 'manshuo_data/attack_elements.yaml'
+                        attack_context = random_yaml_get(file_path)
+
+                        name_id = int(str(event.sender.id))
+                        name_nickname = str(event.sender.member_name)
+                        await bot.send(event,  "@"+str(name_user)+" "+str(attack_context))
+
+
+
+
+                context=str(event.message_chain)
+                name_id_number=re.search(r'\d+', context)
+
+                if name_id_number:
+                    number = int(name_id_number.group())
+                    white_list_state=int(manager.get_variable("white_list_"+str(number)))
+
+                    if number == master :
+                        file_path = 'manshuo_data/attack_elements.yaml'
+                        attack_context = random_yaml_get(file_path)
+                        await bot.send_group_message(event.sender.group.id, [At(number), " " + str(attack_context)])
+                        #await bot.send(event, "不可以攻击master哦~~")
+
+                    elif white_list_state == 1 :
+                        manager.modify_variable('attack_state_'+str(group_id), "0")
+                        await bot.send(event, str(botName)+'不会攻击好孩子的喵~')
+                    else:
+                        file_path = 'manshuo_data/attack_elements.yaml'
+                        attack_context = random_yaml_get(file_path)
+                        await bot.send_group_message(event.sender.group.id, [At(number), " "+str(attack_context)])
+                    #await bot.send(event, '测试开始，开始输出结果：')
+                    #name_id = int(str(event.sender.id))
+                    #await bot.send(event, "测试者QQID："+str(number))
+                    #group_id = event.sender.group.id
+                    #await bot.send(event, "测试者所在群："+str(group_id))
+                    #await bot.send(event, "发送内容："+str(message_chain))
+                    #await bot.send_group_message(event.sender.group.id, [At(number),"\n提问前请翻阅：。"])
+                    #await bot.send_group_message(event.sender.group.id, [At(number), " "+str(attack_context)])
+                    #await bot.send(event, "@"+str(name_user)+" "+str(random_paragraph))
+                    #name_id = int(str(event.sender.id))
+                    #await bot.send(event, "测试者QQID："+str(name_id))
+                    #name_nickname = str(event.sender.member_name)
+                    #await bot.send(event, "测试者QQ昵称："+str(name_nickname))
 
 
 
