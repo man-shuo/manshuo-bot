@@ -393,3 +393,13 @@
   - 抽象的塔罗牌，由@LittlebearHat 完成并提交，请在controller开启此功能
 2024/9/26:
   - galgame推荐更新！
+2024/10/7:
+  - 功能完全重写，基于YMGalgame-API强力驱动，多达6项功能的gal整合
+  - 新功能：
+  - 1，gal查询
+    2，gid_gal单个游戏详情查询
+    3，orgId_gal机构详情查询
+    4，cid_gal游戏角色详情查询
+    5，orgId_gal机构下的游戏查询
+    6，本月新作，本日新作（单此一项请艾特bot食用
+    7，galgame推荐
