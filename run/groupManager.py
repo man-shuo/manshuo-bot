@@ -274,7 +274,7 @@ def main(bot, config, moderateKey, logger):
         while True:
             await sleep(60)
             # 读取用户数据
-            logger.info("更新数据")
+            #logger.info("更新数据")
             global moderateK
             moderateK = moderateKey
             #logger.info("读取群管设置")

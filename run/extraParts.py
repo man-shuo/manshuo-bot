@@ -103,7 +103,7 @@ def main(bot, logger):
     async def update(event: Startup):
         while True:
             await sleep(300)
-            logger.info("更新用户数据")
+            #logger.info("更新用户数据")
             with open('data/userData.yaml', 'r', encoding='utf-8') as file:
                 data1 = yaml.load(file, Loader=yaml.FullLoader)
             global trustUser

@@ -34,12 +34,12 @@ def main(bot, logger):
     @bot.on(Startup)
     async def pushAronaData(event: Startup):
         while baMonitor:
-            logger.info("检查arona订阅更新")
+            #logger.info("检查arona订阅更新")
             with open("data/aronaSub.yaml", 'r', encoding='utf-8') as f:
                 result9 = yaml.load(f.read(), Loader=yaml.FullLoader)
                 for i in result9:
                     for ia in result9.get(i).get("hash"):
-                        logger.info("检查" + ia + "更新")
+                        #logger.info("检查" + ia + "更新")
                         await sleep(25)
                         url1 = "https://arona.diyigemt.com/api/v2/image?name=" + ia
                         async with httpx.AsyncClient(timeout=100) as client:  # 100s超时
@@ -60,7 +60,7 @@ def main(bot, logger):
                                     await bot.send_group_message(int(iss), (ia + "数据更新", Image(path=p)))
                                     alreadySend.append(iss)
                                 except:
-                                    logger.error("向" + str(iss) + "推送更新失败")
+                                    #logger.error("向" + str(iss) + "推送更新失败")
                                     alreadySend.append(iss)
                             result9[i]["hash"][ia] = str(newHash)
                             with open('data/aronaSub.yaml', 'w', encoding="utf-8") as file:
@@ -95,19 +95,19 @@ def main(bot, logger):
             for i in bss:
                 p = await stageStrategy(i)
                 await bot.send(event, ("获取到" + i + "数据", Image(path=p)))
-            logger.info(str(event.group.id) + "新增订阅")
+            #logger.info(str(event.group.id) + "新增订阅")
             await bot.send(event, "成功订阅")
 
     @bot.on(GroupMessage)
     async def aronad(event: GroupMessage):
         if str(event.message_chain) == "/arona":
             url = "杂图"
-            logger.info("查询攻略：" + url)
+            #logger.info("查询攻略：" + url)
             try:
                 p = await stageStrategy(url)
                 await bot.send(event, (
                 "根据图中列出的项目，发送/arona 项目 即可查询，不需要艾特\n示例如下：\n/arona 国服人权\n/arona H11-2",
                 Image(path=p)))
             except:
-                logger.error("无效的角色或网络连接错误")
+                #logger.error("无效的角色或网络连接错误")
                 await bot.send(event, "无效的角色 或网络连接出错")
