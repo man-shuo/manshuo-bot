@@ -294,12 +294,41 @@ def schedule_tasks():
 def elect_check_schedule():
     print("定时任务，开始执行")
 
+def get_all_user_accounts_test(base_directory):
+    accounts = []
+    if os.path.exists(base_directory):
+        # 遍历目录中的每个文件夹
+        if base_directory:
+            user_directory = base_directory
+            if os.path.isdir(user_directory):
+                user_file = os.path.join(user_directory, 'user_data.yaml')
+                user_data = read_yaml(user_file)
+                #print("user_data:", user_data)
+                if user_data and 'users' in user_data:
+                    #print("user_data:", user_data)
+                    # 提取每个用户的账号信息
+                    for user_id, user_info in user_data['users'].items():
+                        if 'account_number' in user_info:
+                            accounts.append(user_info['account_number'])
+    return accounts
+
 _task = None
 
 def main(bot, logger):
     @bot.on(GroupMessage)
     async def elect_check(event: GroupMessage):
         # 获取master信息
+
+        if '遍历' in str(event.message_chain):
+            base_directory_test='manshuo_data/elect_check'
+            all_accounts = get_all_user_accounts_test(base_directory_test)
+            print("所有用户的账号:", all_accounts)
+
+
+            #for account_number in all_accounts:
+
+
+
         with open('config.json', 'r', encoding='utf-8') as f:
             data = yaml.load(f.read(), Loader=yaml.FullLoader)
         config = data
@@ -333,35 +362,8 @@ def main(bot, logger):
         elect_check_state = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), 'manshuo', 'elect_check_state')
         stateid = int(stateid)
 
-        if '遍历' in str(event.message_chain):
-            all_accounts = get_all_user_accounts(base_directory)
-            print("所有用户的账号:", all_accounts)
 
 
-            for account_number in all_accounts:
-                #print(account_number)
-                name_id=int(account_number)
-                json_check(directory, data_json)
-                json_rewrite(directory, data_json, name_id)
-                inquiry(directory, data_json)
-                stateid_check = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
-                                         'stateid_check')
-                print("用户",name_id,"的电费:", remaining_power)
-                remaining_power_check=int(remaining_power)
-
-                friend_check = await bot.get_friend(name_id)
-                group_member_check = await bot.get_group_member(674822468, name_id)
-                print(friend_check,group_member_check )
-                if remaining_power_check<30 :
-                    if stateid_check:
-                        stateid_check = int(stateid_check)
-                        if stateid_check==1:
-                            print("用户", name_id, "的电费过低")
-                            friend_check = await bot.get_friend(name_id)
-                            if friend_check:
-                                print("检测到该用户", name_id, "，将为其发送电费提醒")
-                            else:
-                                print("未检测到该用户", name_id, "，不作处理")
 
                             #await bot.send_friend_message(name_id,'您的电费过低：' + str(remaining_power) + " \n请及时为宿舍补充电费")
 
@@ -381,7 +383,7 @@ def main(bot, logger):
                 await bot.send(event, '已订阅，电费过低时候将通知您')
 
 
-        if '提醒' in str(event.message_chain) and ('取消' in str(event.message_chain) or '停止' in str(event.message_chain))and '电费' in str(event.message_chain):
+        if '提醒' in str(event.message_chain) and ('关闭' in str(event.message_chain) or '取消' in str(event.message_chain) or '停止' in str(event.message_chain))and '电费' in str(event.message_chain):
             name_id = int(str(event.sender.id))
             stateid_check_number=get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'stateid_check')
 
@@ -426,33 +428,74 @@ def main(bot, logger):
                 if room == None:
                     await bot.send(event, '您还未注册，请在群内或私聊发送"电费注册"以开始')
                 else:
-                    times = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
-                                          'times')
-                    if times == None:
-                        update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'times','1')
-                    elif times:
-                        times = int(times)
-                        times+=1
-                        update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),'times',str(times))
-                    account_number = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
-                                          'account_number')
+                    check = random.randint(1, 100)
+                    logger.info("开始电费查询，check="+str(check))
+                    if check > 81:
+                        name_nickname = str(event.sender.member_name)
+                        times = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'),str(name_id),'times')
+                        if times == None:
+                            update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'),
+                                              str(name_id), 'times', '1')
+                        elif times:
+                            times = int(times)
+                            times += 1
+                            update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'),
+                                              str(name_id), 'times', str(times))
 
-                    if account_number == None:
-                        update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'account_number',str(name_id))
-
-                    stateid_check = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'),str(name_id),'stateid_check')
-                    if stateid_check == None:
-                        update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
-                                          'stateid_check', '0')
-
-                    json_check(directory, data_json)
-                    json_rewrite(directory, data_json, name_id)
-                    inquiry(directory, data_json)
-                    if name_id_number:
-
-                        await bot.send_group_message(event.sender.group.id, [At(name_id), ' 所在的宿舍剩余的电量为' + str(remaining_power)])
+                        type = random.randint(1, 7)
+                        name_nickname = str(event.sender.member_name)
+                        if type == 1:
+                            # name_nickname = str(event.sender.member_name)
+                            logger.info('电费查询切换自定义回复，type1')
+                            await bot.send(event, '查询什么查询' + str(name_nickname) + '个笨蛋（哼！')
+                        elif type == 2:
+                            logger.info('电费查询切换自定义回复，type2')
+                            s = [Image(path='manshuo_data/fonts/shengqibaozha.gif')]
+                            await bot.send(event, s)
+                        elif type == 3:
+                            logger.info('电费查询切换自定义回复，type3')
+                            await bot.send(event, '天天就知道使唤人家，' + str(name_nickname) + '太坏了！')
+                        elif type == 4:
+                            logger.info('电费查询切换自定义回复，type4')
+                            await bot.send(event, str(botName) + '不干啦，撒泼打滚又上吊~~~~（嘎了')
+                        elif type == 5:
+                            logger.info('电费查询切换自定义回复，type5')
+                            await bot.send(event, str(name_nickname) + '又要指挥' + str(botName) + '干活了，' + str(
+                                botName) + '才不要呢.')
+                        elif type == 6:
+                            logger.info('攻击切换自定义回复，type6')
+                            s = [Image(path='manshuo_data/fonts/zayuzayu.gif')]
+                            await bot.send(event, s)
+                        else:
+                            await bot.send(event, str(name_nickname) + '是要让'+str(botName)+'查什么呢，刚才好像忘记了，再试一次吧（嘻嘻')
                     else:
-                        await bot.send(event, '该项目为测试功能，您宿舍剩余的电量为' + str(remaining_power))
+                        times = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
+                                              'times')
+                        if times == None:
+                            update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'times','1')
+                        elif times:
+                            times = int(times)
+                            times+=1
+                            update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),'times',str(times))
+                        account_number = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
+                                              'account_number')
+
+                        if account_number == None:
+                            update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'account_number',str(name_id))
+
+                        stateid_check = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'),str(name_id),'stateid_check')
+                        if stateid_check == None:
+                            update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id),
+                                              'stateid_check', '0')
+
+                        json_check(directory, data_json)
+                        json_rewrite(directory, data_json, name_id)
+                        inquiry(directory, data_json)
+                        if name_id_number:
+
+                            await bot.send_group_message(event.sender.group.id, [At(name_id), ' 所在的宿舍剩余的电量为' + str(remaining_power)])
+                        else:
+                            await bot.send(event, '该项目为测试功能，您宿舍剩余的电量为' + str(remaining_power))
             else:
                 if ('开启' in str(event.message_chain) or '打开' in str(event.message_chain)) or ('关闭' in str(event.message_chain) or '取消' in str(event.message_chain)):
                     pass
@@ -640,7 +683,7 @@ def main(bot, logger):
         sender = event.sender
         message_content = event.message_chain.get(Plain)
 
-        print(f"收到来自 {sender.id} 的消息: {message_content}")
+        #print(f"收到来自 {sender.id} 的消息: {message_content}")
         #print(f"收到来自 {sender} 的消息: {message_content}")
         # 回复消息
         #await bot.send(event, "accept message")
