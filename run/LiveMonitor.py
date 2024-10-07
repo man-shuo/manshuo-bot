@@ -60,7 +60,7 @@ def main(bot,logger):
 
                         lists[i] = asf.get("data").get("live_status")
                 except:
-                    logger.warning("直播订阅异常，请忽略")
+                    #logger.warning("直播订阅异常，请忽略")
                     continue
             await sleep(80)
 

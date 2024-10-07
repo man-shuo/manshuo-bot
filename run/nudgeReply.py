@@ -25,10 +25,18 @@ def main(bot, master, logger, berturl, proxy):
     voicegg = result0.get("语音功能设置").get("voicegenerate")
     nudgeornot = result0.get("chatGLM").get("nudgeReply")
     logger.info("语音合成模式：" + voicegg + " 语音合成speaker：" + speaker92)
-
+    logger.info("戳一戳")
     @bot.on(NudgeEvent)
+
     async def NudgeReply(event: NudgeEvent):
         global transLateData
+        logger.info("接收到戳一戳")
+
+        logger.info("接收到戳一戳"+str(event.subject.id))
+        if int(event.target) == 2319804644:
+            logger.info("接收到戳一戳")
+            logger.info("接收到来自群" + str(event.subject.id) + "的戳一戳")
+            logger.info("接收到来自" + str(event.from_id) + "的戳一戳")
         if event.target == bot.qq and not nudgeornot:
             logger.info("接收到来自" + str(event.from_id) + "的戳一戳")
             if random.randint(0, 100) > 100 - prob:
