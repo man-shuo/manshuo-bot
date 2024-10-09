@@ -133,29 +133,29 @@ def context_assemble(json_check):
     if 'gid' in json_check:
         if 'name' in json_check:
             name = json_check['name']
-            context += f"{name}|"
+            context += f"{name} | "
         if 'chineseName' in json_check:
             chineseName = json_check['chineseName']
             context += f"{chineseName}"
         context += f"\n"
         if 'gid' in json_check:
             gid = json_check['gid']
-            context += f"gid:{gid}|"
+            context += f"gid:{gid} | "
         if 'haveChinese' in json_check:
             haveChinese = json_check['haveChinese']
-            context += f"是否汉化：{haveChinese}|"
+            context += f"是否汉化：{haveChinese} | "
         if 'releaseDate' in json_check:
             releaseDate = json_check['releaseDate']
-            context += f"发售日期：{releaseDate}|"
+            context += f"发售日期：{releaseDate} | "
         if 'state' in json_check:
             state = json_check['state']
-            context += f"state：{state}|"
+            context += f"state：{state} | "
         if 'mainName' in json_check:
             mainName = json_check['mainName']
-            context += f"mainName：{mainName}|"
+            context += f"mainName：{mainName} | "
         if 'freeze' in json_check:
             freeze = json_check['freeze']
-            context += f"标识状态：{freeze}|"
+            context += f"标识状态：{freeze} | "
         return context
         pass
     else:
@@ -170,31 +170,34 @@ def context_assemble(json_check):
         if 'org' in json_check['data'] or 'game' in json_check['data'] or 'character' in json_check['data']:
             if 'name' in json_check['data'][state_check]:
                 name = json_check['data'][state_check]['name']
-                context += f"{name}|"
+                context += f"{name} | "
             if 'chineseName' in json_check['data'][state_check]:
                 chineseName = json_check['data'][state_check]['chineseName']
                 context += f"{chineseName}"
             context += f"\n"
-            if 'restricted' in json_check['data'][state_check]:
-                restricted = json_check['data'][state_check]['restricted']
-                context += f"限制级：{restricted}|"
-            if 'state' in json_check['data'][state_check]:
-                state = json_check['data'][state_check]['state']
-                context += f"状态：{state}|"
             if 'developerId' in json_check['data'][state_check]:
                 developerId = json_check['data'][state_check]['developerId']
                 developer_name = developers_check(developerId)
                 if developer_name:
-                    context += f"开发商：{developer_name}|"
+                    context += f"开发商：{developer_name} | "
+            if 'releaseDate' in json_check['data'][state_check]:
+                releaseDate = json_check['data'][state_check]['releaseDate']
+                context += f"发布时间：{releaseDate} | "
+            if 'restricted' in json_check['data'][state_check]:
+                restricted = json_check['data'][state_check]['restricted']
+                context += f"限制级：{restricted} | "
+            if 'state' in json_check['data'][state_check]:
+                state = json_check['data'][state_check]['state']
+                context += f"状态：{state} | "
+
             if 'country' in json_check['data'][state_check]:
                 country_check = json_check['data'][state_check]['country']
                 if country_check:
-                    context += f"所属：{country_check}|"
-            if 'releaseDate' in json_check['data'][state_check]:
-                releaseDate = json_check['data'][state_check]['releaseDate']
-                context += f"发布时间：{releaseDate}|"
+                    context += f"所属：{country_check} "
+
             if 'introduction' in json_check['data'][state_check]:
                 introduction = json_check['data'][state_check]['introduction']
+                context += f"\n"
                 context += f"\n简介：{introduction}\n"
             context += f"\n"
             if 'developerId' in json_check['data'][state_check]:
@@ -228,8 +231,6 @@ def context_assemble(json_check):
                 for i in range(characters_count):
                     if "cid" in json_check['data'][state_check]['characters'][i]:
                         cid = json_check['data'][state_check]['characters'][i]['cid']
-                        if "cvId" in json_check['data'][state_check]['characters'][i]:
-                            cvId = json_check['data'][state_check]['characters'][i]['cvId']
                         characterPosition = json_check['data'][state_check]['characters'][i]['characterPosition']
                         if int(characterPosition) == 1:
                             characterPosition_check='男'
@@ -243,7 +244,11 @@ def context_assemble(json_check):
                         character_name = character_check(cid)
                         if character_name:
                             #context += f"开发商：{developer_name}|"
-                            context += f"角色：{character_name}，cid：{cid}，CVid：{cvId}，性别：{characterPosition_check}\n"
+                            if "cvId" in json_check['data'][state_check]['characters'][i]:
+                                cvId = json_check['data'][state_check]['characters'][i]['cvId']
+                                context += f"角色：{character_name}，cid：{cid}，CVid：{cvId}，性别：{characterPosition_check}\n"
+                            else:
+                                context += f"角色：{character_name}，cid：{cid}，性别：{characterPosition_check}\n"
 
                 pass
             if 'staff' in json_check["data"][state_check]:
@@ -294,7 +299,26 @@ def character_check(keyword):
     name = json_check['data']['character']['name']
     # print(name)
     return name
+def get_introduction(gid):
+    introduction=''
+    flag = 3
+    keyword = str(gid)
+    url = flag_check(flag)
+    params = params_check(flag, keyword)
+    access_token = Get_Access_Token()
+    json_check = Get_Access_Token_json(access_token, url, params)
+    #print(json_check)
+    get_introduction = json_check['data']['game']['introduction']
 
+    if 'developerId' in json_check['data']['game']:
+        developerId = json_check['data']['game']['developerId']
+        developer_name = developers_check(developerId)
+        if developer_name:
+            introduction += f"开发商：{developer_name} \n"
+
+    introduction += f'简介如下：{get_introduction}'
+    #print(introduction)
+    return introduction
 
 def main(bot, logger):
     @bot.on(GroupMessage)
@@ -337,15 +361,19 @@ def main(bot, logger):
                     flag = 5
                 logger.info(f'access_token：{access_token}，flag:{flag}，gal查询目标：{keyword}')
         if "新作" in str(event.message_chain) and At(bot.qq) in event.message_chain:
-
+            now = datetime.datetime.now().date()
             flag=7
             month = datetime.datetime.now().date().month
             year = datetime.datetime.now().date().year
             day = datetime.datetime.now().date().day
-            if "本日" in str(event.message_chain):
+            if "本日" in str(event.message_chain) or "今日" in str(event.message_chain) or "今天" in str(event.message_chain):
                 flag_check_test=3
                 date = datetime.date(year, month, day)
                 logger.info(f'本日新作查询')
+            elif "昨日" in str(event.message_chain):
+                flag_check_test=3
+                date = datetime.date(year, month, day - 1)
+                logger.info(f'昨日新作查询')
             elif "本月" in str(event.message_chain):
                 date = datetime.date(year, month - 1, day)
                 flag_check_test = 3
@@ -485,9 +513,6 @@ def main(bot, logger):
         if flag ==7:
             url = flag_check(flag)
             keyword=True
-            #now = datetime.datetime.now()
-            now = datetime.datetime.now().date()
-            #print(date)
             releaseStartDate = date
             releaseEndDate = now
             params = params_check(flag, keyword,releaseStartDate,releaseEndDate)
@@ -503,7 +528,7 @@ def main(bot, logger):
                 for i in range(data_count):
                     data = json_check['data'][i]
                     context = context_assemble(data)
-                    #print(context)
+                    #print(data)
                     mainImg_state = data["mainImg"]
                     img_path = get_game_image(mainImg_state, filepath)
                     s = [Image(path=img_path)]
@@ -513,6 +538,12 @@ def main(bot, logger):
                     b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
                                             message_chain=MessageChain(str(context)))
                     cmList.append(b1)
+                    if int(data_count) < 4:
+                        gid = data["gid"]
+                        introduction=get_introduction(gid)
+                        b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                                message_chain=MessageChain(f'{introduction}'))
+                        cmList.append(b1)
                 #print(context)
 
         if flag ==8:
@@ -531,7 +562,9 @@ def main(bot, logger):
                 for i in range(data_count):
                     data = json_check['data'][i]
                     context = context_assemble(data)
-                    #print(context)
+                    #print(data)
+                    gid=data["gid"]
+                    #print(f'gid={gid}')
                     mainImg_state = 'https://store.ymgal.games/'+data["mainImg"]
                     #print(mainImg_state)
                     img_path = get_game_image(mainImg_state, filepath)
@@ -541,6 +574,10 @@ def main(bot, logger):
                     cmList.append(b1)
                     b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
                                             message_chain=MessageChain(str(context)))
+                    cmList.append(b1)
+                    introduction=get_introduction(gid)
+                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                            message_chain=MessageChain(f'{introduction}'))
                     cmList.append(b1)
                 #print(context)
 
