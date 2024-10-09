@@ -392,6 +392,8 @@ def main(bot, logger):
                     else:
                         file_path = 'manshuo_data/attack_elements.yaml'
                         attack_context = random_yaml_get(file_path)
+                        #print(number)
+                        #await bot.send_group_message(event.sender.group.id, [At(number)])
                         await bot.send_group_message(event.sender.group.id, [At(number), " "+str(attack_context)])
                     #await bot.send(event, '测试开始，开始输出结果：')
                     #name_id = int(str(event.sender.id))
