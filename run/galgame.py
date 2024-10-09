@@ -108,7 +108,7 @@ def params_check(flag,keyword=None,releaseStartDate=None,releaseEndDate=None):
 def get_game_image(url,filepath):
     if not os.path.exists(filepath):
         os.makedirs(filepath)
-    response = requests.get(url,)
+    response = requests.get(url)
     if response.status_code == 200:
         filename = url.split('/')[-1]
         #print(filename)

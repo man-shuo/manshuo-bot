@@ -381,12 +381,14 @@ if __name__ == '__main__':
     aiDraw.main(bot, logger)
     starRail.main(bot, logger)
     bangumi.main(bot,logger)
+    autoreply.main(bot, logger)
+    galgame.main(bot, logger)
     draftBottle.main(bot,logger) #芝士漂流瓶
 
-    galgame.main(bot, logger)
+
     Reread_yaml.main(bot, logger)
     attack_sb_yaml.main(bot, logger)
-    autoreply.main(bot, logger)
+
     aite_yaml.main(bot, logger)
     elect_check.main(bot, logger)
 

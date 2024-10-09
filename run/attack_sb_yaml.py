@@ -214,9 +214,6 @@ def main(bot, logger):
             attack_member=int(manager.get_variable('attack_member_'+str(group_id)))
             times=int(manager.get_variable('times_'+str(group_id)))
             limit_of_times=int(manager.get_variable('limit_of_times'))
-            
-
-
 
         #指定人攻击模块
         if str(event.message_chain).startswith("开始攻击") :
