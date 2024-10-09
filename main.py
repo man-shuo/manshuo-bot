@@ -141,6 +141,9 @@ if __name__ == '__main__':
                 yaml.dump(autoSettings, file, allow_unicode=True)
 
 
+
+
+
     @bot.on(FriendMessage)
     async def blManipulate(event: FriendMessage):
         if event.sender.id == master:
