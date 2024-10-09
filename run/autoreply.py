@@ -129,23 +129,42 @@ def update_variable(key, new_value):
     variables = read_variables()
     variables[key] = str(new_value)
     initialize_variables(variables)
-
+def translate(text):
+    #text=This is a test text&from=en&to=zh-CN
+    params = {
+        "text": text,
+        "from": 'zh-CN',
+        "to": "ja"
+    }
+    url = 'https://translate.appworlds.cn'
+    # url="https://api.hikarinagi.com/random/v2/?tag=原神&num=1&r-18=false"
+    response = httpx.get(url, params=params)
+    # print(response)
+    if response.status_code:
+        # print(response.status_code)
+        json_check = response.json()
+        msg=json_check["msg"]
+        data = json_check['data']
+        #print(data)
+        if msg == 'ok':
+            return data
+        else:
+            return False
 def main(bot, logger):
+    with open('config.json', 'r', encoding='utf-8') as f:
+        data = yaml.load(f.read(), Loader=yaml.FullLoader)
+    config = data
+    botName = str(config.get('botName'))
+    master = int(config.get('master'))
+    mainGroup = int(config.get("mainGroup"))
+
+    directory_img_check = 'manshuo_data/today_wife'
+    files_img_check = os.listdir(directory_img_check)
+    files_img_check = [f for f in files_img_check if os.path.isfile(os.path.join(directory_img_check, f))]
+    logger.info("今日老婆列表读取完毕")
+    rnum00 = 2
     @bot.on(GroupMessage)
     async def help(event: GroupMessage):
-
-        with open('config.json', 'r', encoding='utf-8') as f:
-            data = yaml.load(f.read(), Loader=yaml.FullLoader)
-        config = data
-        botName = str(config.get('botName'))
-        master = int(config.get('master'))
-        mainGroup = int(config.get("mainGroup"))
-
-
-
-
-        rnum00=2;
-
         if ('测试' in str(event.message_chain) or 'test' in str(event.message_chain) ) and At(bot.qq) in event.message_chain:
             logger.info("测试")
             pass
@@ -311,8 +330,19 @@ def main(bot, logger):
 
                 
             #await bot.send(event, '开学音趴将在'+str(rnum2)+'月'+str(rnum3)+'日'+速来!!!')
-        
-        
+
+        if '今日老婆' in str(event.message_chain) or '今天老婆' in str(event.message_chain) or '今日老婆' in str(event.message_chain):
+            logger.info("今日老婆开启！")
+
+            #print(files)
+            count_number=len(files_img_check)
+            rnum1 = random.randint(0, count_number-1)
+            img_rnum=files_img_check[rnum1]
+            #print(img_rnum)
+            img_path=os.path.join(directory_img_check,img_rnum)
+            logger.info(f"获取到老婆图片地址{img_path}")
+            s=[Image(path=img_path)]
+            await bot.send(event, s)
         if ('qiqi' in str(event.message_chain)) and ('男娘' in str(event.message_chain)):
             s=[Image(path='manshuo_data/fonts/qiqinanniang.png')]
             await bot.send(event, s)
@@ -395,6 +425,101 @@ def main(bot, logger):
             if rnum0 == 1:
                 s=[Image(path='manshuo_data/fonts/xiongdi.jpg')]
                 await bot.send(event, s)
+
+    @bot.on(GroupMessage)
+    async def help(event: GroupMessage):
+        if event.group.id == 251807019 or event.group.id == 623265372:
+            if '怎么' in str(event.message_chain) or '大佬' in str(event.message_chain):  # 前置触发词
+                await bot.send(event, [f'{botName}提示您，遇到问题先看文档哟',Image(path='manshuo_data/fonts/wendang.png')
+                    ,f'看完文档后还请自行百度确定自己无法独立解决该问题\n然后在提问群友时请描述清楚问题并附上控制台报错截图，谢谢'])
+
+    @bot.on(GroupMessage)
+    async def help(event: GroupMessage):
+        if ('来点' in str(event.message_chain)):#前置触发词
+            filepath = 'manshuo_data/wife_random'
+            context=str(event.message_chain)
+            test_context = context.replace("来点", "")
+            logger.info(f"色图搜索开启！tag：{test_context}")
+            if test_context=='色图':
+                params = {
+                    "format": "json",
+                    "num": '1',
+                    "type": "auto",
+                    "size": "regular",
+                    'tag': '美しい',
+                    'ex-tag':'創作BL',
+                    'r-18': False
+                }
+            elif '美' in test_context:
+
+
+                params = {
+                    "format": "json",
+                    "num": '1',
+                    "type": "auto",
+                    "size": "regular",
+                    'tag': '美しい',
+                    'ex-tag':'創作BL',
+                    'r-18': False
+                }
+            elif '18' in test_context:
+                params = {
+                    "format": "json",
+                    "num": '1',
+                    "type": "auto",
+                    "size": "regular",
+                    'tag': 'R-18',
+                    'ex-tag':'創作BL',
+                    'r-18': True
+                }
+            else:
+                test_context_translate = translate(test_context)
+                if test_context_translate:
+                    logger.info(f"中译日成功，返回数据：{test_context_translate}")
+                    params = {
+                        "format": "json",
+                        "num": '1',
+                        "type": "auto",
+                        "size": "regular",
+                        'r-18': False,
+                        'tag': test_context_translate
+                    }
+                else:
+                    params = {
+                        "format": "json",
+                        "num": '1',
+                        "type": "auto",
+                        "size": "regular",
+                        'r-18': False,
+                        'tag': test_context
+                    }
+            url = 'https://api.hikarinagi.com/random/v2/?'
+            # url="https://api.hikarinagi.com/random/v2/?tag=原神&num=1&r-18=false"
+            response = httpx.get(url, params=params)
+            if response.status_code == 200:
+                #print(response.status_code)
+                data = response.json()
+                #print(data)
+                if 'error' in data:
+                    await bot.send_group_message(event.sender.group.id,
+                                                 [f'{botName}好像找不到您所说{test_context}的照片哦'])
+                else:
+                    test = data[0]
+                    url = test['url']
+                    pid=test['pid']
+                    tags = test['tags']
+                    proxy_url = url.replace("https://i.pximg.net/", "https://i.yuki.sh/")
+                    logger.info(f"搜索成功，作品pid：{pid}，反代url：{proxy_url}")
+                    img_path = get_game_image(proxy_url, filepath, pid)
+                    if '18' in test_context :
+                        await bot.send_group_message(event.sender.group.id,
+                                                     [f'这是{botName}为您找到的图片哟\nurl：{proxy_url}\ntags:{tags}'])
+                    else:
+                        await bot.send_group_message(event.sender.group.id,
+                                                 [f'这是{botName}为您找到的图片哟',
+                                                  Image(path=img_path)])
+
+
 
     @bot.on(GroupMessage)
     async def help(event: GroupMessage):
