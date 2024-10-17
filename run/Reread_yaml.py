@@ -26,7 +26,7 @@ from mirai import GroupMessage, At, Plain
 from mirai import Image, Voice, Startup, MessageChain
 from mirai.models import ForwardMessageNode, Forward
 
-from plugins.toolkits import random_str,picDwn
+from plugins.toolkits import random_str,picDwn,group_manage_controller
 from mirai import Mirai, WebSocketAdapter, GroupMessage, Image, At, Startup, FriendMessage, Shutdown,MessageChain
 
 master=1270858640
@@ -95,6 +95,9 @@ class YamlManager:
 
 
 def main(bot, logger):
+
+
+    Read_check=['[','@','来点','随机','#','今日','gal','查询','搜索','/','瓶子','什么','minfo','id','管理']
     @bot.on(GroupMessage)
     async def Reread_yaml(event: GroupMessage):
         
@@ -125,47 +128,39 @@ def main(bot, logger):
             manager = YamlManager('config/Rereadlist.yaml', initial_data)
             
             
-            
+        if group_manage_controller(f'{event.group.id}_Reload'):
         #若列表有该群，则获取其变量值
-        if group_id_judge == 1:
-            fudu1=str(manager.get_variable('fudu1_'+str(group_id)))
-            fudu2=str(manager.get_variable('fudu2_'+str(group_id)))
-            fudu3=str(manager.get_variable('fudu3_'+str(group_id)))
-            
-            
-            #这样bot获取图片获取到的是[图片]，那就新增一个判断（
-            if '[图片]' in str(event.message_chain) or '@' in str(event.message_chain) :
-                pass
-            else:
-                
-            #if event.sender.id == master :
-                #await bot.send(event, "收到master消息")
-                    
-                context=str(event.message_chain)
-                fudu1=context
-                #update_variable("fudu1", str(context))
-                #update_variable(file_path, 'fudu1_'+str(group_id), str(context))
-                manager.modify_variable('fudu1_'+str(group_id), str(context))
-            #await bot.send(event, str(context))
-                if fudu1 != fudu3:
-                    if fudu1 == fudu2:
-                        rnum0=random.randint(1,100)
-                        if rnum0 < 45 :
-                            await bot.send(event, str(context))
-                            #update_variable("fudu3", str(context))
-                            #update_variable(file_path, 'fudu3_'+str(group_id), str(context))
-                            manager.modify_variable('fudu3_'+str(group_id), str(context))
-                #update_variable("fudu2", str(context))
-                #update_variable(file_path, 'fudu2_'+str(group_id), str(context))
-                manager.modify_variable('fudu2_'+str(group_id), str(context))
+            if group_id_judge == 1:
+                fudu1=str(manager.get_variable('fudu1_'+str(group_id)))
+                fudu2=str(manager.get_variable('fudu2_'+str(group_id)))
+                fudu3=str(manager.get_variable('fudu3_'+str(group_id)))
+
+                flag = 0
+                #这样bot获取图片获取到的是[图片]，那就新增一个判断（
+                for i in range(len(Read_check)):
+                    if str(Read_check[i]) in str(event.message_chain):
+                        flag=1
+                if flag==1:
+                    #print('检测到关键词，不触发')
+                    pass
+                else:
+                    context=str(event.message_chain)
+                    fudu1=context
+                    manager.modify_variable('fudu1_'+str(group_id), str(context))
+                    if fudu1 != fudu3:
+                        if fudu1 == fudu2:
+                            rnum0=random.randint(1,100)
+                            if rnum0 < 35 :
+                                logger.info(f"复读触发群：{group_id}，复读内容：{context}")
+                                await bot.send(event, str(context))
+                                manager.modify_variable('fudu3_'+str(group_id), str(context))
+                    manager.modify_variable('fudu2_'+str(group_id), str(context))
+
         if event.sender.id == master :
             pass
             fudu1=str(manager.get_variable('fudu1_'+str(group_id)))
             fudu2=str(manager.get_variable('fudu2_'+str(group_id)))
             fudu3=str(manager.get_variable('fudu3_'+str(group_id)))
-        #if event.sender.id == master :
-            #await bot.send(event, str(fudu1)+"\n"+str(fudu2)+"\n"+str(fudu3)+"\n")
-            #pass
         
         
         

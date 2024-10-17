@@ -8,8 +8,9 @@ from mirai import GroupMessage
 from mirai import Image, MessageChain
 from mirai.models import ForwardMessageNode, Forward
 
-from plugins.imgSearch import superSearch, test1, test
+from plugins.imgSearch import fetch_results
 from plugins.setuModerate import setuModerate
+from plugins.toolkits import picDwn, random_str,group_manage_controller
 
 
 def main(bot, api_key, proxy, logger):
@@ -36,15 +37,17 @@ def main(bot, api_key, proxy, logger):
     @bot.on(GroupMessage)
     async def imgSearcher(event: GroupMessage):
         global dataGet
-        if ("搜图" in str(event.message_chain) or event.sender.id in dataGet) and event.message_chain.count(Image):
-            logger.info("接收来自群：" + str(event.group.id) + " 用户：" + str(event.sender.id) + " 的搜图指令")
-            dataGet[event.sender.id] = []
-            lst_img = event.message_chain.get(Image)
-            img_url = lst_img[0].url
-            proxies = {
-                "http://": proxy,
-                "https://": proxy
-            }
+        if group_manage_controller(f'{event.group.id}_ing_search'):
+            if ("搜图" in str(event.message_chain) or event.sender.id in dataGet) and event.message_chain.count(Image):
+                logger.info("接收来自群：" + str(event.group.id) + " 用户：" + str(event.sender.id) + " 的搜图指令")
+                dataGet[event.sender.id] = []
+                lst_img = event.message_chain.get(Image)
+                img_url = lst_img[0].url
+                results = await fetch_results(proxy, img_url,sauceno_api)
+                dataGet.pop(event.sender.id)
+                forMeslist=[]
+                for name, result in results.items():
+                    if result and result[0]!="":
 
             # Replace the key with your own
             dataa = {"url": img_url, "db": "999", "api_key": api_key, "output_type": "2", "numres": "3"}

@@ -27,8 +27,7 @@ from mirai import GroupMessage, At, Plain
 from mirai import Image, Voice, Startup, MessageChain
 from mirai.models import ForwardMessageNode, Forward
 
-from plugins.toolkits import random_str,picDwn
-
+from plugins.toolkits import group_manage_controller
 
 _task = None
 
@@ -46,7 +45,6 @@ def get_random_paragraph(numbered_paragraphs):
     # 随机选择一个序号
     random_index = random.choice(list(numbered_paragraphs.keys()))
     return random_index, numbered_paragraphs[random_index]
-def extract_between_symbols(text, symbol1, symbol2):
 
     try:
         # 找到第一个符号的位置
@@ -58,6 +56,12 @@ def extract_between_symbols(text, symbol1, symbol2):
     except ValueError:
         return "符号未找到或顺序不正确"
 def manage_group_status(user_id, status=None, file_path="manshuo_data/wife_you_want_img/wife_you_want.yaml"):
+def manage_group_status(user_id, status=None,file_name=None,target_group=None,type=None):
+    if file_name:
+        file_path = 'manshuo_data/wife_you_want_img'
+        file_path=os.path.join(file_path,file_name)
+    else:
+        file_path = "manshuo_data/wife_you_want_img/wife_you_want.yaml"
     if not os.path.exists(file_path):
         with open(file_path, 'w') as file:
             yaml.dump({}, file)
@@ -684,6 +688,101 @@ def main(bot, logger):
                                                       Image(path=target_img_path),
                                                       f'【{target_name}】 ({target_id})哒！'])
 
+    @bot.on(GroupMessage)#部分功能权限管理
+    async def function_manager(event: GroupMessage):
+        if '测试' in str(event.message_chain):
+            context = await bot.get_group_member(event.group.id, event.sender.id)
+            data = context.json()
+            data = json.loads(data)
+            permission = data['permission']
+            if permission == 'OWNER' or permission == 'ADMINISTRATOR':
+                print(f"检测到管理员：{permission}")
+        if '权限列表' in str(event.message_chain):
+            context = await bot.get_group_member(event.group.id, event.sender.id)
+            data = context.json()
+            data = json.loads(data)
+            permission = data['permission']
+            if permission == 'OWNER' or permission == 'ADMINISTRATOR' or event.sender.id == master:
+                wife_you_want=group_manage_controller(f'{event.group.id}_wife_you_want')
+                today_wife=group_manage_controller(f'{event.group.id}_today_wife')
+                ing_search=group_manage_controller(f'{event.group.id}_ing_search')
+                P_select_search=group_manage_controller(f'{event.group.id}_P_select_search')
+                tarot=group_manage_controller(f'{event.group.id}_tarot')
+                Reload=group_manage_controller(f'{event.group.id}_Reload')
+                maimai=group_manage_controller(f'{event.group.id}_maimai')
+                await bot.send(event, f'目前支持单独开关的功能权限：\n'
+                                      f'①透群友功能: {wife_you_want}\n'
+                                      f'②今日老婆: {today_wife}\n'
+                                      f'③搜图识图功能： {ing_search}\n'
+                                      f'④P站图片搜索（来点XX）： {P_select_search}\n'
+                                      f'⑤今日运势or塔罗： {tarot}\n'
+                                      f'⑥复读功能： {Reload}\n'
+                                      f'⑦MaiMai排卡: {maimai}\n'
+                                      f'请管理员搭配 “开启" or "关闭" 食用')
+        if str(event.message_chain).startswith("开启"):
+            context = await bot.get_group_member(event.group.id, event.sender.id)
+            data = context.json()
+            data = json.loads(data)
+            permission = data['permission']
+            if permission == 'OWNER' or permission == 'ADMINISTRATOR' or event.sender.id == master:
+                #await bot.send(event, f'目前支持单独开关的功能权限：\n①透群友功能；②今日老婆；\n请搭配“开启"or"关闭"食用')
+                if '透群友' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_wife_you_want',True)
+                    await bot.send(event, f'透群友功能开启！')
+                if '今日老婆' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_today_wife', True)
+                    await bot.send(event,f'今日老婆功能开启！')
+                if '搜图识图' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_ing_search', True)
+                    await bot.send(event,f'搜图识图功能功能开启！')
+                if 'P站图片' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_P_select_search', True)
+                    await bot.send(event,f'P站图片搜索功能开启！')
+                if '今日运势or塔罗' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_tarot', True)
+                    await bot.send(event,f'今日运势or塔罗搜索功能开启！')
+                if '复读功能' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_Reload', True)
+                    await bot.send(event,f'复读功能搜索功能开启！')
+                if 'MaiMai排卡' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_maimai', True)
+                    await bot.send(event,f'MaiMai排卡功能开启！')
+        if str(event.message_chain).startswith("关闭"):
+            context = await bot.get_group_member(event.group.id, event.sender.id)
+            data = context.json()
+            data = json.loads(data)
+            permission = data['permission']
+            if permission == 'OWNER' or permission == 'ADMINISTRATOR' or event.sender.id == master:
+                #await bot.send(event, f'目前支持单独开关的功能权限：\n①透群友功能；②今日老婆；\n请搭配“开启"or"关闭"食用')
+                if '透群友' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_wife_you_want',False)
+                    await bot.send(event, f'透群友功能已关闭~~')
+                elif '今日老婆' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_today_wife', False)
+                    await bot.send(event, f'今日老婆功能已关闭~~')
+                elif '搜图识图' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_ing_search', False)
+                    await bot.send(event,f'搜图识图功能已关闭~~')
+                elif 'P站图片' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_P_select_search', False)
+                    await bot.send(event,f'P站图片搜索已关闭~~')
+                elif '今日运势or塔罗' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_tarot', False)
+                    await bot.send(event,f'今日运势or塔罗搜索功能已关闭~~')
+                elif '复读功能' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_Reload', False)
+                    await bot.send(event,f'复读功能搜索功能已关闭~~')
+                elif 'MaiMai排卡' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_maimai', False)
+                    await bot.send(event,f'MaiMai排卡功能已关闭~~')
+                elif '所有' in str(event.message_chain):
+                    group_manage_controller(f'{event.group.id}_wife_you_want', False)
+                    group_manage_controller(f'{event.group.id}_today_wife', False)
+                    group_manage_controller(f'{event.group.id}_ing_search', False)
+                    group_manage_controller(f'{event.group.id}_P_select_search', False)
+                    group_manage_controller(f'{event.group.id}_tarot', False)
+                    group_manage_controller(f'{event.group.id}_Reload', False)
+                    await bot.send(event, f'执行完毕')
 
 
 
