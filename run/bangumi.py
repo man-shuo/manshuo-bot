@@ -17,7 +17,7 @@ def main(bot,logger):
     logger.info("Bangumi功能已启动")
     @bot.on(GroupMessage)
     async def animerank(event: GroupMessage):
-        if ("新番排行" in str(event.message_chain)) or ("新番top" in str(event.message_chain)):
+        if ("新番排行" in str(event.message_chain)) or ("新番top" in str(event.message_chain)) or ("本月新番" in str(event.message_chain)):
             year=datetime.datetime.now().strftime("%Y")    # 默认当前年份，修一个问题
             month=datetime.datetime.now().strftime("%m")   # 默认当前月份
         elif ("番剧排行" in str(event.message_chain)) or ("番剧top" in str(event.message_chain))\
