@@ -87,11 +87,15 @@ def main(bot, logger):
     with open('config/controller.yaml', 'r', encoding='utf-8') as f:
         controller = yaml.load(f.read(), Loader=yaml.FullLoader)
     jmcomicSettings = controller.get("JMComic")
+    URLSource=jmcomicSettings.get("URLSource")
     if not jmcomicSettings.get("enable"):
         logger.warning("jmcomic相关功能已关闭。")
         return
     global operating
     operating=[]
+    with open('config/api.yaml', 'r', encoding='utf-8') as f:
+        resulttr = yaml.load(f.read(), Loader=yaml.FullLoader)
+    proxy = resulttr.get("proxy")
     @bot.on(GroupMessage)
     async def querycomic(event: GroupMessage):
         global superUser,operating
@@ -196,9 +200,8 @@ def main(bot, logger):
                 return
             operating.append(comic_id)
             try:
-                await bot.send(event,"已启用线程,请等待下载完成，耗时可能较长。bot将以链接形式返回pdf文件")
+                await bot.send(event,"已启用线程,请等待下载完成，耗时可能较长。bot将以链接形式返回pdf文件",True)
                 loop = asyncio.get_running_loop()
-                logger.info("这是？")
                 # 使用线程池执行器
                 with ThreadPoolExecutor() as executor:
                     # 使用 asyncio.to_thread 调用函数并获取返回结果
