@@ -17,6 +17,26 @@ from plugins.toolkits import random_str
 from plugins.vitsGenerate import superVG
 from plugins.wReply.wontRep import wontrep
 
+def number_of_aiReply(user_id, status=None):
+    file_path = "manshuo_data/data_collection/aiReply_number.yaml"
+    filepath = "manshuo_data/data_collection"
+    if not os.path.exists(file_path):
+        if not os.path.exists(filepath):
+            os.makedirs(filepath)
+            with open(file_path, 'w') as file:
+                yaml.dump({}, file)
+    with open(file_path, 'r') as file:
+        try:
+            users_data = yaml.safe_load(file) or {}
+        except yaml.YAMLError:
+            users_data = {}
+    if status is not None:
+        users_data[user_id] = status
+        with open(file_path, 'w') as file:
+            yaml.safe_dump(users_data, file)
+        return status
+    return users_data.get(user_id, False)
+
 
 # 1
 class CListen(threading.Thread):
@@ -175,7 +195,6 @@ def main(bot, master, logger):
             if not withText:
                 await bot.send_group_message(event.subject.id, r)
 
-
     # 私聊使用chatGLM,对信任用户或配置了apiKey的用户开启
     @bot.on(FriendMessage)
     async def GLMFriendChat(event: FriendMessage):
@@ -190,6 +209,8 @@ def main(bot, master, logger):
                 if text == saa or text.startswith(saa):
                     logger.warning("与屏蔽词匹配，不回复")
                     return
+        if event.sender.id == master:
+            return
         if privateGlmReply or (trustglmReply and str(event.sender.id) in trustUser):
             pass
         else:
@@ -211,9 +232,16 @@ def main(bot, master, logger):
         else:
             r, firstRep = await modelReply(event.sender.nickname, event.sender.id, text, replyModel, trustUser,imgurl,
                                            checkIfRepFirstTime=True)
+
         if firstRep:
-            await bot.send(event, "如对话异常请发送 /clear 以清理对话", True)
+            await bot.send(event, "如对话异常请发送 /clear 以清理对话")
         if withText:
+            if number_of_aiReply(int(event.sender.id)):
+                number=int(number_of_aiReply(int(event.sender.id)))
+                number += number
+                number_of_aiReply(int(event.sender.id),number)
+            else:
+                number_of_aiReply(int(event.sender.id), 1)
             await bot.send(event, r, True)
         if len(r) < maxTextLen and random.randint(0, 100) < voiceRate and "出错，请重试" not in r:
             try:
@@ -227,6 +255,12 @@ def main(bot, master, logger):
             except:
                 logger.error("语音合成调用失败")
         if not withText:
+            if number_of_aiReply(int(event.sender.id)):
+                number=int(number_of_aiReply(int(event.sender.id)))
+                number += number
+                number_of_aiReply(int(event.sender.id),number)
+            else:
+                number_of_aiReply(int(event.sender.id), 1)
             await bot.send(event, r,)
 
 
@@ -344,6 +378,8 @@ def main(bot, master, logger):
     @bot.on(GroupMessage)
     async def atReply(event: GroupMessage):
         global trustUser, chatGLMData, chatGLMCharacters, userdict, coziData, trustG,chattingUser
+        if event.sender.id == 2232653122:
+            return
         if At(bot.qq) in event.message_chain or str(event.sender.id) in chattingUser:
             try:
                 if not wontrep(noRes1, str(event.message_chain).replace(str(At(bot.qq)), "").replace(" ", ""),
