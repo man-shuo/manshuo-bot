@@ -22,7 +22,7 @@ from mirai import Mirai, WebSocketAdapter, GroupMessage, Image, At, Startup, Fri
 from plugins.toolkits import newLogger,random_str,get_system_info
 from run import aiReply, voiceReply, nudgeReply, wikiHelper, imgSearch, extraParts, wReply, groupManager, \
     musicShare, LiveMonitor, aronaapi, groupGames, musicpick, scheduledTasks, appCard, aiDraw, starRail, bangumi, \
-    draftBottle, autoreply, galgame, attack_sb_yaml, Reread_yaml, aite_yaml, elect_check
+    draftBottle, autoreply, galgame, attack_sb_yaml, Reread_yaml, aite_yaml, elect_check,character_identify,MaiMai_wait
 
 
 # 为了实现黑名单和群开关功能，我们将继承webSocketAdapter类
@@ -139,9 +139,6 @@ if __name__ == '__main__':
                     await bot.send(event, "添加失败，不规范的指令格式")
             with open('config/autoSettings.yaml', 'w', encoding="utf-8") as file:
                 yaml.dump(autoSettings, file, allow_unicode=True)
-
-
-
 
 
     @bot.on(FriendMessage)
@@ -309,6 +306,8 @@ if __name__ == '__main__':
         # 修改为你bot的名字
         logger.info('botName:' + botName + '     |     master:' + str(master))
         time1 = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        friendList = await bot.friend_list()
+        userli = [i.id for i in friendList.data]
         try:
             pass
             #await bot.send_friend_message(master, "本项目源码及启动器整合包完全免费，如果你是通过付费渠道获得的，那么恭喜你，你被骗了")
@@ -379,12 +378,17 @@ if __name__ == '__main__':
     musicpick.main(bot, logger)
     appCard.main(bot, logger)
     aiDraw.main(bot, logger)
-    starRail.main(bot, logger)
+    galgame.main(bot, logger)
+    character_identify.main(bot,logger)
+    try:
+        starRail.main(bot, logger)
+    except Exception as e:
+        logger.error(e)
     bangumi.main(bot,logger)
     autoreply.main(bot, logger)
-    galgame.main(bot, logger)
+    #galgame.main(bot, logger)
     draftBottle.main(bot,logger) #芝士漂流瓶
-
+    MaiMai_wait.main(bot,logger)
 
     Reread_yaml.main(bot, logger)
     attack_sb_yaml.main(bot, logger)
