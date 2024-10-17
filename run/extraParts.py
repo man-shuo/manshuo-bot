@@ -6,10 +6,13 @@ import random
 import re
 from asyncio import sleep
 from io import BytesIO
-
+from pytubefix import Channel, YouTube, Playlist, Stream
 import httpx
 import requests
 import yaml
+import asyncio
+import datetime
+from mirai import Startup, Shutdown
 from PIL import Image as Image1
 from mirai import GroupMessage, At, Plain
 from mirai import Image, Voice, Startup, MessageChain
@@ -17,10 +20,10 @@ from mirai.models import ForwardMessageNode, Forward
 from mirai.models import MusicShare
 
 from plugins import weatherQuery
-from plugins.toolkits import random_str,picDwn
+from plugins.toolkits import random_str,picDwn,group_manage_controller
 from plugins.aiReplyCore import modelReply
 from plugins.emojimixhandle import emojimix_handle
-from plugins.extraParts import get_cp_mesg, arkOperator, minecraftSeverQuery, eganylist
+from plugins.extraParts import get_cp_mesg, arkOperator, minecraftSeverQuery, eganylist,manage_group_status,get_game_image,extract_between_symbols
 from plugins.gacha import arkGacha, starRailGacha, bbbgacha
 from plugins.extraParts import hisToday, steamEpic,search_and_download_image
 from plugins.jokeMaker import get_joke
@@ -30,7 +33,7 @@ from plugins.setuModerate import setuModerate
 from plugins.solveSearch import solve
 from plugins.tarot import tarotChoice,genshinDraw, qianCao,manage_group_status
 # from plugins.youtube0 import ASMR_random,get_audio,get_img
-
+_task = None
 def main(bot, logger):
     # 读取api列表
     with open('config/api.yaml', 'r', encoding='utf-8') as f:
@@ -321,14 +324,13 @@ def main(bot, logger):
             city = m.group(1)
             logger.info("查询 " + city + " 天气")
             await bot.send(event, '查询中……')
+            wSult = await weatherQuery.querys(city, api_KEY)
             # 发送天气消息
             if aiReplyCore:
-                wSult=await weatherQuery.fullQuery(city)
                 r = await modelReply(event.sender.member_name, event.sender.id,
                                      f"请你为我进行天气播报，下面是天气查询的结果：{wSult}")
                 await bot.send(event, r, True)
             else:
-                wSult = await weatherQuery.querys(city, api_KEY)
                 await bot.send(event, wSult, True)
 
     @bot.on(GroupMessage)
@@ -651,67 +653,69 @@ def main(bot, logger):
     @bot.on(GroupMessage)
     async def meme(event: GroupMessage):
         global memeData, luckList, tod
-        if ("运势" in str(event.message_chain) and At(bot.qq) in event.message_chain) or str(
-                event.message_chain) == "运势":
-            if not lockResult:
-                la = os.listdir("data/pictures/amm")
-                la = "data/pictures/amm/" + random.choice(la)
-                logger.info("执行运势查询")
-                await bot.send(event, (str(event.sender.member_name) + "今天的运势是", Image(path=la)))
-            else:
-                if event.sender.id not in luckList.get(str(tod)).get("运势"):
+        if group_manage_controller(f'{event.group.id}_tarot'):
+            if ("运势" in str(event.message_chain) and At(bot.qq) in event.message_chain) or str(
+                    event.message_chain) == "运势":
+                if not lockResult:
                     la = os.listdir("data/pictures/amm")
                     la = "data/pictures/amm/" + random.choice(la)
                     logger.info("执行运势查询")
                     await bot.send(event, (str(event.sender.member_name) + "今天的运势是", Image(path=la)))
-                    luckList[str(tod)]["运势"][event.sender.id] = la
                 else:
-                    la = luckList.get(str(tod)).get("运势").get(event.sender.id)
-                    logger.info("执行运势查询")
-                    await bot.send(event, (str(event.sender.member_name) + "今天的运势是", Image(path=la)))
-                with open('data/lockLuck.yaml', 'w', encoding="utf-8") as file:
-                    yaml.dump(luckList, file, allow_unicode=True)
+                    if event.sender.id not in luckList.get(str(tod)).get("运势"):
+                        la = os.listdir("data/pictures/amm")
+                        la = "data/pictures/amm/" + random.choice(la)
+                        logger.info("执行运势查询")
+                        await bot.send(event, (str(event.sender.member_name) + "今天的运势是", Image(path=la)))
+                        luckList[str(tod)]["运势"][event.sender.id] = la
+                    else:
+                        la = luckList.get(str(tod)).get("运势").get(event.sender.id)
+                        logger.info("执行运势查询")
+                        await bot.send(event, (str(event.sender.member_name) + "今天的运势是", Image(path=la)))
+                    with open('data/lockLuck.yaml', 'w', encoding="utf-8") as file:
+                        yaml.dump(luckList, file, allow_unicode=True)
 
     @bot.on(GroupMessage)
     async def tarotToday(event: GroupMessage):
         global luckList, tod
-        if ("今日塔罗" in str(event.message_chain) and At(bot.qq) in event.message_chain) or str(
-                event.message_chain) == "今日塔罗":
-            logger.info("获取今日塔罗")
-            if not lockResult:
-                txt, img = tarotChoice(manage_group_status(int(event.group.id)))
-                logger.info("成功获取到今日塔罗")
-                await bot.send(event, [txt, Image(path=img)])
-                if aiReplyCore:
-                    r = await modelReply(event.sender.member_name, event.sender.id,
-                                         f"为我进行塔罗牌播报，下面是塔罗占卜的结果{txt}")
-                    await bot.send(event, r, True)
-
-            else:
-                if event.sender.id not in luckList.get(tod).get("塔罗"):
+        if group_manage_controller(f'{event.group.id}_tarot'):
+            if ("今日塔罗" in str(event.message_chain) and At(bot.qq) in event.message_chain) or str(
+                    event.message_chain) == "今日塔罗":
+                logger.info("获取今日塔罗")
+                if not lockResult:
                     txt, img = tarotChoice(manage_group_status(int(event.group.id)))
                     logger.info("成功获取到今日塔罗")
-                    await bot.send(event, txt)
-                    await bot.send(event, Image(path=img))
-                    luckList[str(tod)]["塔罗"][event.sender.id] = {"text": txt, "img": img}
-                else:
-                    la = luckList.get(str(tod)).get("塔罗").get(event.sender.id)
-                    logger.info("获取塔罗")
+                    await bot.send(event, [txt, Image(path=img)])
+                    if aiReplyCore:
+                        r = await modelReply(event.sender.member_name, event.sender.id,
+                                             f"为我进行塔罗牌播报，下面是塔罗占卜的结果{txt}")
+                        await bot.send(event, r, True)
 
-                    await bot.send(event, la.get("text"))
-                    await bot.send(event, Image(path=la.get("img")))
-                if aiReplyCore:
-                    r = await modelReply(event.sender.member_name, event.sender.id,
-                                         f"为我进行塔罗牌播报，下面是塔罗占卜的结果:{txt}")
-                    await bot.send(event, r, True)
-                with open('data/lockLuck.yaml', 'w', encoding="utf-8") as file:
-                    yaml.dump(luckList, file, allow_unicode=True)
-        if "开启抽象塔罗牌" in str(event.message_chain):
-            manage_group_status(int(event.group.id), True)
-            await bot.send(event, "已为本群开启抽象塔罗牌，请发送“今日塔罗”以开始！")
-        if "关闭抽象塔罗牌" in str(event.message_chain):
-            manage_group_status(int(event.group.id), False)
-            await bot.send(event, "已为本群关闭抽象塔罗牌")
+                else:
+                    if event.sender.id not in luckList.get(tod).get("塔罗"):
+                        txt, img = tarotChoice(manage_group_status(int(event.group.id)))
+                        logger.info("成功获取到今日塔罗")
+                        await bot.send(event, txt)
+                        await bot.send(event, Image(path=img))
+                        luckList[str(tod)]["塔罗"][event.sender.id] = {"text": txt, "img": img}
+                    else:
+                        la = luckList.get(str(tod)).get("塔罗").get(event.sender.id)
+                        logger.info("获取塔罗")
+
+                        await bot.send(event, la.get("text"))
+                        await bot.send(event, Image(path=la.get("img")))
+                    if aiReplyCore:
+                        r = await modelReply(event.sender.member_name, event.sender.id,
+                                             f"为我进行塔罗牌播报，下面是塔罗占卜的结果:{txt}")
+                        await bot.send(event, r, True)
+                    with open('data/lockLuck.yaml', 'w', encoding="utf-8") as file:
+                        yaml.dump(luckList, file, allow_unicode=True)
+            if "开启抽象塔罗牌" in str(event.message_chain):
+                manage_group_status(int(event.group.id), True)
+                await bot.send(event, "已为本群开启抽象塔罗牌，请发送“今日塔罗”以开始！")
+            if "关闭抽象塔罗牌" in str(event.message_chain):
+                manage_group_status(int(event.group.id), False)
+                await bot.send(event, "已为本群关闭抽象塔罗牌")
 
     @bot.on(GroupMessage)
     async def tarotToday(event: GroupMessage):
@@ -786,28 +790,27 @@ def main(bot, logger):
 
     @bot.on(GroupMessage)
     async def randomASMR(event: GroupMessage):
-        if ("随机奥术" in str(event.message_chain) and At(bot.qq) in event.message_chain) or str(event.message_chain) == "随机奥术":
-            try:
-                from plugins.youtube0 import ASMR_random,get_audio,get_img
-            except:
-                logger.error("导入失败，请检查youtube0依赖")
-                return
+        if ("随机奥术" in str(event.message_chain) and At(bot.qq) in event.message_chain) or str(event.message_chain) == "随机奥术" or ("随机" in str(event.message_chain) and ("asmr" in str(event.message_chain)  or "ASMR" in str(event.message_chain))):
+            from plugins.youtube0 import ASMR_random,get_audio,get_img
             logger.info("奥术魔刃，启动！")
-            logger.info("获取晚安ASMR")
-            logger.info(proxies)
-            athor,title,video_id,length = await ASMR_random(proxies)
-            imgpath = await get_img(video_id, proxies)
-            audiourl = await get_audio(video_id, proxies)
+            logger.info("获取随机ASMR")
+            athor,title,video_id,length,url = await ASMR_random()
+            imgurl = await get_img(video_id)
 
-            logger.info("推送晚安ASMR")
-            st1="今日ASMR:"+title+"\n"
+            logger.info("推送随机ASMR")
+            st1="标题:"+title+"\n"
             st1+="频道："+athor+"\n"
             st1+=f"时长：{length//60}分{length%60}秒\n"
-            await bot.send(event, [st1,Image(path=imgpath)])
-            await bot.send(event, MusicShare(kind="QQMusic", 
-                                             title=title, 
-                                             summary=athor,
-                                             jump_url=f"https://www.amoyshare.com/player/?v={video_id}",
-                                             picture_url=f"https://i.ytimg.com/vi/{video_id}/hqdefault.jpg",
-                                             music_url=audiourl,
-                                             brief='ASMR'))
+            st1+= f"链接：{url}\n"
+            await bot.send(event, [st1,Image(url=imgurl)])
+            try:
+                audiourl = await get_audio(video_id)
+                await bot.send(event, MusicShare(kind = "QQMusic",
+                                                 title = title,
+                                                 summary = athor,
+                                                 jump_url = f"https://www.amoyshare.com/player/?v={video_id}",
+                                                 picture_url = imgurl,
+                                                 music_url = audiourl,
+                                                 brief = 'ASMR'))
+            except Exception:
+                pass
