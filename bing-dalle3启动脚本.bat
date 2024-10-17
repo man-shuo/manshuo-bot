@@ -12,4 +12,3 @@ if exist "%PYTHON_EXE%" (
     python %MAIN_SCRIPT%
 )
 pause
-

@@ -4,75 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="28b4e848-1629-4b74-b686-06e455847ccc" name="更改" comment="电费查询功能更新！！！！！">
+    <list default="true" id="28b4e848-1629-4b74-b686-06e455847ccc" name="更改" comment="添加云获取开关">
       <change beforePath="$PROJECT_DIR$/.idea/Manyana.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Manyana.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/api.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/api.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/autoSettings.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/autoSettings.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/controller.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/controller.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/jmcomic.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config/jmcomic.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/noResponse.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/noResponse.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/settings.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/settings.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/welcome.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/welcome.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/语音合成可用角色.txt" beforeDir="false" afterPath="$PROJECT_DIR$/config/语音合成可用角色.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/aronaSub.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/aronaSub.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/国服未来视.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/国服未来视.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/国际服总力.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/国际服总力.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/国际服未来视.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/国际服未来视.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/日服总力.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/日服总力.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/blueArchive/arona/日服活动.png" beforeDir="false" afterPath="$PROJECT_DIR$/data/blueArchive/arona/日服活动.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/chatGLMData.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/chatGLMData.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/lockLuck.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/lockLuck.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data/signs.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/signs.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/Rereadlist.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manshuo_data/Rereadlist.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/attack_sb_list.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/manshuo_data/attack_sb_list.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/0005847151_B.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/280px-Img_prize22 (1).webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/280px-Sprb_main_img.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/280px-千戀＊萬花遊戲封面 (1).webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/280px-寄宿之恋.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/300px-Koibana.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/300px-恋爱成双.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-天色天歌天籁音.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-春色春恋春熙风.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/9-nine-雪色雪花雪余痕.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/9nine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/ChaosChild (2).png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/ChaosChild.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/Hirahira-Hihiru.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/NOeSIS.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/OIP.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/R-C.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/Rewrite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/a7ff884ce764b92fcee3d8d30c756874.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/brladrsky.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/clanned.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/daiwoqudixiacheng.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/eden.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/erewhom.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/ever17.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/guse.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/haishishenlou.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/jiaoxiangyue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/junbi.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/kezhishaonv.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/kudwafter.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/lansi.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/loppers.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/love-is-pure-white.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/shaonvlingyu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/shengming.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/suqingri.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/xiangyaochuandadeailian.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/xiawa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/xingkongliehce.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/yuanzhikong.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgame/恋爱，我借走了main.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/7.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/manshuo_data/galgamelist/galgamelist.txt" beforeDir="false" afterPath="$PROJECT_DIR$/manshuo_data/galgamelist/galgamelist.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/attack_sb_yaml.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/attack_sb_yaml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/text/draftBottleData.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/text/draftBottleData.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/userData.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/data/userData.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/tarot.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/tarot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/toolkits.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/toolkits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plugins/youtube0.py" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/youtube0.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/LiveMonitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/LiveMonitor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/aiReply.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/aiReply.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/aronaapi.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/aronaapi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/bangumi.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/bangumi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/character_identify.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/character_identify.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/draftBottle.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/draftBottle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/extraParts.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/extraParts.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/galgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/galgame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/temp/chatGLMData_back.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/temp/chatGLMData_back.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/getcomic.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/getcomic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/groupManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/groupManager.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/imgSearch.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/imgSearch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/musicpick.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/musicpick.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/scheduledTasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/scheduledTasks.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/wReply.py" beforeDir="false" afterPath="$PROJECT_DIR$/run/wReply.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/一键部署脚本.bat" beforeDir="false" afterPath="$PROJECT_DIR$/一键部署脚本.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/启动脚本(防闪退).bat" beforeDir="false" afterPath="$PROJECT_DIR$/启动脚本(防闪退).bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/启动脚本.bat" beforeDir="false" afterPath="$PROJECT_DIR$/启动脚本.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/更新日志.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/更新日志.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/更新脚本.bat" beforeDir="false" afterPath="$PROJECT_DIR$/更新脚本.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,19 +70,154 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.galgame.executor": "Run",
+    "Python.main (1).executor": "Run",
+    "Python.main (2).executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.test (1).executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.test_image.executor": "Run",
+    "Python.测试.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RunManager" selected="Python.main">
+    <configuration name="测试" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Manyana" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../test/pythonProject" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../test/pythonProject/测试.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Manyana" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../test/pythonProject" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../test/pythonProject/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Manyana" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Manyana" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../../test/pythonProject" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../test/pythonProject/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Manyana" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../pythonProject" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../pythonProject/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.main (2)" />
+        <item itemvalue="Python.测试" />
+        <item itemvalue="Python.test (1)" />
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -134,6 +243,39 @@
       <workItem from="1727329802091" duration="55000" />
       <workItem from="1727339670134" duration="2957000" />
       <workItem from="1727342662314" duration="2192000" />
+      <workItem from="1727346925813" duration="2716000" />
+      <workItem from="1727352085886" duration="8576000" />
+      <workItem from="1727368051769" duration="5531000" />
+      <workItem from="1727404511010" duration="8273000" />
+      <workItem from="1727414438828" duration="340000" />
+      <workItem from="1727433295882" duration="70984000" />
+      <workItem from="1727753664890" duration="8000" />
+      <workItem from="1727753884876" duration="118000" />
+      <workItem from="1727754115028" duration="1191000" />
+      <workItem from="1727757008151" duration="2597000" />
+      <workItem from="1727961820234" duration="4325000" />
+      <workItem from="1728054270668" duration="91883000" />
+      <workItem from="1728317444185" duration="30336000" />
+      <workItem from="1728449138301" duration="3264000" />
+      <workItem from="1728452748541" duration="4496000" />
+      <workItem from="1728461237207" duration="34000" />
+      <workItem from="1728468456476" duration="14214000" />
+      <workItem from="1728488297701" duration="22340000" />
+      <workItem from="1728619020620" duration="6121000" />
+      <workItem from="1728653711153" duration="405000" />
+      <workItem from="1728655655709" duration="27000" />
+      <workItem from="1728655707128" duration="1067000" />
+      <workItem from="1728656853005" duration="1558000" />
+      <workItem from="1728658750527" duration="382000" />
+      <workItem from="1728659150119" duration="355000" />
+      <workItem from="1728659728766" duration="8133000" />
+      <workItem from="1728701551158" duration="13000" />
+      <workItem from="1728703431854" duration="460000" />
+      <workItem from="1728705362194" duration="13186000" />
+      <workItem from="1728743765209" duration="23677000" />
+      <workItem from="1728916466547" duration="9602000" />
+      <workItem from="1729013663875" duration="18000" />
+      <workItem from="1729042285578" duration="45688000" />
     </task>
     <task id="LOCAL-00001" summary="update 抽象塔罗">
       <option name="closed" value="true" />
@@ -231,13 +373,41 @@
       <option name="project" value="LOCAL" />
       <updated>1727267341169</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="添加云获取开关">
+      <option name="closed" value="true" />
+      <created>1727350823494</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1727350823494</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -248,7 +418,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/master" />
+                        <option value="origin/main" />
                       </list>
                     </value>
                   </entry>
@@ -273,10 +443,18 @@
     <MESSAGE value="新增解析源，优化逻辑" />
     <MESSAGE value="我不知道" />
     <MESSAGE value="电费查询功能更新！！！！！" />
-    <option name="LAST_COMMIT_MESSAGE" value="电费查询功能更新！！！！！" />
+    <MESSAGE value="添加云获取开关" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加云获取开关" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/main_py$test.coverage" NAME="test 覆盖结果" MODIFIED="1728663662311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pythonProject" />
+    <SUITE FILE_PATH="coverage/main_py$.coverage" NAME="测试 覆盖结果" MODIFIED="1729092097601" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../test/pythonProject" />
+    <SUITE FILE_PATH="coverage/main_py$galgame.coverage" NAME="galgame 覆盖结果" MODIFIED="1727436664746" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/run" />
+    <SUITE FILE_PATH="coverage/main_py$main__1_.coverage" NAME="main (1) 覆盖结果" MODIFIED="1728401153844" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pythonProject" />
     <SUITE FILE_PATH="coverage/galgame_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1727342587497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1727344777394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$test__1_.coverage" NAME="test (1) 覆盖结果" MODIFIED="1728710505839" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../test/pythonProject" />
+    <SUITE FILE_PATH="coverage/main_py$test_image.coverage" NAME="test_image 覆盖结果" MODIFIED="1728306397680" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../pythonProject" />
+    <SUITE FILE_PATH="coverage/main_py$main.coverage" NAME="main 覆盖结果" MODIFIED="1729138962833" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/main_py$main__2_.coverage" NAME="main (2) 覆盖结果" MODIFIED="1729138335950" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../../test/pythonProject" />
   </component>
 </project>

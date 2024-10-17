@@ -6,7 +6,6 @@ banuser:
 - 4564949845
 botoff:
 - 6994557
-- 623265372
 defaultModel:
   modelSelect:
   - voiceModel/nene/1374_epochsm.pth

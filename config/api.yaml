@@ -16,12 +16,12 @@ openaiSettings:                  #openai官方的apikey
   openai-model: "gpt-3.5-turbo"  #调用openai api对应的模型，前提：在settings.yaml默认模型已经设置为gpt3.5，并配置了apikey
   openai-transit: ""             #你自己的chatGPT中转站，你最好知道这是什么，否则就不要动。
 sparkAI:                         #讯飞星火
-  apiKey: ""                     #在https://console.xfyun.cn/services/cbm申请，并复制对应key和secret，注意，免费的是lite版
-  apiSecret: ""
+  apiKey: "d3841150581ef569b017ad2c006e11bc"                     #在https://console.xfyun.cn/services/cbm申请，并复制对应key和secret，注意，免费的是lite版
+  apiSecret: "ZDY0MWM5YjYyNGNhNjBmZWRkOGU5Mjhj"
   spark-model: "general"         #讯飞星火的模型设置，general是免费无限制的，一般不建议修改
 wenxinAI:                        #文心大模型
-  apiKey: ""                     #https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Slkkydake#%E8%AF%A6%E6%83%85
-  secretKey: ""
+  apiKey: "DAex70oOYIAm56iqXphX3xaj"                     #https://cloud.baidu.com/doc/WENXINWORKSHOP/s/Slkkydake#%E8%AF%A6%E6%83%85
+  secretKey: "sGMd505vNnt9ekbZn1SwISlJlHktNg7c"
   wenxin-model: "ernie-speed-128k"         #文心的模型设置，需要在https://console.bce.baidu.com/qianfan/ais/console/onlineService开通对应的模型。ernie_speed、ernie-speed-128k、ERNIE-Speed-AppBuilder、ernie-lite-8k、eb-instant
 腾讯元器: #接入QQ智能体
   智能体ID: ""
@@ -33,6 +33,7 @@ bing-image-creator:              #bing的ai绘画，参考https://github.com/avi
 proxy: 'http://127.0.0.1:7890'                        #代理 http://127.0.0.1:端口 如http://127.0.0.1:10809 自己设置对应的端口，没有就不填，v2ray一般是10809，clash一般7890，ssr一般1080
 sock5-proxy: ""                  #sock5代理，如使用bing-imagecreator必须配置，取决于你自己代理的端口。
 GeminiRevProxy: ""               #基于netlify反向代理，搭建后本地环境无需开启代理即可访问Gemini，参考https://github.com/avilliai/Manyana/issues/17
+
 GptSovitsToken: ""     #GptSovits的token,带有情感向量的语音合成，从https://getkey.acgnai.top/获取
 FishTTSAuthorization: ""         #FishTTS语音合成必要参数，看https://github.com/avilliai/Manyana/issues/19
 sdUrl: ""                        #你自己搭建的sd，地址，示例http://127.0.0.1:17858（示例≠你能直接填示例用），部署https://www.bilibili.com/video/BV1iM4y1y7oA/

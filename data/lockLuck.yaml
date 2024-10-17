@@ -1,16 +1,23 @@
-'2024-09-25':
+'2024-10-17':
   塔罗:
     123:
       path: ',,,'
       text: hahaha
-    1270858640:
-      img: data/pictures/tarot/sideAbstractImages/The Hermit.jpg
-      text: '隐士 (The Hermit)
+    1109593543:
+      img: data/pictures/tarot/AbstractImages/The High Priestess.jpg
+      text: '女祭司 (The High Priestess)
 
-        逆位
+        正位
 
-        一视同仁; 不够通融; 不专心易生错误; 过分警戒，无法顺利进行; 秘密泄漏; 过于固执不听别人的意见; 孤独; 动机不单纯; 因怨言及偏见招人嫌;
-        轻浮的爱情; 怀疑爱情'
+        知性、优秀的判断力; 具洞察力及先见之明; 强大的战斗意志; 冷静的统率力; 学问、研究等精神方面幸运; 独立自主的女性; 柏拉图式的爱情; 有心灵上交往至深的友人;
+        冷淡的恋情'
+    1877753349:
+      img: data/pictures/tarot/AbstractImages/The Moon.jpg
+      text: '月亮 (The Moon)
+
+        正位
+
+        不安与动摇; 心中不平静; 谎言; 暧昧不明; 鬼迷心窍; 暗藏动乱; 欺骗; 终止; 不安的爱; 三角关系'
   运势:
     123: ''
     456: ''

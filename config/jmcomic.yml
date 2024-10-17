@@ -5,7 +5,7 @@ client:
     - www.jmeadpoolcdn.one
     - www.jmeadpoolcdn.life
 dir_rule:
-  base_dir: data/pictures/benzi/temp430748
+  base_dir: data/pictures/benzi/temp627896
   rule: Bd
 download:
   image:
