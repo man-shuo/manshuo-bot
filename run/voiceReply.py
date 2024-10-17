@@ -16,7 +16,11 @@ def main(bot, master, logger):
     with open('config/api.yaml', 'r', encoding='utf-8') as f:
         result0 = yaml.load(f.read(), Loader=yaml.FullLoader)
     FishTTSAuthorization = result0.get("FishTTSAuthorization")
-    GPTSOVITS_SPEAKERS = asyncio.run(gptVitsSpeakers())
+    try:
+        GPTSOVITS_SPEAKERS = asyncio.run(gptVitsSpeakers())
+    except Exception as e:
+        logger.error(f"Error in loading GPT-3 Vits Speakers: {e}")
+        GPTSOVITS_SPEAKERS = None
     berturl = result0.get("bert_colab")
     proxy = result0.get("proxy")
     with open('config/settings.yaml', 'r', encoding='utf-8') as f:
@@ -78,7 +82,30 @@ def main(bot, master, logger):
         "刘华强",
         "特朗普",
         "满穗",
-        "桑帛"
+        "桑帛",
+        "李云龙",
+        "卢本伟",
+        "pdd",
+        "tvb",
+        "王者语音播报",
+        "爱莉希雅",
+        "岳山",
+        "妖刀姬",
+        "少萝宝宝",
+        "天海",
+        "王者耀",
+        "蜡笔小新",
+        "琪",
+        "茉莉",
+        "蔚蓝档案桃井",
+        "胡桃",
+        "磊哥游戏",
+        "洛天依",
+        "派大星",
+        "章鱼哥",
+        "蔚蓝档案爱丽丝",
+        "阿梓",
+        "科比"
     ]
 
     models = modelLoader()
@@ -176,8 +203,6 @@ def main(bot, master, logger):
                                     message_chain=MessageChain(str1)))
             b1.append(ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
                                          message_chain=MessageChain("bert_vits2可用角色如下：\n" + str(modelScope))))
-            b1.append(ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
-                                         message_chain=MessageChain("\n\nFishTTS可用角色请查看https://fish.audio/zh-CN/，均可通过 xx说调用。\n")))
             b1.append(ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
                                          message_chain=MessageChain(f"outVits可用角色如下：\n{outVitsSpeakers}")))
             if GPTSOVITS_SPEAKERS!=None:
