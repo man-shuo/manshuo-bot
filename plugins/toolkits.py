@@ -1,6 +1,8 @@
+import base64
 import os
 import random
 import platform
+import re
 
 import psutil
 import requests
@@ -258,9 +260,46 @@ async def webScreenShot(url, path):
         r = await client.get(url)
         with open(path, "wb") as f:
             f.write(r.content)
-async def picDwn(url, path):
-    async with httpx.AsyncClient(timeout=20) as client:
+async def picDwn(url, path,proxies=None):
+    if url.startswith("data:image"):
+        return save_data_image(url, path)
+    if proxies!=None:
+        proxies = {
+            "http://": proxies,
+            "https://": proxies,
+        }
+    async with httpx.AsyncClient(proxies=proxies, timeout=20) as client:
         r = await client.get(url)
         with open(path, "wb") as f:
             f.write(r.content)
         return path
+def save_data_image(data_url, path):
+    # 提取 Base64 数据部分
+    match = re.match(r"data:image/(.*?);base64,(.+)", data_url)
+    if not match:
+        raise ValueError("Invalid Data URI format")
+
+    img_type, base64_data = match.groups()
+    img_data = base64.b64decode(base64_data)  # 解码 Base64 数据
+
+    # 保存图片文件
+    with open(path, "wb") as f:
+        f.write(img_data)
+
+    return path
+
+def group_manage_controller(user_id, status=None, file_path="manshuo_data/data_collection/group_manage_data.yaml"):
+    if not os.path.exists(file_path):
+        with open(file_path, 'w') as file:
+            yaml.dump({}, file)
+    with open(file_path, 'r') as file:
+        try:
+            users_data = yaml.safe_load(file) or {}
+        except yaml.YAMLError:
+            users_data = {}
+    if status is not None:
+        users_data[user_id] = status
+        with open(file_path, 'w') as file:
+            yaml.safe_dump(users_data, file)
+        return status
+    return users_data.get(user_id, True)
