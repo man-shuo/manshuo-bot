@@ -426,11 +426,11 @@ def main(bot, logger):
                 room = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(name_id), 'room')
 
                 if room == None:
-                    await bot.send(event, '您还未注册，请在群内或私聊发送"电费注册"以开始')
+                    await bot.send(event, '您还未注册，请前往bot群或私聊发送"电费注册"以开始')
                 else:
                     check = random.randint(1, 100)
                     logger.info("开始电费查询，check="+str(check))
-                    if check > 81:
+                    if check > 85:
                         name_nickname = str(event.sender.member_name)
                         times = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'),str(name_id),'times')
                         if times == None:
@@ -507,6 +507,10 @@ def main(bot, logger):
 
 
         if ('注册' in str(event.message_chain) and '电费' in str(event.message_chain)) or stateid == 1:
+            if event.group.id != mainGroup:
+                if stateid != 1:
+                    await bot.send(event, '该群非bot群，请前往bot群：674822468 开启注册，以免刷屏，谢谢')
+                    return
             elect_check_state = get_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), 'manshuo','elect_check_state')
             if elect_check_state==None:
                 elect_check_state=0
@@ -643,7 +647,7 @@ def main(bot, logger):
                         update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), str(member_id),
                                           'buildingid', str(buildingid))
 
-                        await bot.send(event, f'您注册成功，谢谢！\n若开启bot提醒，请发送“开启电费提醒”')
+                        await bot.send(event, f'您已注册成功，谢谢！\n若开启bot提醒，请发送“开启电费提醒”')
 
                         # await bot.send_friend_message(master, '完成注册，state_id：'+str(state_id)+" stateid："+str(stateid))
 
@@ -916,7 +920,7 @@ def main(bot, logger):
                                               'stateid', '1')
                     # update_user_field(os.path.join(base_directory, 'elect_check', 'user_data.yaml'), 'manshuo', 'sender_id',str(user_id))
             else:
-                await bot.send(event, '本bot暂未开启电费查询以及注册功能，请前往bot群获取最细消息')
+                await bot.send(event, '本bot暂未开启电费查询以及注册功能，请前往bot群获取最新消息')
 
     @bot.on(Startup)
     async def start_scheduler(_):
