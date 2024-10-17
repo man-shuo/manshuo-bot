@@ -14,7 +14,7 @@ def Get_Access_Token(): #获取指定Access_Token
             data = response.json()
         access_token = data["access_token"]
         return access_token
-def Get_Access_Token_json(access_token,url,params): #异步函数
+def Get_Access_Token_json(access_token,url,params): #在获得公共Access_Token后，访问对应的api获取对应数据
     #with httpx.AsyncClient() as client:
         headers = {
             'Accept': 'application/json;charset=utf-8',
@@ -25,7 +25,7 @@ def Get_Access_Token_json(access_token,url,params): #异步函数
         if response.status_code:
             data = response.json()
         return data
-def flag_check(flag):
+def flag_check(flag):#划定需要使用的方式
     if flag ==1:
         url='https://www.ymgal.games/open/archive/search-game'
         #print('精确游戏查询，flag=1')
@@ -108,12 +108,18 @@ def params_check(flag,keyword=None,releaseStartDate=None,releaseEndDate=None):
 def get_game_image(url,filepath):
     if not os.path.exists(filepath):
         os.makedirs(filepath)
+
     response = requests.get(url)
     if response.status_code == 200:
         filename = url.split('/')[-1]
         #print(filename)
         img_path = os.path.join(filepath, filename)
         #print(img_path)
+        files = os.listdir(filepath)
+        if filename in files:
+            #img_path = os.path.join(filepath, id)
+            print(f'图片已存在，返回图片名称: {filename}')
+            return img_path
         # 打开一个文件以二进制写入模式保存图片
         with open(img_path, 'wb') as f:
             f.write(response.content)
@@ -338,8 +344,9 @@ def main(bot, logger):
         keyword=str(keyword)
         filepath='manshuo_data/gal_img'
         cmList = []
+        #print(f"sender_id:{event.sender.id} , group: {event.group.name}")
         if "gal" in str(event.message_chain) or "Gal" in str(event.message_chain):
-
+            #print('text')
             access_token = Get_Access_Token()
             if "查询" in str(event.message_chain):
                 keyword = str(event.message_chain)
@@ -350,6 +357,8 @@ def main(bot, logger):
                         keyword = keyword[+1:]
                         pass
                 flag = 2
+                if "精确" in str(event.message_chain):
+                    flag = 1
                 if "机构" in str(event.message_chain):
                     flag = 4
                     if "游戏" in str(event.message_chain):
@@ -389,6 +398,7 @@ def main(bot, logger):
             params = params_check(flag, keyword)
             access_token = Get_Access_Token()
             json_check = Get_Access_Token_json(access_token, url, params)
+            #print(json_check)
             state=json_check['success']
             #print(state)
             if state == True:
@@ -404,6 +414,7 @@ def main(bot, logger):
                         data = json_check['data']['result'][i]
                         #print(data)
                         name_check = data["name"]
+                        print(name_check)
                         if name_check:
                             if "chineseName" in json_check['data']['result'][i]:
                                 name_check = data["chineseName"]
@@ -425,6 +436,7 @@ def main(bot, logger):
             if flag ==1:
                 print('进行gal精确查询')
                 url = flag_check(flag)
+                print(keyword)
                 params = params_check(flag, keyword)
                 json_check = Get_Access_Token_json(access_token, url, params)
                 #print(json_check)
@@ -583,40 +595,45 @@ def main(bot, logger):
 
 
         if flag != 0:
-            if state == True:
-                if flag_check_test == 0:
-                    logger.info(f'进入文件发送ing')
-                    s = [Image(path=img_path)]
-                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
-                                            message_chain=MessageChain(s))
-                    cmList.append(b1)
-                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
-                                            message_chain=MessageChain(str(context)))
-                    cmList.append(b1)
-                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
-                                            message_chain=MessageChain(
-                                                '当前菜单：\n1，gal查询\n2，gid_gal单个游戏详情查询\n3，orgId_gal机构详情查询\n4，cid_gal游戏角色详情查询\n5，orgId_gal机构下的游戏查询\n6，本月新作，本日新作（单此一项请艾特bot食用\n7，galgame推荐'))
-                    cmList.append(b1)
-                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
-                                            message_chain=MessageChain(
-                                                '该功能由YMGalgame API实现，支持一下谢谢喵\n本功能由“漫朔”开发\n部分功能还在完善，欢迎催更'))
-                    cmList.append(b1)
-                    await bot.send(event, Forward(node_list=cmList))
-                    pass
-                elif flag_check_test == 1:
-                    await bot.send(event, f'{context}')
-                elif flag_check_test == 3:
-                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
-                                            message_chain=MessageChain(
-                                                '当前菜单：\n1，gal查询\n2，gid_gal单个游戏详情查询\n3，orgId_gal机构详情查询\n4，cid_gal游戏角色详情查询\n5，orgId_gal机构下的游戏查询\n6，本月新作，本日新作（单此一项请艾特bot食用\n7，galgame推荐'))
-                    cmList.append(b1)
-                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
-                                            message_chain=MessageChain(
-                                                '该功能由YMGalgame API实现，支持一下谢谢喵\n本功能由“漫朔”开发\n部分功能还在完善，欢迎催更'))
-                    cmList.append(b1)
-                    await bot.send(event, Forward(node_list=cmList))
-                    pass
-            else:
+            try:
+                if state == True:
+                    if flag_check_test == 0:
+                        logger.info(f'进入文件发送ing')
+                        s = [Image(path=img_path)]
+                        b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                                message_chain=MessageChain(s))
+                        cmList.append(b1)
+                        b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                                message_chain=MessageChain(str(context)))
+                        cmList.append(b1)
+                        b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                                message_chain=MessageChain(
+                                                    '当前菜单：\n1，gal查询\n2，gid_gal单个游戏详情查询\n3，orgId_gal机构详情查询\n4，cid_gal游戏角色详情查询\n5，orgId_gal机构下的游戏查询\n6，本月新作，本日新作（单此一项请艾特bot食用\n7，galgame推荐'))
+                        cmList.append(b1)
+                        b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                                message_chain=MessageChain(
+                                                    '该功能由YMGalgame API实现，支持一下谢谢喵\n本功能由“漫朔”开发\n部分功能还在完善，欢迎催更'))
+                        cmList.append(b1)
+                        await bot.send(event, Forward(node_list=cmList))
+                        pass
+                    elif flag_check_test == 1:
+                        #print(context)
+                        await bot.send(event, f'{context}')
+                    elif flag_check_test == 3:
+                        b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                                message_chain=MessageChain(
+                                                    '当前菜单：\n1，gal查询\n2，gid_gal单个游戏详情查询\n3，orgId_gal机构详情查询\n4，cid_gal游戏角色详情查询\n5，orgId_gal机构下的游戏查询\n6，本月新作，本日新作（单此一项请艾特bot食用\n7，galgame推荐'))
+                        cmList.append(b1)
+                        b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                                message_chain=MessageChain(
+                                                    '该功能由YMGalgame API实现，支持一下谢谢喵\n本功能由“漫朔”开发\n部分功能还在完善，欢迎催更'))
+                        cmList.append(b1)
+                        await bot.send(event, Forward(node_list=cmList))
+                        pass
+                else:
+                    await bot.send(event, f'好像暂时找不到你说的gal或公司欸~')
+            except Exception:
+                logger.error("发送失败，未知错误")
                 await bot.send(event, f'好像暂时找不到你说的gal或公司欸~')
 
 
