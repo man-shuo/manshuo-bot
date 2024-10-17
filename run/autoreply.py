@@ -46,16 +46,6 @@ def get_random_paragraph(numbered_paragraphs):
     random_index = random.choice(list(numbered_paragraphs.keys()))
     return random_index, numbered_paragraphs[random_index]
 
-    try:
-        # 找到第一个符号的位置
-        start_index = text.index(symbol1) + len(symbol1)
-        # 找到第二个符号的位置
-        end_index = text.index(symbol2, start_index)
-        # 提取符号之间的内容
-        return text[start_index:end_index]
-    except ValueError:
-        return "符号未找到或顺序不正确"
-def manage_group_status(user_id, status=None, file_path="manshuo_data/wife_you_want_img/wife_you_want.yaml"):
 def manage_group_status(user_id, status=None,file_name=None,target_group=None,type=None):
     if file_name:
         file_path = 'manshuo_data/wife_you_want_img'
@@ -70,12 +60,79 @@ def manage_group_status(user_id, status=None,file_name=None,target_group=None,ty
             users_data = yaml.safe_load(file) or {}
         except yaml.YAMLError:
             users_data = {}
+    #print(users_data)
+    if type is None:
+        type='day'#0代表天数，1代表周，2代表月
     if status is not None:
-        users_data[user_id] = status
+        if target_group is not None:
+            if type=='day':
+                if type not in users_data:
+                    users_data[type] = {}
+                if target_group not in users_data[type]:
+                    users_data[type][target_group] = {}
+                if user_id not in users_data[type][target_group]:
+                    users_data[type][target_group][user_id] = 0
+                number = int(users_data[type][target_group][user_id])
+                users_data[type][target_group][user_id] = number + 1
+                type = 'week'
+            if type == 'week':
+                if type not in users_data:
+                    users_data[type] = {}
+                if target_group not in users_data[type]:
+                    users_data[type][target_group] = {}
+                if user_id not in users_data[type][target_group]:
+                    users_data[type][target_group][user_id] = 0
+                number = int(users_data[type][target_group][user_id])
+                users_data[type][target_group][user_id] = number + 1
+                type = 'moon'
+            if type == 'moon':
+                if type not in users_data:
+                    users_data[type] = {}
+                if target_group not in users_data[type]:
+                    users_data[type][target_group] = {}
+                if user_id not in users_data[type][target_group]:
+                    users_data[type][target_group][user_id] = 0
+                number=int(users_data[type][target_group][user_id])
+                #print(number)
+                users_data[type][target_group][user_id] = number + 1
+        else:
+            users_data[user_id] = status
         with open(file_path, 'w') as file:
             yaml.safe_dump(users_data, file)
         return status
-    return users_data.get(user_id, False)
+
+    if target_group:
+        return users_data.get(type, {}).get(target_group, {}).get(user_id, False)
+    else:
+        return users_data.get(user_id, False)
+
+def sort_yaml(file_name,target_group,type=None):
+    file_path = 'manshuo_data/wife_you_want_img'
+    file_path = os.path.join(file_path, file_name)
+    if not os.path.exists(file_path):
+        return '还没有任何一位群友开过趴哦',None
+    if type is None:
+        type='day'#0代表天数，1代表周，2代表月
+    with open(file_path, 'r') as file:
+        data = yaml.safe_load(file)
+    if type not in data:
+        return '还没有任何一位群友开过趴哦',None
+    if target_group not in data[type]:
+        return '本群还没有任何一位群友开过趴哦',None
+    data=data.get(type, {}).get(target_group, {})
+        #print(data)
+    sorted_data = sorted(data.items(), key=lambda item: item[1], reverse=True)
+    context=''
+    king=None
+    time=0
+    for key, value in sorted_data:
+        context +=f'【{key}】: {value}次~\n'
+        if time != 0:
+            continue
+        time += 1
+        king = key
+    return context,king
+
 filename = "variables.txt"
 
 def get_game_image(url,filepath,id):
@@ -167,7 +224,8 @@ def main(bot, logger):
     files_img_check = [f for f in files_img_check if os.path.isfile(os.path.join(directory_img_check, f))]
     logger.info("今日老婆列表读取完毕")
     rnum00 = 2
-    @bot.on(GroupMessage)
+
+    @bot.on(GroupMessage)#各种自定义回复
     async def help(event: GroupMessage):
         if ('测试' in str(event.message_chain) or 'test' in str(event.message_chain) ) and At(bot.qq) in event.message_chain:
             logger.info("测试")
@@ -197,9 +255,21 @@ def main(bot, logger):
                 await bot.send(event, '不给' + str(name_nickname) + '今天的漫朔哦，这可是秘密~')
             elif type == 2:
                 logger.info('漫朔自定义回复，type2')
-                await bot.send(event, '这是今天的漫朔哦~~')
-                s = [Image(path='manshuo_data/fonts/guaiqiao.png')]
-                await bot.send(event, s)
+                #await bot.send(event, '这是今天的漫朔哦~~')
+                rnum0 = random.randint(1, 3)
+                if rnum0 == 1:
+                    #s = [Image(path='manshuo_data/fonts/guaiqiao.png')]
+                    await bot.send(event, ['这是今天的漫朔哦~~',Image(path='manshuo_data/fonts/guaiqiao.png')])
+                else:
+                    count_number = len(files_img_check)
+                    rnum1 = random.randint(0, count_number - 1)
+                    img_rnum = files_img_check[rnum1]
+                    # print(img_rnum)
+                    img_path = os.path.join(directory_img_check, img_rnum)
+                    logger.info(f"获取到漫朔图片地址{img_path}")
+                    #s = [Image(path=img_path)]
+                    await bot.send(event, ['这是今天的漫朔哦~~', Image(path=img_path)])
+                    #await bot.send(event, s)
             elif type == 3:
                 logger.info('漫朔自定义回复，type3')
                 await bot.send(event, '你怎么天天想着人家？' + str(name_nickname) + '好怪哦')
@@ -208,8 +278,14 @@ def main(bot, logger):
                 await bot.send(event, str(botName) + '才不允许你看我家哥哥呢')
             elif type == 5:
                 logger.info('漫朔自定义回复，type5')
-                await bot.send(event, str(name_nickname) + '又要指挥' + str(botName) + '干坏事情了，' + str(
-                    botName) + '才不要呢.')
+                count_number = len(files_img_check)
+                rnum1 = random.randint(0, count_number - 1)
+                img_rnum = files_img_check[rnum1]
+                # print(img_rnum)
+                img_path = os.path.join(directory_img_check, img_rnum)
+                logger.info(f"获取到漫朔图片地址{img_path}")
+                # s = [Image(path=img_path)]
+                await bot.send(event, ['这是今天的漫朔哦~~', Image(path=img_path)])
             elif type == 6:
                 logger.info('漫朔自定义回复，type6')
                 s = [Image(path='manshuo_data/fonts/momobendan.png')]
@@ -263,6 +339,9 @@ def main(bot, logger):
         if '/help' in str(event.message_chain) :
             logger.info("自定义回复")
             await bot.send(event, '请发送@bot+help获取帮助菜单')
+        if 'help' == str(event.message_chain) :
+            logger.info("自定义回复")
+            await bot.send(event, '请发送@bot+help获取帮助菜单')
         if '你不准打断' in str(event.message_chain) :
             logger.info("自定义回复")
             await bot.send(event, '你好像没有权利来规定我啊（生气')
@@ -281,7 +360,6 @@ def main(bot, logger):
         if '几卡' in str(event.message_chain) and At(bot.qq) in event.message_chain:
             logger.info("自定义回复")
             rnum=random.randint(1,12)+random.randint(0,135)//100*999
-            
             await bot.send(event, str(rnum)+'卡')
             
             
@@ -334,21 +412,46 @@ def main(bot, logger):
 
                 
             #await bot.send(event, '开学音趴将在'+str(rnum2)+'月'+str(rnum3)+'日'+速来!!!')
+        if str(event.message_chain).startswith("今"):
+            if ('今日' in str(event.message_chain) or '今天' in str(event.message_chain) or '今日' in str(event.message_chain)) and '老婆' in str(event.message_chain):
+                logger.info("今日老婆开启！")
+                count_number = len(files_img_check)
+                if group_manage_controller(f'{event.group.id}_today_wife'):
+                    if'张' in str(event.message_chain) or '个' in str(event.message_chain) or '位' in str(event.message_chain):
+                        cmList=[]
+                        context = str(event.message_chain)
+                        name_id_number = re.search(r'\d+', context)
+                        if name_id_number:
+                            number = int(name_id_number.group())
+                            if number >5:
+                                await bot.send(event, '数量过多，渣男！！！！')
+                            else:
+                                #number=5
+                                for i in range(number):
+                                    rnum1 = random.randint(0, count_number - 1)
+                                    img_rnum = files_img_check[rnum1]
+                                    # print(img_rnum)
+                                    img_path = os.path.join(directory_img_check, img_rnum)
+                                    logger.info(f"获取到老婆图片地址{img_path}")
+                                    s = [Image(path=img_path)]
+                                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                                            message_chain=MessageChain(Image(path=img_path)))
+                                    cmList.append(b1)
+                                await bot.send(event, Forward(node_list=cmList))
+                    else:
+                        rnum1 = random.randint(0, count_number-1)
+                        img_rnum=files_img_check[rnum1]
+                        #print(img_rnum)
+                        img_path=os.path.join(directory_img_check,img_rnum)
+                        logger.info(f"获取到老婆图片地址{img_path}")
+                        s=[Image(path=img_path)]
+                        await bot.send(event, s)
 
-        if '今日老婆' in str(event.message_chain) or '今天老婆' in str(event.message_chain) or '今日老婆' in str(event.message_chain):
-            logger.info("今日老婆开启！")
-
-            #print(files)
-            count_number=len(files_img_check)
-            rnum1 = random.randint(0, count_number-1)
-            img_rnum=files_img_check[rnum1]
-            #print(img_rnum)
-            img_path=os.path.join(directory_img_check,img_rnum)
-            logger.info(f"获取到老婆图片地址{img_path}")
-            s=[Image(path=img_path)]
-            await bot.send(event, s)
         if ('qiqi' in str(event.message_chain)) and ('男娘' in str(event.message_chain)):
             s=[Image(path='manshuo_data/fonts/qiqinanniang.png')]
+            await bot.send(event, s)
+        if '哼哼' in str(event.message_chain):
+            s=[Image(path='manshuo_data/fonts/atri_kaixin.gif')]
             await bot.send(event, s)
         if ('qiqi' in str(event.message_chain)) and ('杂鱼' in str(event.message_chain)):
             s=[Image(path='manshuo_data/fonts/qiqizayu.png')]
@@ -430,105 +533,176 @@ def main(bot, logger):
                 s=[Image(path='manshuo_data/fonts/xiongdi.jpg')]
                 await bot.send(event, s)
 
-    @bot.on(GroupMessage)
+    @bot.on(GroupMessage)#劝小白看文档
     async def help(event: GroupMessage):
+
         if event.group.id == 251807019 or event.group.id == 623265372:
             if '怎么' in str(event.message_chain) or '大佬' in str(event.message_chain):  # 前置触发词
-                await bot.send(event, [f'{botName}提示您，遇到问题先看文档哟',Image(path='manshuo_data/fonts/wendang.png')
-                    ,f'看完文档后还请自行百度确定自己无法独立解决该问题\n然后在提问群友时请描述清楚问题并附上控制台报错截图，谢谢'])
+                rnum0 = random.randint(1, 100)
+                logger.info(f"小白蒙蔽拳！！！typr={rnum0}")
+                if rnum0 < 60:
+                    await bot.send(event, [f'{botName}提示您，遇到问题先看文档哟',Image(path='manshuo_data/fonts/wendang.png')
+                        ,f'看完文档后还请自行百度确定自己无法独立解决该问题\n然后在提问群友时请描述清楚问题并附上控制台报错截图，谢谢\n文档备用地址：https://www.manshuo.ink/index.php/archives/149/'])
 
-    @bot.on(GroupMessage)
+    @bot.on(GroupMessage)#来点图图
     async def help(event: GroupMessage):
-        if ('来点' in str(event.message_chain)):#前置触发词
-            filepath = 'manshuo_data/wife_random'
-            context=str(event.message_chain)
-            test_context = context.replace("来点", "")
-            logger.info(f"色图搜索开启！tag：{test_context}")
-            if test_context=='色图':
-                params = {
-                    "format": "json",
-                    "num": '1',
-                    "type": "auto",
-                    "size": "regular",
-                    'tag': '美しい',
-                    'ex-tag':'創作BL',
-                    'r-18': False
-                }
-            elif '美' in test_context:
-
-
-                params = {
-                    "format": "json",
-                    "num": '1',
-                    "type": "auto",
-                    "size": "regular",
-                    'tag': '美しい',
-                    'ex-tag':'創作BL',
-                    'r-18': False
-                }
-            elif '18' in test_context:
-                params = {
-                    "format": "json",
-                    "num": '1',
-                    "type": "auto",
-                    "size": "regular",
-                    'tag': 'R-18',
-                    'ex-tag':'創作BL',
-                    'r-18': True
-                }
-            else:
-                test_context_translate = translate(test_context)
-                if test_context_translate:
-                    logger.info(f"中译日成功，返回数据：{test_context_translate}")
+        if group_manage_controller(f'{event.group.id}_P_select_search'):
+            if str(event.message_chain).startswith("来点"):
+            #if ('来点' in str(event.message_chain)):#前置触发词
+                flag_wife = 0
+                filepath = 'manshuo_data/wife_random'
+                context=str(event.message_chain)
+                test_context = context.replace("来点", "")
+                logger.info(f"色图搜索开启！tag：{test_context}")
+                if test_context=='色图':
                     params = {
                         "format": "json",
                         "num": '1',
                         "type": "auto",
                         "size": "regular",
-                        'r-18': False,
-                        'tag': test_context_translate
+                        'tag': '美しい',
+                        'ex-tag':'創作BL',
+                        'r-18': False
+                    }
+                elif '美' in test_context:
+                    params = {
+                        "format": "json",
+                        "num": '1',
+                        "type": "auto",
+                        "size": "regular",
+                        'tag': '美しい',
+                        'ex-tag':'創作BL',
+                        'r-18': False
+                    }
+                elif '18' in test_context:
+                    params = {
+                        "format": "json",
+                        "num": '1',
+                        "type": "auto",
+                        "size": "regular",
+                        'tag': 'R-18',
+                        'ex-tag':'創作BL',
+                        'r-18': True
                     }
                 else:
-                    params = {
-                        "format": "json",
-                        "num": '1',
-                        "type": "auto",
-                        "size": "regular",
-                        'r-18': False,
-                        'tag': test_context
-                    }
-            url = 'https://api.hikarinagi.com/random/v2/?'
-            # url="https://api.hikarinagi.com/random/v2/?tag=原神&num=1&r-18=false"
-            response = httpx.get(url, params=params)
-            if response.status_code == 200:
-                #print(response.status_code)
-                data = response.json()
-                #print(data)
-                if 'error' in data:
+                    if test_context:
+
+                        try:
+                            test_context_translate = translate(test_context)
+                            if test_context_translate:
+                                logger.info(f"中译日成功，返回数据：{test_context_translate}")
+                                logger.info(f"尝试进行日文tag搜索{test_context_translate}")
+                                params = {
+                                    "format": "json",
+                                    "num": '1',
+
+
+                                    'tag': test_context_translate
+                                }
+                                url = 'https://api.hikarinagi.com/random/v2/?'
+                                response = httpx.get(url, params=params)
+                                data = response.json()
+                                if 'error' in data:
+                                    raise Exception("这是一个手动引发的错误")
+                        except Exception:
+                            try:
+                                logger.error("日文tag搜索失败")
+                                logger.info(f"尝试进行中文tag搜索:{test_context}")
+                                params = {
+                                    "format": "json",
+                                    "num": '1',
+
+
+                                    'tag': test_context
+                                }
+                                url = 'https://api.hikarinagi.com/random/v2/?'
+                                # url="https://api.hikarinagi.com/random/v2/?tag=原神&num=1&r-18=false"
+                                response = httpx.get(url, params=params)
+                                data = response.json()
+                                #print(data)
+                                if 'error' in data:
+                                    raise Exception("这是一个手动引发的错误")
+                            except Exception:
+                                try:
+                                    logger.error("中文tag搜索失败")
+                                    pass
+                                    logger.info(f"尝试进行中文title搜索: {test_context}")
+                                    params = {
+                                        "format": "json",
+                                        "num": '1',
+                                        "type": "auto",
+                                        "size": "regular",
+
+                                        'title': test_context
+                                    }
+                                    #raise Exception("这是一个手动引发的错误")
+                                    url = 'https://api.hikarinagi.com/random/v2/?'
+                                    #response = httpx.get(url, params=params)
+                                    #data = response.json()
+                                except Exception:
+                                    pass
+                                    logger.error("中文title搜索失败")
+                                    test_context_translate = translate(test_context)
+                                    logger.info(f"尝试进行日文title搜索: {test_context_translate}")
+                                    try:
+                                        params = {
+                                            "format": "json",
+                                            "num": '1',
+                                            "type": "auto",
+                                            "size": "regular",
+
+                                            'title': test_context_translate
+                                        }
+                                        url = 'https://api.hikarinagi.com/random/v2/?'
+                                        #response = httpx.get(url, params=params)
+                                        #data = response.json()
+
+                                    except Exception:
+                                        logger.error("日文title搜索失败")
+                                        flag_wife = 1
+
+
+
+                url = 'https://api.hikarinagi.com/random/v2/?'
+                # url="https://api.hikarinagi.com/random/v2/?tag=原神&num=1&r-18=false"
+                try:
+                    response = httpx.get(url, params=params)
+                    if response.status_code == 200:
+                    #print(response.status_code)
+                        data = response.json()
+                    if 'error' in data:
+                        await bot.send_group_message(event.sender.group.id,
+                                                     [f'{botName}好像找不到您所说{test_context}的照片哦'])
+                    else:
+                        test = data[0]
+                        url = test['url']
+                        pid = test['pid']
+                        tags = test['tags']
+                        print(tags)
+                        proxy_url = url.replace("https://i.pximg.net/", "https://i.yuki.sh/")
+                        logger.info(f"搜索成功，作品pid：{pid}，反代url：{proxy_url}")
+                        img_path = get_game_image(proxy_url, filepath, pid)
+                        if '18' in test_context:
+                            await bot.send_group_message(event.sender.group.id,
+                                                         [f'这是{botName}为您找到的图片哟\nurl：{proxy_url}\ntags:{tags}'])
+                        else:
+                            await bot.send_group_message(event.sender.group.id,
+                                                         [f'这是{botName}为您找到的图片哟',
+                                                          Image(path=img_path)])
+
+                except Exception:
+                    logger.error("搜索失败")
                     await bot.send_group_message(event.sender.group.id,
                                                  [f'{botName}好像找不到您所说{test_context}的照片哦'])
-                else:
-                    test = data[0]
-                    url = test['url']
-                    pid=test['pid']
-                    tags = test['tags']
-                    proxy_url = url.replace("https://i.pximg.net/", "https://i.yuki.sh/")
-                    logger.info(f"搜索成功，作品pid：{pid}，反代url：{proxy_url}")
-                    img_path = get_game_image(proxy_url, filepath, pid)
-                    if '18' in test_context :
-                        await bot.send_group_message(event.sender.group.id,
-                                                     [f'这是{botName}为您找到的图片哟\nurl：{proxy_url}\ntags:{tags}'])
-                    else:
-                        await bot.send_group_message(event.sender.group.id,
-                                                 [f'这是{botName}为您找到的图片哟',
-                                                  Image(path=img_path)])
 
-
-
-    @bot.on(GroupMessage)
+    @bot.on(GroupMessage)#透群友合集
     async def help(event: GroupMessage):
 
         if ('/' in str(event.message_chain)):#前置触发词
+            if group_manage_controller(f'{event.group.id}_wife_you_want'):
+                pass
+            else:
+                return
             flag_persona = 0
             flag_aim = 0
             if ('透群主' in str(event.message_chain)):
@@ -548,7 +722,6 @@ def main(bot, logger):
                 if manage_group_status(from_id) :
                     target_group = int(event.group.id)
                     target_id_aim=manage_group_status(from_id)
-
                     flag_aim = 1
                 else:
                     flag_aim = 0
@@ -628,13 +801,16 @@ def main(bot, logger):
                     target_id=target_id_aim
 
                 #print(target_id)
-                logger.info(f'透群友目标：{target_id}')
+                logger.info(f'群：{target_group}，透群友目标：{target_id}')
                 group_member_check = await bot.get_group_member(target_group, target_id)
                 # target_id = extract_between_symbols(str(group_member_check), 'id=', ' member')
                 if manage_group_status(f'{from_id}_name') and flag_persona == 4:
                     target_name=manage_group_status(f'{from_id}_name')
                 else:
-                    target_name = extract_between_symbols(str(group_member_check), 'member_name=', ' permission')
+                    group_member_check = group_member_check.json()
+                    group_member_check = json.loads(group_member_check)
+                    target_name=group_member_check['member_name']
+                    #target_name = extract_between_symbols(str(group_member_check), 'member_name=', ' permission')
 
 
                 if flag_persona == 4:
@@ -645,48 +821,109 @@ def main(bot, logger):
 
                 # 下面是获取对应人员头像的代码
                 target_img_url = f"https://q1.qlogo.cn/g?b=qq&nk={target_id}&s=640"  # QQ头像 URL 格式
-
                 target_img_path = get_game_image(target_img_url, filepath, target_id)
 
-                if flag_persona == 1:
-                    if manage_group_status(f'{target_id}_ower_time'):
-                        times = int(manage_group_status(f'{target_id}_ower_time'))
-                        times += 1
-                        manage_group_status(f'{target_id}_ower_time', times)
-                    else:
-                        times = 1
-                        manage_group_status(f'{target_id}_ower_time', 1)
-                    await bot.send_group_message(event.sender.group.id,
-                                                 [f'@{from_name} 恭喜你涩到群主！！！！',
-                                                  Image(path=target_img_path),
-                                                  f'群主【{target_name}】今天这是第{times}次被透了呢'])
-                if flag_persona == 2:
-                    await bot.send_group_message(event.sender.group.id,
-                                                 [f'@{from_name} 恭喜你涩到管理！！！！',
-                                                  Image(path=target_img_path),
-                                                  f'【{target_name}】 ({target_id})哒！'])
-                if flag_persona == 3:
-                    if flag_aim == 1:
+                from_name=str(from_name)
+                target_name = str(target_name)
+                target_times=manage_group_status(f'{target_name} ({target_id})',True,target_group=target_group,file_name='wife_you_want_week_check_target.yaml')
+                from_times=manage_group_status(f'{from_name} ({from_id})',True,target_group=target_group,file_name='wife_you_want_week_check_from.yaml')
+                #print(f'target_times: {target_times} , from_times: {from_times}')
+
+
+
+
+                if group_manage_controller(f'{event.group.id}_wife_you_want'):
+                    if flag_persona == 1:
+                        if manage_group_status(f'{target_id}_ower_time'):
+                            times = int(manage_group_status(f'{target_id}_ower_time'))
+                            times += 1
+                            manage_group_status(f'{target_id}_ower_time', times)
+                        else:
+                            times = 1
+                            manage_group_status(f'{target_id}_ower_time', 1)
                         await bot.send_group_message(event.sender.group.id,
-                                                     [f'@{from_name} 恭喜你涩到了群友！！！！',
+                                                     [f'@{from_name} 恭喜你涩到群主！！！！',
+                                                      Image(path=target_img_path),
+                                                      f'群主【{target_name}】今天这是第{times}次被透了呢'])
+                    if flag_persona == 2:
+                        await bot.send_group_message(event.sender.group.id,
+                                                     [f'@{from_name} 恭喜你涩到管理！！！！',
                                                       Image(path=target_img_path),
                                                       f'【{target_name}】 ({target_id})哒！'])
-                    else:
-                        await bot.send_group_message(event.sender.group.id,
-                                                     [f'@{from_name} 今天你的色色对象是',
-                                                      Image(path=target_img_path),
-                                                      f'【{target_name}】 ({target_id})哒！'])
-                if flag_persona == 4:
-                    if flag_aim == 1:
-                        await bot.send_group_message(event.sender.group.id,
-                                                     [f'@{from_name} 恭喜你娶到了群友！！！！',
-                                                      Image(path=target_img_path),
-                                                      f'【{target_name}】 ({target_id})哒！'])
-                    else:
-                        await bot.send_group_message(event.sender.group.id,
-                                                     [f'@{from_name} 今天你的结婚对象是',
-                                                      Image(path=target_img_path),
-                                                      f'【{target_name}】 ({target_id})哒！'])
+                    if flag_persona == 3:
+                        if flag_aim == 1:
+                            await bot.send_group_message(event.sender.group.id,
+                                                         [f'@{from_name} 恭喜你涩到了群友！！！！',
+                                                          Image(path=target_img_path),
+                                                          f'【{target_name}】 ({target_id})哒！'])
+                        else:
+                            await bot.send_group_message(event.sender.group.id,
+                                                         [f'@{from_name} 今天你的色色对象是',
+                                                          Image(path=target_img_path),
+                                                          f'【{target_name}】 ({target_id})哒！'])
+                    if flag_persona == 4:
+                        if flag_aim == 1:
+                            await bot.send_group_message(event.sender.group.id,
+                                                         [f'@{from_name} 恭喜你娶到了群友！！！！',
+                                                          Image(path=target_img_path),
+                                                          f'【{target_name}】 ({target_id})哒！'])
+                        else:
+                            await bot.send_group_message(event.sender.group.id,
+                                                         [f'@{from_name} 今天你的结婚对象是',
+                                                          Image(path=target_img_path),
+                                                          f'【{target_name}】 ({target_id})哒！'])
+            if '记录' in str(event.message_chain) and (
+                    '色色' in str(event.message_chain) or '瑟瑟' in str(event.message_chain) or '涩涩' in str(
+                    event.message_chain)):
+                target_group = int(event.group.id)
+                cmList = []
+                if '本周' in str(event.message_chain) or '每周' in str(event.message_chain) or '星期' in str(event.message_chain):
+                    logger.info(f'本周色色记录启动！')
+                    type_context='以下是本周色色记录：'
+                    target_context,target_king = sort_yaml('wife_you_want_week_check_target.yaml',target_group,'week')
+                    from_context,from_king = sort_yaml('wife_you_want_week_check_from.yaml',target_group,'week')
+                elif '本月' in str(event.message_chain) or '月份' in str(event.message_chain) or '月' in str(event.message_chain):
+                    logger.info(f'本周色色记录启动！')
+                    type_context = '以下是本月色色记录：'
+                    target_context,target_king = sort_yaml('wife_you_want_week_check_target.yaml',target_group,'moon')
+                    from_context,from_king = sort_yaml('wife_you_want_week_check_from.yaml',target_group,'moon')
+                else:
+                    logger.info(f'本日色色记录启动！')
+                    type_context = '以下是本日色色记录：'
+                    target_context,target_king = sort_yaml('wife_you_want_week_check_target.yaml',target_group)
+                    from_context,from_king = sort_yaml('wife_you_want_week_check_from.yaml',target_group)
+                if '没有任何一位' in target_context or '没有任何一位' in from_context:
+                    await bot.send(event, f'{target_context}')
+                else:
+                    filepath = 'manshuo_data/wife_you_want_img'
+                    target_king_name, inside_with_parens = target_king.split(" (")
+                    target_king_id = inside_with_parens.rstrip(")")  # 去除右括号
+                    from_king_name, inside_with_parens = from_king.split(" (")
+                    from_king_id = inside_with_parens.rstrip(")")  # 去除右括号
+                    target_img_url = f"https://q1.qlogo.cn/g?b=qq&nk={target_king_id}&s=640"  # QQ头像 URL 格式
+                    from_img_url = f"https://q1.qlogo.cn/g?b=qq&nk={from_king_id}&s=640"
+                    target_img_path = get_game_image(target_img_url, filepath, target_king_id)
+                    from_img_path = get_game_image(from_img_url, filepath, from_king_id)
+                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                            message_chain=MessageChain(str(type_context)))
+                    cmList.append(b1)
+                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                            message_chain=MessageChain([f'被群友透最多的人诞生了！！',
+                                                          Image(path=target_img_path),
+                                                          f'是【{target_king_name}】 ({target_king_id})哦~']))
+                    cmList.append(b1)
+                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                            message_chain=MessageChain(f'群友被透的次数如下哦：\n{target_context}'))
+                    cmList.append(b1)
+                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                            message_chain=MessageChain([f'群最涩色魔，透群友大王出现了！',
+                                                          Image(path=from_img_path),
+                                                          f'【{from_king_name}】 ({from_king_id})的说~~']))
+                    cmList.append(b1)
+                    b1 = ForwardMessageNode(sender_id=bot.qq, sender_name="Manyana",
+                                            message_chain=MessageChain(f'群友透别人的次数如下哦：\n{from_context}'))
+                    cmList.append(b1)
+                    await bot.send(event, Forward(node_list=cmList))
 
     @bot.on(GroupMessage)#部分功能权限管理
     async def function_manager(event: GroupMessage):
@@ -785,19 +1022,36 @@ def main(bot, logger):
                     await bot.send(event, f'执行完毕')
 
 
-
-    @bot.on(Startup)
+    @bot.on(Startup)#部分文件指定删除，用以实现循环
     async def start_scheduler(_):
         async def timer():
             today_finished = False  # 设置变量标识今天是会否完成任务，防止重复发送
             while True:
                 await asyncio.sleep(1)
                 now = datetime.datetime.now()
+                today = datetime.datetime.today()
+                weekday = today.weekday()
+                month = datetime.datetime.now().month
+                day = datetime.datetime.now().day
                 if now.hour == 00 and now.minute == 00 and not today_finished:  # 每天早上 7:30 发送早安
-                    file_path="manshuo_data/wife_you_want_img/wife_you_want.yaml"
+                    file_path_check="manshuo_data/wife_you_want_img/wife_you_want.yaml"
+                    if os.path.exists(file_path_check):
+                        os.remove(file_path_check)
+                    file_path="manshuo_data/wife_you_want_img/wife_you_want_week_check_target.yaml"
                     if os.path.exists(file_path):
-                        os.remove(file_path)
-                        print('娶群友事件已重置')
+                        with open(file_path, 'r') as file:
+                            users_data = yaml.safe_load(file) or {}
+                            type='day'
+                            users_data[type] = {}
+                        if int(weekday) == 0:
+                            type = 'week'
+                            users_data[type] = {}
+                        if int(day) == 1:
+                            type = 'moon'
+                            users_data[type] = {}
+                        with open(file_path, 'w') as file:
+                            yaml.safe_dump(users_data, file)
+                    print('娶群友事件已重置')
                     today_finished = True
                 if now.hour == 00 and now.minute == 1:
                     today_finished = False  # 早上 7:31，重置今天是否完成任务的标识
