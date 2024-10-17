@@ -17,7 +17,6 @@ from plugins.aiReplyCore import modelReply
 from plugins.extraParts import steamEpic
 from plugins.newsEveryDay import news, danxianglii, moyu, xingzuo
 from plugins.toolkits import screenshot_to_pdf_and_png,picDwn
-# from plugins.youtube0 import ASMR_today,get_audio,get_img
 
 
 def main(bot,logger):
@@ -51,7 +50,6 @@ def main(bot,logger):
     aiReplyCore = result.get("chatGLM").get("aiReplyCore")
     trustDays = friendsAndGroups.get("trustDays")
 
-
     with open('data/userData.yaml', 'r', encoding='utf-8') as file:
         Userdata = yaml.load(file, Loader=yaml.FullLoader)
     global trustUser
@@ -59,14 +57,10 @@ def main(bot,logger):
     userdict = Userdata
     trustUser = []
     for i in userdict.keys():
-        Userdata = userdict.get(i)
-        try:
-            times = int(str(Userdata.get('sts')))
-            if times > trustDays:
-                trustUser.append(str(i))
-
-        except Exception as e:
-            logger.error(f"用户{i}的sts数值出错，请打开data/userData.yaml检查，将其修改为正常数值")
+        singleUserData = userdict.get(i)
+        times = int(str(singleUserData.get('sts')))
+        if times > trustDays:
+            trustUser.append(str(i))
 
     @bot.on(Startup)
     async def upDate(event: Startup):
@@ -79,8 +73,8 @@ def main(bot,logger):
             userdict = Userdata
             trustUser = []
             for i in userdict.keys():
-                Userdata = userdict.get(i)
-                times = int(str(Userdata.get('sts')))
+                singleUserData = userdict.get(i)
+                times = int(str(singleUserData .get('sts')))
                 if times > trustDays:
                     trustUser.append(str(i))
 
@@ -102,16 +96,59 @@ def main(bot,logger):
 
     async def task_executor(task_name, task_info):
         logger.info(f"执行任务：{task_name}")
-        if task_name == "morning":
-            global trustUser, userdict
+        global trustUser, userdict
+        if task_name=="goodnight":
             morningText = task_info.get("text")
-            for i in trustUser:
+            friendList = await bot.friend_list()
+            userli = [i.id for i in friendList.data]
+            if task_info.get("onlyTrustUser"):
+                userli2=[]
+                for i in userdict:
+                    try:
+                        s=int(i)
+                    except:
+                        continue
+                    singleUserData = userdict.get(i)
+                    times = int(str(singleUserData.get('sts')))
+                    if times > task_info.get("trustThreshold") and int(i) in userli:
+                        userli2.append(str(i))
+                userli = userli2
+            for i in userli:
+                try:
+                    aiReplyCore_test = True
+                    if aiReplyCore_test:
+                        r = await modelReply(userdict.get(str(i)).get("userName"), int(i),
+                                             f"请你对我进行晚安道别，直接发送结果即可，不要发送其他内容")
+                        await bot.send_friend_message(int(i), r)
+                    else:
+                        await bot.send_friend_message(int(i), morningText)
+                except Exception as e:
+                    logger.error(e)
+                    continue
+                await sleep(6)
+        elif task_name == "morning":
+            morningText = task_info.get("text")
+            friendList = await bot.friend_list()
+            userli = [i.id for i in friendList.data]
+            if task_info.get("onlyTrustUser"):
+                userli2 = []
+                for i in userdict:
+                    try:
+                        s=int(i)
+                    except:
+                        continue
+                    singleUserData = userdict.get(i)
+                    times = int(str(singleUserData.get('sts')))
+                    if times > task_info.get("trustThreshold") and int(i) in userli:
+                        userli2.append(str(i))
+                userli = userli2
+            for i in userli:
                 try:
                     city = userdict.get(i).get("city")
                     logger.info(f"查询 {city} 天气")
                     if aiReplyCore:
                         wSult=await weatherQuery.fullQuery(city)
-                        r = await modelReply(userdict.get(i).get("userName"), int(i),
+                        r = await modelReply(userdict.get(str(i)).get("userName"), int(i),
                                              f"请你为我进行天气播报，下面是天气查询的结果：{wSult}")
                         await bot.send_friend_message(int(i), r)
                     else:
@@ -120,6 +157,7 @@ def main(bot,logger):
                 except Exception as e:
                     logger.error(e)
                     continue
+                await sleep(6)
         elif task_name == "news":
             logger.info("获取新闻")
             path = await news()
@@ -133,10 +171,13 @@ def main(bot,logger):
             logger.info("获取steam喜加一")
             path = await steamEpic()
             logger.info("推送今日喜加一列表")
+            if path is None or path == "":
+                return
+            elif "错误" in path:
+                logger.error(f"喜加一出错,{path}")
+                return
             for i in groupdata.get("steamadd1").get("groups"):
                 try:
-                    if path is None or path == "":
-                        return
                     await bot.send_group_message(int(i), [task_info.get("text"), path])
                 except:
                     logger.error("不存在的群" + str(i))
@@ -211,33 +252,30 @@ def main(bot,logger):
                 except:
                     logger.error("不存在的群" + str(i))
         elif task_name=="nightASMR":
-            try:
-                from plugins.youtube0 import ASMR_today,get_audio,get_img
-            except:
-                logger.error("导入失败，请检查youtube0依赖")
-                return
             logger.info("获取晚安ASMR")
-            athor,title,video_id,length = await ASMR_today(proxies)
-            imgpath = await get_img(video_id, proxies)
-            audiourl = await get_audio(video_id, proxies)
+            from plugins.youtube0 import ASMR_today,get_audio,get_img
+            athor,title,video_id,length = await ASMR_today()
+            imgurl = await get_img(video_id)
+            audiourl = await get_audio(video_id)
             logger.info("推送晚安ASMR")
             st1 = "今日ASMR:"+title+"\n"
             st1 += "频道："+athor+"\n"
             st1 += f"时长：{length//60}分{length%60}秒\n"
             st2 = "======================\n"
-            st2 += task_info.get("text")     
+            st2 += task_info.get("text")
             for i in groupdata.get("nightASMR").get("groups"):
                 try:
-                    await bot.send_group_message(int(i), [st1,Image(path=imgpath),st2])
+                    await bot.send_group_message(int(i), [st1,Image(url=imgurl),st2])
                     await bot.send_group_message(int(i), MusicShare(kind="QQMusic", 
                                                                     title=title, 
                                                                     summary=athor,
                                                                     jump_url=f"https://www.amoyshare.com/player/?v={video_id}",
-                                                                    picture_url=f"https://i.ytimg.com/vi/{video_id}/hqdefault.jpg",
+                                                                    picture_url=imgurl,
                                                                     music_url=audiourl,
                                                                     brief='ASMR'))
                 except:
                     logger.error("不存在的群"+str(i))
+        
     def create_dynamic_jobs():
         for task_name, task_info in scheduledTasks.items():
             if task_info.get('enable'):
@@ -255,8 +293,14 @@ def main(bot,logger):
             return
         if o or head != '/推送' or not cmd:
             return
-        cmds = {"摸鱼人日历": "moyu", "每日天文": "astronomy", "每日新闻": "news", "喜加一": "steamadd1",
-                "每日星座": "constellation", "单向历": "danxiangli","bangumi日榜":"bangumi","晚安ASMR":"nightASMR"}
+        cmds = {"摸鱼人日历": "moyu",
+                "每日天文": "astronomy",
+                "每日新闻": "news",
+                "喜加一": "steamadd1",
+                "每日星座": "constellation",
+                "单向历": "danxiangli",
+                "bangumi日榜":"bangumi",
+                "晚安ASMR":"nightASMR"}
         key = cmds.get(cmd, 'unknown')
         if key == 'unknown':
             return
